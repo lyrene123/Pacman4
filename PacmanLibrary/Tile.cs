@@ -7,6 +7,9 @@ using Microsoft.Xna.Framework;
 
 namespace PacmanLibrary
 {
+    /// <summary>
+    /// Abstract Class
+    /// </summary>
     public class Tile
     {
         public Vector2 position;
