@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\ICollidable.cs" />
+    <Compile Include="Interfaces\IGhostState.cs" />
+    <Compile Include="Interfaces\IMovable.cs" />
     <Compile Include="Tile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
