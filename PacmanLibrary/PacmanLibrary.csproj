@@ -41,9 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\Direction.cs" />
+    <Compile Include="Enums\GhostState.cs" />
+    <Compile Include="Ghost classes\Ghost.cs" />
     <Compile Include="Interfaces\ICollidable.cs" />
     <Compile Include="Interfaces\IGhostState.cs" />
     <Compile Include="Interfaces\IMovable.cs" />
+    <Compile Include="Pacman.cs" />
     <Compile Include="Tile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

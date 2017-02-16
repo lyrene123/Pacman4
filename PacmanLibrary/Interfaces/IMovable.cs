@@ -11,13 +11,15 @@ namespace PacmanLibrary
     /// The IMovable interface sets the default properties 
     /// and methods that define a movable object in a game
     /// of pacman
+    /// @author Lyrene Labor
+    /// @version Feb 2017
     /// </summary>
     interface IMovable
     {
-        /*Direction Direction
+        Direction Direction
         {
             get; set;
-        }*/
+        }
 
         /// <summary>
         /// The Position property returns the current position

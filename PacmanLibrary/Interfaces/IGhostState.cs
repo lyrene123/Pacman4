@@ -10,6 +10,8 @@ namespace PacmanLibrary
     /// The IGhostState interface sets the default properties
     /// and methods of one of the states of a ghost object in
     /// a game object
+    /// @author Lyrene Labor
+    /// @version Feb 2017
     /// </summary>
     interface IGhostState
     {

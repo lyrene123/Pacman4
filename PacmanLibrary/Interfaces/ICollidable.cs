@@ -10,6 +10,8 @@ namespace PacmanLibrary
     /// The ICollidable interface sets the default properties
     /// and methods of an object considered as something that
     /// can cause a collision in a game of pacman.
+    /// @author Lyrene Labor
+    /// @version Feb 2017
     /// </summary>
     interface ICollidable
     {
