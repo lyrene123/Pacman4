@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PacmanLibrary
+namespace PacmanLibrary.Enums
 {
-    //For Amin
-    class Pacman
+    public enum Color
     {
+        Red, Blue, Pink, Green
     }
 }

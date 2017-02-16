@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PacmanLibrary
+namespace PacmanLibrary.Ghost_classes
 {
-    //For Amin
-    class Pacman
+    /// <summary>
+    /// 
+    /// </summary>
+    class Chase
     {
     }
 }

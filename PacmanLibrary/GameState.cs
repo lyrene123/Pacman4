@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace PacmanLibrary
 {
-    //For Amin
-    class Pacman
+    //for Amin
+    class GameState
     {
     }
 }

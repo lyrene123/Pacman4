@@ -18,12 +18,26 @@ namespace PacmanLibrary.Ghost_classes
         //private Pen pen;
         //private Maze maze;
         private Direction direction;
-        private string colour;
+        private Color colour;
         private IGhostState currentState;
         public static Timer scared;
 
 
-       
+       public Ghost(GameState g, int x, int y, Vector2 target, GhostState start, Color c)
+        {
+            //GET PACMAN FROM GAMESTATE G
+            //GET MAZE FROM GAMESTATE G
+            //GET PEN FROM GAMESTATE G
+            this.target = target;
+            this.colour = c;
+            this.Position = new Vector2(x, y);
+
+            if(start == GhostState.Scared)
+            {
+                //this.currentState =
+            }
+
+        }
 
 
         public Direction Direction

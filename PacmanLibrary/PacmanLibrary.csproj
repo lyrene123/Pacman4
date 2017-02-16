@@ -41,9 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\Color.cs" />
     <Compile Include="Enums\Direction.cs" />
     <Compile Include="Enums\GhostState.cs" />
+    <Compile Include="GameState.cs" />
+    <Compile Include="Ghost classes\Chase.cs" />
     <Compile Include="Ghost classes\Ghost.cs" />
+    <Compile Include="Ghost classes\Pen.cs" />
+    <Compile Include="Ghost classes\Scared.cs" />
     <Compile Include="Interfaces\ICollidable.cs" />
     <Compile Include="Interfaces\IGhostState.cs" />
     <Compile Include="Interfaces\IMovable.cs" />
