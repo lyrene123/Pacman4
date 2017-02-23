@@ -13,7 +13,7 @@ namespace PacmanLibrary
     /// @author Lyrene Labor
     /// @version Feb 2017
     /// </summary>
-    interface ICollidable
+    public interface ICollidable
     {
         //add the collision event here
 
