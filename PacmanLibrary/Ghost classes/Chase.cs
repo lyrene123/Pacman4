@@ -9,7 +9,7 @@ namespace PacmanLibrary.Ghost_classes
     /// <summary>
     /// 
     /// </summary>
-    class Chase
+    public class Chase
     {
     }
 }

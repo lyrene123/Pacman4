@@ -14,7 +14,7 @@ namespace PacmanLibrary
     /// @author Lyrene Labor
     /// @version Feb 2017
     /// </summary>
-    interface IMovable
+    public interface IMovable
     {
         Direction Direction
         {

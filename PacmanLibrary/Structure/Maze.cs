@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,7 +38,15 @@ namespace PacmanLibrary.Structure
             get { return this.maze.Length; }
         }
 
-
+        public List<Tile> GetAvailableNeighbours(Vector2 position, Direction direction)
+        {
+            List<Tile> availables = new List<Tile>();
+            if(direction == Direction.Down)
+            {
+                float posY = position.Y - 1;
+                //if(this.maze[position.X, posY] is Path)
+            }
+        }
 
 
     }

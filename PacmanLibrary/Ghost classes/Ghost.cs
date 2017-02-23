@@ -11,7 +11,7 @@ namespace PacmanLibrary.Ghost_classes
     /// <summary>
     /// 
     /// </summary>
-    class Ghost : IMovable, ICollidable
+    public class Ghost : IMovable, ICollidable
     {
         private Pacman pacman;
         private Vector2 target;

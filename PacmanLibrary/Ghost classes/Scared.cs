@@ -9,7 +9,7 @@ namespace PacmanLibrary.Ghost_classes
     /// <summary>
     /// 
     /// </summary>
-    class Scared
+    public class Scared
     {
         private Ghost ghost;
        // private Maze maze;

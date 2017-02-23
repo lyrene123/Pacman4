@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace PacmanLibrary
 {
     //for Amin
-    class GameState
+    public class GameState
     {
     }
 }
