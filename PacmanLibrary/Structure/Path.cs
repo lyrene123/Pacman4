@@ -14,24 +14,30 @@ namespace PacmanLibrary.Structure
         {
             this.member = member;
         }
-        public override ICollidable Member()
-        {
-            throw new NotImplementedException();
-        }
-
         public override bool CanEnter()
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public override void Collide()
         {
-            throw new NotImplementedException();
+            if (member != null)
+            {
+                member.Collide();
+            }
+                
         }
 
         public override bool IsEmpty()
         {
-            throw new NotImplementedException();
+            if(member == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         
