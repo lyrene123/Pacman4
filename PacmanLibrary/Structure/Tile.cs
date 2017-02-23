@@ -29,16 +29,11 @@ namespace PacmanLibrary
             get{ return position;}
             set{ position = value;}
         }
-        public ICollidable Member
-        {
-            get { return member; }
-            set { member = value; }
-        }
-
         public float GetDistance(Vector2 goal)
         {
             return Vector2.Distance(position, goal);
         }
+        public abstract ICollidable Member { get; set; }
         public abstract bool CanEnter();
         public abstract void Collide();
         public abstract bool IsEmpty();

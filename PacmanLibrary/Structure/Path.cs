@@ -14,6 +14,13 @@ namespace PacmanLibrary.Structure
         {
             this.member = member;
         }
+
+        public override ICollidable Member
+        {
+            get{ return member; }
+            set{this.member = value;}
+        }
+
         public override bool CanEnter()
         {
             return true;
