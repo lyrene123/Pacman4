@@ -16,7 +16,7 @@ namespace PacmanLibrary
     /// </summary>
     public abstract class Tile
     {
-        public Vector2 position;
+        private Vector2 position;
        
 
         public Tile(int x, int y)
