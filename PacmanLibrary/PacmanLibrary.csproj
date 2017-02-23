@@ -53,7 +53,7 @@
     <Compile Include="Interfaces\IGhostState.cs" />
     <Compile Include="Interfaces\IMovable.cs" />
     <Compile Include="Pacman.cs" />
-    <Compile Include="Tile.cs" />
+    <Compile Include="Structure\Tile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
