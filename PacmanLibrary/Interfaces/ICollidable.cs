@@ -16,6 +16,7 @@ namespace PacmanLibrary
     public interface ICollidable
     {
         //add the collision event here
+        event EventHandler CollisionEvent;
 
         /// <summary>
         /// The property Points will return the amount of 
