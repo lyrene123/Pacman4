@@ -26,10 +26,27 @@ namespace PacmanLibrary.Ghost_classes
             this.target = target;
             this.pacman = pacman;
         }
-        
         public void Move()
         {
-           
+            float lowestDistance;
+            List<Tile> tiles = new List<Tile>();
+            tiles =  maze.GetAvailableNeighbours(ghost.Position, ghost.Direction);
+
+            lowestDistance = tiles[0].GetDistance(target);
+            Tile closestTile = tiles[0];
+
+            foreach (Tile element in tiles)
+            {
+                if(element.GetDistance(target) < lowestDistance)
+                {
+                    lowestDistance = element.GetDistance(target);
+                    closestTile = element;
+
+                }
+                
+            }
+            ghost.Position = closestTile.Position;
+
         }
         
     }
