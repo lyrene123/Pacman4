@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using System.Threading;
+using PacmanLibrary.Structure;
 
 namespace PacmanLibrary.Ghost_classes
 {
@@ -16,7 +17,7 @@ namespace PacmanLibrary.Ghost_classes
         private Pacman pacman;
         private Vector2 target;
         //private Pen pen;
-        //private Maze maze;
+        private Maze maze;
         private Direction direction;
         private Color colour;
         private IGhostState currentState;
@@ -87,6 +88,11 @@ namespace PacmanLibrary.Ghost_classes
         public void Collide()
         {
             throw new NotImplementedException();
+        }
+
+        public void ChangeState(GhostState g)
+        {
+
         }
     }
 }

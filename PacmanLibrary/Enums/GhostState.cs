@@ -15,6 +15,6 @@ namespace PacmanLibrary
     /// </summary>
     public enum GhostState
     {
-        Scared, Chasing, Penned
+        Scared, Chasing, Penned, Released
     }
 }
