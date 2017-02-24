@@ -8,7 +8,8 @@ using PacmanLibrary;
 namespace PacmanLibrary
 {
     //For Amin
-    class Pacman
+    public class Pacman
     {
+        /////
     }
 }

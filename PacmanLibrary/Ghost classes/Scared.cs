@@ -13,7 +13,7 @@ namespace PacmanLibrary.Ghost_classes
     /// chosen from the available tiles.
     /// will
     /// </summary>
-    public class Scared
+    public class Scared : IGhostState
     {
         private Ghost ghost;
         private Maze maze;
