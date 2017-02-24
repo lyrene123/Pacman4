@@ -16,13 +16,14 @@ namespace PacmanLibrary.Ghost_classes
     {
         private Pacman pacman;
         private Vector2 target;
-        //private Pen pen;
+        private Pen pen;
         private Maze maze;
         private Direction direction;
         private Color colour;
         private IGhostState currentState;
-        public static Timer scared;
 
+        public static Timer scared;
+        public event CollisionEventHandler CollisionEvent;
 
        public Ghost(GameState g, int x, int y, Vector2 target, GhostState start, Color c)
         {
