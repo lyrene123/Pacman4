@@ -19,6 +19,15 @@ namespace PacmanLibrary.Ghost_classes
         {
             throw new NotSupportedException();
         }
+        public void ResetGhosts()
+        {
+            foreach(Ghost element in ghosts)
+            {
+                // element.Reset; // to be implemented
+            }
+
+        }
+        
 
     }
 }
