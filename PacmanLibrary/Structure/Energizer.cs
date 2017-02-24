@@ -9,7 +9,9 @@ namespace PacmanLibrary.Structure
     
     public class Energizer : ICollidable
     {
-         private int points;
+        public event CollisionEventHandler CollisionEvent;
+
+        private int points;
         //private GhostPack ghosts; // Class GhostPack  still to be created
 
         /*public Energizer(GhostPack ghosts) // Class GhostPack  still to be created
@@ -22,11 +24,16 @@ namespace PacmanLibrary.Structure
             get { return points; }
             set { points = value;}
         }
-       
-        
+        protected virtual void OnCollisionEvent(Energizer x)
+        {
+            CollisionEvent?.Invoke(x);
+        }
+
+
         public void Collide()
         {
-            this.points += 30;
+            this.points += 100;
+            OnCollisionEvent(this);
             //Invoke ScareGhosts() method from GhostPack?
         }
     }
