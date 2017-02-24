@@ -25,7 +25,7 @@ namespace PacmanLibrary.Structure
 
         protected virtual void PacmanWon()
         {
-            PacmanWonEvent?.Invoke();///////////
+            PacmanWonEvent?.Invoke();
         }
 
         public Tile this[int x, int y]
