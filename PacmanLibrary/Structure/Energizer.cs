@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace PacmanLibrary.Structure
 {
-    public delegate int EnergizerEventHandler(int x);
+    
     public class Energizer : ICollidable
     {
-        public event EnergizerEventHandler EnergizerEvent;
-        private int points;
+         private int points;
         //private GhostPack ghosts; // Class GhostPack  still to be created
 
         /*public Energizer(GhostPack ghosts) // Class GhostPack  still to be created
@@ -23,7 +22,8 @@ namespace PacmanLibrary.Structure
             get { return points; }
             set { points = value;}
         }
-
+       
+        
         public void Collide()
         {
             this.points += 30;
