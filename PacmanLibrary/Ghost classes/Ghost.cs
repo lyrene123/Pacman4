@@ -18,6 +18,7 @@ namespace PacmanLibrary.Ghost_classes
         private Pacman pacman;
         private Vector2 target;
         private Vector2 position;
+        private Vector2 startPosition;
         private Pen pen;
         private Maze maze;
         private Direction direction;
@@ -37,6 +38,7 @@ namespace PacmanLibrary.Ghost_classes
             this.target = target;
             this.colour = c;
             this.position = new Vector2(x, y);
+            this.startPosition = this.position;
 
             if (start == GhostState.Scared)
                 this.currentState = new Scared(this, this.maze);
@@ -54,7 +56,7 @@ namespace PacmanLibrary.Ghost_classes
         protected virtual void OnPacmanDiedEvent()
         {
             PacmanDiedEvent?.Invoke();
-            Reset();
+           // Reset();
         }
 
 
@@ -96,7 +98,7 @@ namespace PacmanLibrary.Ghost_classes
 
         public void Reset()
         {
-
+            this.position = new Vector2(startPosition.X, startPosition.Y);
         }
 
         public GhostState CurrentState
