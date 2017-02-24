@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace PacmanLibrary.Structure
 {
-    public delegate 
+    public delegate int EnergizerEventHandler(int x);
     public class Energizer : ICollidable
     {
+        public event EnergizerEventHandler EnergizerEvent;
         private int points;
         //private GhostPack ghosts; // Class GhostPack  still to be created
 
