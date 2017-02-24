@@ -94,21 +94,23 @@ namespace PacmanLibrary.Structure
         private List<Tile> GetAvailableTilesDown(Vector2 position)
         {
             List<Tile> downTiles = new List<Tile>();
-            int posY = (int)(position.Y + 1);
-            int posX = (int)position.X; //does not change
+            
+            //the x value of vector2 is the column value of array
+            //the y value of vector 2 is the row value of array
+            int column = (int)position.X; //does not change
+            int row = (int)(position.Y + 1);
 
-            while(posY < this.maze.GetLength(0))
+            while (row < this.maze.GetLength(0))
             {
-                if(this.maze[posX, posY] is Path)
+                if(this.maze[row, column] is Path)
                 {
-                    downTiles.Add(this.maze[posX, posY]);
+                    downTiles.Add(this.maze[row, column]);
                 }
                 else
                 {
                     break;
                 }
-                
-                posY++;
+                row++;
             }
             return downTiles;
         }
@@ -116,20 +118,23 @@ namespace PacmanLibrary.Structure
         private List<Tile> GetAvailableTilesUp(Vector2 position)
         {
             List<Tile> upTiles = new List<Tile>();
-            int posY = (int)(position.Y - 1);
-            int posX = (int)position.X; //does not change
 
-            while(posY >= 0)
+            //the x value of vector2 is the column value of array
+            //the y value of vector 2 is the row value of array
+            int column = (int)position.X; //does not change
+            int row = (int)(position.Y - 1);
+
+            while (column >= 0)
             {
-                if (this.maze[posX, posY] is Path)
+                if (this.maze[row, column] is Path)
                 {
-                    upTiles.Add(this.maze[posX, posY]);
+                    upTiles.Add(this.maze[row, column]);
                 }
                 else
                 {
                     break;
                 }
-                posY--;
+                column--;
             }
             return upTiles;
         }
@@ -137,20 +142,23 @@ namespace PacmanLibrary.Structure
         private List<Tile> GetAvailableTilesLeft(Vector2 position)
         {
             List<Tile> leftTiles = new List<Tile>();
-            int posY = (int)position.Y; //never changes
-            int posX = (int)(position.X-1); 
 
-            while (posX >= 0)
+            //the x value of vector2 is the column value of array
+            //the y value of vector 2 is the row value of array
+            int column = (int)(position.X - 1);
+            int row = (int)position.Y; //never changes
+
+            while (column >= 0)
             {
-                if (this.maze[posX, posY] is Path)
+                if (this.maze[row, column] is Path)
                 {
-                    leftTiles.Add(this.maze[posX, posY]);
+                    leftTiles.Add(this.maze[row, column]);
                 }
                 else
                 {
                     break;
                 }
-                posY--;
+                column--;
             }
             return leftTiles;
         }
@@ -159,7 +167,11 @@ namespace PacmanLibrary.Structure
         {
             List<Tile> rightTiles = new List<Tile>();
             int posY = (int)position.Y; //never changes
-            int posX = (int)(position.X + 1);
+
+            //the x value of vector2 is the column value of array
+            //the y value of vector 2 is the row value of array
+            int column = (int)(position.X + 1);
+            int row = 
 
             while (posX < this.maze.GetLength(1))
             {
