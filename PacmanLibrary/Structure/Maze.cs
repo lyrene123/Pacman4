@@ -166,24 +166,23 @@ namespace PacmanLibrary.Structure
         private List<Tile> GetAvailableTilesRight(Vector2 position)
         {
             List<Tile> rightTiles = new List<Tile>();
-            int posY = (int)position.Y; //never changes
 
             //the x value of vector2 is the column value of array
             //the y value of vector 2 is the row value of array
             int column = (int)(position.X + 1);
-            int row = 
+            int row = (int)position.Y; //never changes
 
-            while (posX < this.maze.GetLength(1))
+            while (column < this.maze.GetLength(1))
             {
-                if (this.maze[posX, posY] is Path)
+                if (this.maze[row, column] is Path)
                 {
-                    rightTiles.Add(this.maze[posX, posY]);
+                    rightTiles.Add(this.maze[row, column]);
                 }
                 else
                 {
                     break;
                 }
-                posY++;
+                column++;
             }
             return rightTiles;
         }
