@@ -16,6 +16,7 @@ namespace PacmanLibrary.Ghost_classes
     {
         private Pacman pacman;
         private Vector2 target;
+        private Vector2 position;
         private Pen pen;
         private Maze maze;
         private Direction direction;
@@ -26,18 +27,19 @@ namespace PacmanLibrary.Ghost_classes
         public event CollisionEventHandler CollisionEvent;
 
        public Ghost(GameState g, int x, int y, Vector2 target, GhostState start, Color c)
-        {
-            //GET PACMAN FROM GAMESTATE G
-            //GET MAZE FROM GAMESTATE G
-            //GET PEN FROM GAMESTATE G
+        {     
+            this.pacman = g.pacmanObj;
+            this.maze = g.mazeObj;
+            this.pen = g.penObj;
             this.target = target;
             this.colour = c;
-            this.Position = new Vector2(x, y);
+            this.position = new Vector2(x, y);
 
-            if(start == GhostState.Scared)
-            {
-                //this.currentState =
-            }
+            if (start == GhostState.Scared)
+                this.currentState = new Scared(this, this.maze);
+            if (start == GhostState.Chasing)
+
+
 
         }
 
@@ -57,15 +59,9 @@ namespace PacmanLibrary.Ghost_classes
 
         public Vector2 Position
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get{ return this.position; }
 
-            set
-            {
-                throw new NotImplementedException();
-            }
+            set{ this.position = value; }
         }
 
         public int Points

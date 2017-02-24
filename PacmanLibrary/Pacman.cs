@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace PacmanLibrary
 {
     //For Amin
-    class Pacman
+    public class Pacman
     {
+        /////
     }
 }
