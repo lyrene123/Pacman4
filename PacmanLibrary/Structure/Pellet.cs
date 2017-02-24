@@ -6,19 +6,51 @@ using System.Threading.Tasks;
 
 namespace PacmanLibrary.Structure
 {
+    /// <summary>
+    /// The Pellet Class encapsulates the behavior of a Pellet.
+    /// It keeps track of the points of a Pellet.
+    /// It also implements the collide method in which raises the
+    /// Collision Event. Every time Pacman eats a Pellet a method
+    /// subscribed to it will be triggered. 
+    /// </summary>
     public class Pellet : ICollidable
     {
         private int points;
+        public event CollisionEventHandler CollisionEvent;
+        /// <summary>
+        /// The Pellet Constructor will initialize its points to 10;
+        /// </summary>
+        public Pellet()
+        {
+            this.points = 10;
+        }
+        /// <summary>
+        /// Points Property. Provides a flexible mechanism 
+        /// to get and set the points of the Pellet.
+        /// </summary>
         public int Points
         {
                       
             get { return points; }
             set { points = value; }
         }
-
+        /// <summary>
+        /// The OnCollisionEvent method will raise the event CollisionEvent 
+        /// which will call all methods subscribed. 
+        /// </summary>
+        /// <param name="x">A Pellet Object</param>
+        protected virtual void OnCollisionEvent(Pellet x)
+        {
+            CollisionEvent?.Invoke(x);
+        }
+        /// <summary>
+        /// The Collide method will call the OnCollisionEvent method.
+        /// </summary>
         public void Collide()
         {
-            this.points += 30;
+            OnCollisionEvent(this);
+            
         }
-    }
+
+   }
 }
