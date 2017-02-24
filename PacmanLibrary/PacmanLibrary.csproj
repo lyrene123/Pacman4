@@ -47,14 +47,17 @@
     <Compile Include="GameState.cs" />
     <Compile Include="Ghost classes\Chase.cs" />
     <Compile Include="Ghost classes\Ghost.cs" />
+    <Compile Include="Ghost classes\GhostPack.cs" />
     <Compile Include="Ghost classes\Pen.cs" />
     <Compile Include="Ghost classes\Scared.cs" />
     <Compile Include="Interfaces\ICollidable.cs" />
     <Compile Include="Interfaces\IGhostState.cs" />
     <Compile Include="Interfaces\IMovable.cs" />
     <Compile Include="Pacman.cs" />
+    <Compile Include="Structure\Energizer.cs" />
     <Compile Include="Structure\Maze.cs" />
     <Compile Include="Structure\Path.cs" />
+    <Compile Include="Structure\Pellet.cs" />
     <Compile Include="Structure\Tile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Structure\Wall.cs" />
