@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 namespace PacmanLibrary
 {
     public delegate void CollisionEventHandler(ICollidable member);
-    
-    /// <summary>
+        /// <summary>
     /// The ICollidable interface sets the default properties
     /// and methods of an object considered as something that
     /// can cause a collision in a game of pacman.
