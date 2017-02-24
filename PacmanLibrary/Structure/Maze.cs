@@ -25,13 +25,13 @@ namespace PacmanLibrary.Structure
 
         protected virtual void PacmanWon()
         {
-            PacmanWonEvent?.Invoke();///////////
+            PacmanWonEvent?.Invoke();
         }
 
-        public Tile this[int x, int y]
+        public Tile this[int row, int column]
         {
-            get { return this.maze[x, y]; }
-            set { this.maze[x, y] = value; }
+            get { return this.maze[row, column]; }
+            set { this.maze[row, column] = value; }
         }
 
         public int Size
