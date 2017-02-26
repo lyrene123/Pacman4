@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace PacmanLibrary
 {
     public delegate void CollisionEventHandler(ICollidable member);
-        /// <summary>
+        
+    /// <summary>
     /// The ICollidable interface sets the default properties
     /// and methods of an object considered as something that
     /// can cause a collision in a game of pacman.
@@ -16,17 +17,14 @@ namespace PacmanLibrary
     /// </summary>
     public interface ICollidable
     {
-        //add the collision event here
+        //Collision event declaration
         event CollisionEventHandler CollisionEvent;
 
         /// <summary>
         /// The property Points will return the amount of 
         /// points made after a collision has occured
         /// </summary>
-        int Points
-        {
-            get; set;
-        }
+        int Points  { get; set; }
 
         /// <summary>
         /// The Collide method is called when a collision has occured

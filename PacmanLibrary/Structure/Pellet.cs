@@ -12,13 +12,18 @@ namespace PacmanLibrary.Structure
     /// It also implements the collide method in which raises the
     /// Collision Event. Every time Pacman eats a Pellet a method
     /// subscribed to it will be triggered. 
+    /// 
+    /// author: Daniel C
+    /// version: Feb 2017
     /// </summary>
     public class Pellet : ICollidable
     {
         private int points;
         public event CollisionEventHandler CollisionEvent;
         /// <summary>
-        /// The Pellet Constructor will initialize its points to 10;
+        /// The Pellet Constructor will initialize its points to 10
+        /// by default until user decides to change a Pellet value with
+        /// the Points property;
         /// </summary>
         public Pellet()
         {
@@ -36,7 +41,9 @@ namespace PacmanLibrary.Structure
         }
         /// <summary>
         /// The OnCollisionEvent method will raise the event CollisionEvent 
-        /// which will call all methods subscribed. 
+        /// which will call all methods or event handlers subscribed. When
+        /// a pacman object collides with a Pellet object, the score of pacman
+        /// should simply increment
         /// </summary>
         /// <param name="x">A Pellet Object</param>
         protected virtual void OnCollisionEvent(Pellet x)

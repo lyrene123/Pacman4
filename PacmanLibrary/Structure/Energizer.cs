@@ -13,6 +13,9 @@ namespace PacmanLibrary.Structure
     /// It also implements the collide method in which raises the
     /// Collision Event. Every time Pacman eats an Energizer a method
     /// subscribed to it will be triggered. The event will change the Ghost State to Scared mode. 
+    /// 
+    /// author: Daniel C
+    /// version: Feb 2017
     /// </summary>
     public class Energizer : ICollidable
     {
@@ -21,8 +24,9 @@ namespace PacmanLibrary.Structure
         private int points;
 
         /// <summary>
-        /// The Energizer Cosntructor initialize its points to 100 and
-        /// keeps track of all ghosts that was passed to its paramenter.
+        /// The Energizer constructor initializes its points to 100 by default
+        /// until user decides to change the Energizer value with the points 
+        /// property. Keeps track of all ghosts that was passed to its paramenter.
         /// </summary>
         /// <param name="ghosts">GhostPack object. A list of Ghosts objects</param>
         public Energizer(GhostPack ghosts) // Class GhostPack  still to be created
@@ -41,7 +45,9 @@ namespace PacmanLibrary.Structure
         }
         /// <summary>
         /// The OnCollisionEvent method will raise the event CollisionEvent 
-        /// which will call all methods subscribed. 
+        /// which will call all methods subscribed. When a pacman object
+        /// collides with an Energizer object, all ghosts should turn
+        /// into scared mode
         /// </summary>
         /// <param name="x">An Energizer Object</param>
         protected virtual void OnCollisionEvent(Energizer x)
@@ -53,8 +59,7 @@ namespace PacmanLibrary.Structure
         /// </summary>
         public void Collide()
         {
-             OnCollisionEvent(this);
-            
+             OnCollisionEvent(this);        
         }
     }
 }

@@ -12,6 +12,9 @@ namespace PacmanLibrary.Structure
     /// The Path class encapsulates the properties and behavior
     /// of a path in a maze which a pacman or a ghost object may 
     /// use to move around in a maze of a pacman game
+    /// 
+    /// author: Daniel C
+    /// version: Feb 2017
     /// </summary>
     public class Path: Tile
     {

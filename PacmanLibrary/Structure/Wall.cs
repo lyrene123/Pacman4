@@ -11,6 +11,9 @@ namespace PacmanLibrary.Structure
     /// represents a type of tile in a maze of a pacman game.
     /// The Wall class encapsulates the properties and behavior
     /// of a wall in a maze
+    /// 
+    /// author: Daniel C
+    /// version: Feb 2017
     /// </summary>
     public class Wall: Tile
     {

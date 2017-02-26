@@ -15,6 +15,9 @@ namespace PacmanLibrary
     /// distance between two tiles. It also provide 
     /// abstract methods to be implemented in 
     /// concrete classes.
+    /// 
+    /// author: Daniel C
+    /// version: Feb 2017
     /// </summary>
     public abstract class Tile
     {

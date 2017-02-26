@@ -12,6 +12,9 @@ namespace PacmanLibrary.Structure
     /// maze in a pacman game. The Maze which represents the group of tiles 
     /// will be used to locate pacman, ghosts and ICollidable objects in a 
     /// maze and use that location to move the objects around.
+    /// 
+    /// author: Lyrene Labor
+    /// version: Feb 2017
     /// </summary>
 
     //delegate declaration for the PacmanWon event
