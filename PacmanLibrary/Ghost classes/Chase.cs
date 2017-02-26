@@ -27,7 +27,7 @@ namespace PacmanLibrary.Ghost_classes
         /// <param name="pacman">Pacman Object</param>
         public Chase(Ghost ghost, Maze maze, Vector2 target, Pacman pacman)
         {
-            //change direction - make a 180 degree turn
+            //change direction 
             switch (ghost.Direction)
             {
                 case Direction.Up:

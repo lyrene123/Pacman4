@@ -15,19 +15,39 @@ namespace PacmanLibrary.Ghost_classes
         {
             ghosts = new List<Ghost>();
         }
-        public bool CheckCollideGhosts(Vector2 goal)
+        public bool CheckCollideGhosts(Vector2 target)
         {
-            throw new NotSupportedException();
+            foreach(Ghost monster in ghosts)
+            {
+                
+            }
         }
         public void ResetGhosts()
         {
-            foreach(Ghost element in ghosts)
+            foreach(Ghost monster in ghosts)
             {
-                // element.Reset; // to be implemented
+                monster.Reset();
             }
 
         }
+        public void ScareGhosts()
+        {
+            foreach(Ghost monster in ghosts)
+            {
+                monster.ChangeState(GhostState.Scared);
+            }
+        }
+        public void Move()
+        {
+            foreach (Ghost monster in ghosts)
+            {
+                monster.Move();
+            }
+        }
+        public void Add(Ghost g)
+        {
+            ghosts.Add(g);
+        }
         
-
     }
 }
