@@ -13,7 +13,7 @@ namespace PacmanLibrary
     /// @author Lyrene Labor
     /// @version Feb 2017
     /// </summary>
-    interface IGhostState
+    public interface IGhostState
     {
         /// <summary>
         /// The Move method will make the ghost make 
