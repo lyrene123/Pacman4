@@ -9,10 +9,12 @@ namespace PacmanLibrary
 {
     /// <summary>
     /// The Abstract Class Tile Initialize the 
-    /// coordinates x and y and provide methods
-    /// to retieve the position and the distance
-    /// between vectors. It also provide abstract 
-    /// methods to be implemented in concrete classes.
+    /// coordinates x and y location of a tile 
+    /// in a maze during a pacman game and provide
+    /// methods to retrieve the position and the
+    /// distance between two tiles. It also provide 
+    /// abstract methods to be implemented in 
+    /// concrete classes.
     /// </summary>
     public abstract class Tile
     {

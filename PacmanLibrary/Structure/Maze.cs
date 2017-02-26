@@ -7,6 +7,13 @@ using System.Threading.Tasks;
 
 namespace PacmanLibrary.Structure
 {
+    /// <summary>
+    /// The Maze class encapsulates the properties and the behavior of a 
+    /// maze in a pacman game. The Maze which represents the group of tiles 
+    /// will be used to locate pacman, ghosts and ICollidable objects in a 
+    /// maze and use that location to move the objects around.
+    /// </summary>
+
     public delegate void PacmanWonEventHandler();
     public class Maze
     {
