@@ -9,98 +9,155 @@ using PacmanLibrary.Structure;
 
 namespace PacmanLibrary.Ghost_classes
 {
-    public delegate void PacmanDiedEventHandler();
     /// <summary>
+    /// The Ghost class encapsulates the behavior and properties
+    /// of a ghost in a pacman game. The Ghost class implements the
+    /// IMovable and ICollidable interfaces and therefore can move
+    /// around the maze with a specific position and direction 
+    /// and reacts to colliding with pacman. The Ghost's behaviors
+    /// may vary depending on the state the Ghost is in during the game. 
     /// 
+    /// author: Lyrene Labor
+    /// version: Feb 2017
     /// </summary>
+
+    public delegate void PacmanDiedEventHandler(); //delegate for the pacman died event
     public class Ghost : IMovable, ICollidable
     {
         private Pacman pacman;
         private Vector2 target;
-        private Vector2 position;
-        private Vector2 startPosition;
         private Pen pen;
         private Maze maze;
-        private Direction direction;
         private Color colour;
         private IGhostState currentState;
-        private int points;
 
         public static Timer scared;
-        public event CollisionEventHandler CollisionEvent;
-        public event PacmanDiedEventHandler PacmanDiedEvent;
+        public event CollisionEventHandler CollisionEvent; //event to encapsulate collision event
+        public event PacmanDiedEventHandler PacmanDiedEvent; //event encapsulating pacman died event
 
+        /// <summary>
+        /// The Ghost constructor will take as input a GameState object 
+        /// in order to get information about the pacman object, the maze 
+        /// and the pen of the ghosts. The constructor will also initialize
+        /// the position fo the ghost, its target relative to Pacman's position, 
+        /// a ghoststate enum and a color of the ghost with the input with 
+        /// the input values passed to the method
+        /// </summary>
+        /// <param name="g">A GameState object</param>
+        /// <param name="x">the int x coordinates of the ghost position</param>
+        /// <param name="y">the int y coordinates of the ghost position</param>
+        /// <param name="target">the vector target of the ghost</param>
+        /// <param name="start">the ghoststate enum of the ghost</param>
+        /// <param name="c">the color of the ghost</param>
         public Ghost(GameState g, int x, int y, Vector2 target, GhostState start, Color c)
         {     
-            this.pacman = g.pacmanObj;
-            this.maze = g.mazeObj;
-            this.pen = g.penObj;
+            this.pacman = g.Pacman;
+            this.maze = g.Maze;
+            this.pen = g.Pen;
             this.target = target;
             this.colour = c;
-            this.position = new Vector2(x, y);
-            this.startPosition = this.position;
+            this.Position = new Vector2(x, y);
+            this.StartPosition = this.Position; //keep track of the start position of the ghost
 
             if (start == GhostState.Scared)
                 this.currentState = new Scared(this, this.maze);
             if (start == GhostState.Chasing)
                 this.currentState = new Chase(this, this.maze, this.target, this.pacman);
 
-            this.points = 200;
+            this.Points = 200; //default points set to 200
         }
 
+        /// <summary>
+        /// The OnCollisionEvent method will raise the CollisionEvent method
+        /// by passing it a ICollidable object
+        /// </summary>
+        /// <param name="member">An ICollidable object</param>
         protected virtual void OnCollisionEvent(ICollidable member)
         {
             CollisionEvent?.Invoke(member);
         }
 
+        /// <summary>
+        /// OnPacmanDiedEvent method will raise the PacmanDied event
+        /// </summary>
         protected virtual void OnPacmanDiedEvent()
         {
             PacmanDiedEvent?.Invoke();
-           // Reset();
         }
 
+        /// <summary>
+        /// The Direction property method gets and sets the current
+        /// direction with an enum of the ghost object
+        /// </summary>
+        public Direction Direction { get; set; }
 
-        public Direction Direction
-        {
-            get { return this.direction; }
-            set { this.direction = value; }
-        }
+        /// <summary>
+        /// The Position property method get and sets the current 
+        /// vector position of the ghost object
+        /// </summary>
+        public Vector2 Position { get; set; }
 
-        public Vector2 Position
-        {
-            get{ return this.position; }
-            set{ this.position = value; }
-        }
+        /// <summary>
+        /// The StartPosition property method gets the 
+        /// vector start position of the ghost when initialized
+        /// </summary>
+        public Vector2 StartPosition { get; }
 
-        public int Points
-        {
-            get{ return this.points; }
-            set{ this.points = value; }
-        }
+        /// <summary>
+        /// The Points property method gets and sets the point
+        /// value of a ghost which will only be used when ghost
+        /// collided with pacman during scared mode
+        /// </summary>
+        public int Points { get; set; }
 
+        /// <summary>
+        /// The Penned property method gets and sets the boolean 
+        /// value of a ghost whether it was penned or not when initialized
+        /// </summary>
+        public bool Penned { get; set; }
+
+        /// <summary>
+        /// The Move method will call the ghost's current state 
+        /// move method
+        /// </summary>
         public void Move()
         {
             this.currentState.Move();
         }
 
+        /// <summary>
+        /// The Collide method will call the appropriate method
+        /// that will raise the corresponding event when the ghost
+        /// object has collided with pacman. 
+        /// </summary>
         public void Collide()
         {
-           if(this.CurrentState == GhostState.Scared)
+            if (this.CurrentState == GhostState.Scared)
             {
-                OnCollisionEvent(this);
+                OnCollisionEvent(this); //raise collision event to increment score of pacman
+                this.pen.AddToPen(this); //add ghost back to pen 
             }
-
-           if(this.CurrentState == GhostState.Chasing)
+            if (this.CurrentState == GhostState.Chasing)
             {
-                OnPacmanDiedEvent();
-            }
+                OnPacmanDiedEvent(); //raise pacman died event
+            }                         
         }
 
+        /// <summary>
+        /// The Reset method will place the ghost object
+        /// back to it's original position when it was created
+        /// </summary>
         public void Reset()
         {
-            this.position = new Vector2(startPosition.X, startPosition.Y);
+            this.Position = new Vector2(StartPosition.X, StartPosition.Y);
+            //when ghost was originally in the pen, place it back to the pen
+            if (Penned) this.pen.AddToPen(this); 
         }
 
+        /// <summary>
+        /// CurrentState property will return the current state 
+        /// of the ghost object
+        /// </summary>
         public GhostState CurrentState
         {
             get
@@ -112,18 +169,38 @@ namespace PacmanLibrary.Ghost_classes
             }
         }
 
+        /// <summary>
+        /// ghostColor property will return the current color
+        /// of the ghost object
+        /// </summary>
         public Color ghostColor
         {
             get { return this.colour;  }
         }
 
+        /// <summary>
+        /// ChangeState method will take as input a GhostState enum
+        /// and will change the state of the ghost object corresponding to 
+        /// that input GhostState enum
+        /// </summary>
+        /// <param name="g">A ghoststate enum</param>
         public void ChangeState(GhostState g)
         {
             if (g == GhostState.Scared)
+            {
                 this.currentState = new Scared(this, this.maze);
+            }
             if (g == GhostState.Chasing)
+            {
                 this.currentState = new Chase(this, this.maze, this.target, this.pacman);
-
+            }
+            if (g == GhostState.Released)
+            {
+                //release ghost from pen and put it outside the pen
+                this.Position = new Vector2(8, 11);
+                //chase by default
+                this.currentState = new Chase(this, this.maze, this.target, this.pacman); 
+            }              
         }
     }
 }

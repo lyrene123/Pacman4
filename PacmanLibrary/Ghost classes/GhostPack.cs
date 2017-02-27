@@ -8,25 +8,33 @@ using System.Threading.Tasks;
 namespace PacmanLibrary.Ghost_classes
 {
     /// <summary>
-    /// The GhostPack Class encapsulates a list of ghosts and each ghost unique behavior acordingly with 
-    /// the ghost state. It also provides a method to reset all ghosts to its original position, a group collision
-    /// detection acordingly with the target. It also provides a method to add a new ghost to the list. 
+    /// The GhostPack Class encapsulates a list of ghosts and each 
+    /// ghost unique behavior acordingly with  the ghost state. 
+    /// It also provides a method to reset all ghosts to its original
+    /// position, a group collision detection acordingly with the 
+    /// target. It also provides a method to add a new ghost to the list. 
+    /// 
+    /// author: Daniel C
+    /// version: Feb 2017
     /// </summary>
     public class GhostPack
     {
         private List<Ghost> ghosts;
         /// <summary>
-        /// No-parameter Constructor to initialize the List of Ghosts to its default values. 
+        /// No-parameter Constructor to initialize the List of Ghosts
+        /// to its default values. 
         /// </summary>
         public GhostPack()
         {
             ghosts = new List<Ghost>();
         }
         /// <summary>
-        /// The CheckCollideGhosts method will check if any ghost in the list collided with Pacman(target).
+        /// The CheckCollideGhosts method will check if any ghost in the
+        /// list collided with Pacman(target).
         /// </summary>
         /// <param name="target">A Vector2 object to check collision with</param>
-        /// <returns>It returns true if any ghost in the list is in the same position as the target</returns>
+        /// <returns>It returns true if any ghost in the list is in the 
+        ///           same position as the target</returns>
         public bool CheckCollideGhosts(Vector2 target)
         {
             Boolean areEqual = false;
@@ -40,7 +48,8 @@ namespace PacmanLibrary.Ghost_classes
             return areEqual;
         }
         /// <summary>
-        /// The ResetGhosts method will invoke the Reset method provided in each ghost object in the list.
+        /// The ResetGhosts method will invoke the Reset method provided
+        /// in each ghost object in the list.
         /// </summary>
         public void ResetGhosts()
         {
@@ -51,7 +60,8 @@ namespace PacmanLibrary.Ghost_classes
 
         }
         /// <summary>
-        /// The ScareGhosts method will change the state of each ghost in the list to
+        /// The ScareGhosts method will change the state of each ghost
+        /// in the list to
         /// Scared mode.
         /// </summary>
         public void ScareGhosts()
@@ -62,7 +72,8 @@ namespace PacmanLibrary.Ghost_classes
             }
         }
         /// <summary>
-        /// The move method will invoke the Move method provided in each ghost object in the list.
+        /// The move method will invoke the Move method provided in each
+        /// ghost object in the list.
         /// </summary>
         public void Move()
         {

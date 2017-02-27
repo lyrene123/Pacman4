@@ -8,10 +8,13 @@ using System.Threading.Tasks;
 namespace PacmanLibrary.Ghost_classes
 {
     /// <summary>
-    /// The Scared class encapsulates the required behaviour when a Ghost is in scared state. The Ghost will
-    /// change direction immediately upon instantiating the Scared state. Each move is subsequently randomly
+    /// The Scared class encapsulates the required behaviour 
+    /// when a Ghost is in scared state. The Ghost will
+    /// change direction immediately upon instantiating 
+    /// the Scared state. Each move is subsequently randomly
     /// chosen from the available tiles.
-    /// will
+    /// 
+    /// author: provided by teacher
     /// </summary>
     public class Scared : IGhostState
     {
@@ -19,7 +22,8 @@ namespace PacmanLibrary.Ghost_classes
         private Maze maze;
 
         /// <summary>
-        /// Two-parameter constructor to initialize the Scared state. It requires a handle to the Ghost who is scared
+        /// Two-parameter constructor to initialize the Scared state. 
+        /// It requires a handle to the Ghost who is scared
         /// as well as the Maze to know which tiles are available.
         /// </summary>
         /// <param name="ghost"></param>
@@ -47,11 +51,15 @@ namespace PacmanLibrary.Ghost_classes
         }
 
         /// <summary>
-        /// This method is invoked to move the scared Ghost to the random available tile.
-        /// Everytime a Ghost moves, we have to do two things: update the Ghost's Position
-        /// and update the Ghosts's Direction. This indicates the direction in which it is moving, 
-        /// and it is required to make sure that the Ghosts doesn't turn back to it's previous
-        /// position (i.e., to avoid 180 degree turns) (used by the Maze class's GetAvailableNeighbours
+        /// This method is invoked to move the scared Ghost
+        /// to the random available tile. Everytime a Ghost
+        /// moves, we have to do two things: update the Ghost's
+        /// Position and update the Ghosts's Direction. This
+        /// indicates the direction in which it is moving, 
+        /// and it is required to make sure that the Ghosts 
+        /// doesn't turn back to it's previous position 
+        /// (i.e., to avoid 180 degree turns) (used by the 
+        /// Maze class's GetAvailableNeighbours
         /// method)
         /// </summary>
         public void Move()
@@ -73,6 +81,8 @@ namespace PacmanLibrary.Ghost_classes
                 ghost.Direction = Direction.Up;
             else
                 ghost.Direction = Direction.Down;
+
+            //set new position
             ghost.Position = places[choice].Position;
         }
     }
