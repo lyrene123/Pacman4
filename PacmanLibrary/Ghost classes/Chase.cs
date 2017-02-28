@@ -36,22 +36,6 @@ namespace PacmanLibrary.Ghost_classes
         /// <param name="pacman">Pacman Object</param>
         public Chase(Ghost ghost, Maze maze, Vector2 target, Pacman pacman)
         {
-            //change direction 
-          /*  switch (ghost.Direction)
-            {
-                case Direction.Up:
-                    ghost.Direction = Direction.Down;
-                    break;
-                case Direction.Down:
-                    ghost.Direction = Direction.Up;
-                    break;
-                case Direction.Right:
-                    ghost.Direction = Direction.Left;
-                    break;
-                case Direction.Left:
-                    ghost.Direction = Direction.Right;
-                    break;
-            }*/
             this.ghost = ghost;
             this.maze = maze;
             this.target = target;
@@ -107,6 +91,12 @@ namespace PacmanLibrary.Ghost_classes
 
             //set new position
             ghost.Position = tiles[(int)lowestDistance].Position;
+
+            //update target if ghost has reached its target
+            if(ghost.Position == this.target)
+            {
+                this.target = new Vector2(pacman.Position.X + 2, pacman.Position.Y);
+            }
         }
         
      }

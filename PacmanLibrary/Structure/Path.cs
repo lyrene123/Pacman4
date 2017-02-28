@@ -64,7 +64,8 @@ namespace PacmanLibrary.Structure
         /// </summary>
         public override void Collide()
         {         
-            member?.Collide();        
+            member?.Collide();
+            this.member = null;     
         }
 
         /// <summary>
