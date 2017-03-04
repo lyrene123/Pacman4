@@ -42,7 +42,7 @@ namespace PacmanLibrary
                 OnGameOver();
             }
         }
-        void incrementScore(ICollidable member)
+        public void incrementScore(ICollidable member)
         {
             this.Score += member.Points;
         }
