@@ -17,6 +17,7 @@ namespace PacmanLibrary
         public ScoreAndLives (GameState gameState)
         {
             this.gameState = gameState;
+
         }
         public int Lives
         {

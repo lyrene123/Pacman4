@@ -24,7 +24,7 @@ namespace PacmanLibrary
             g.GhostPack = new GhostPack();
             g.Maze = new Maze();
             g.Pen = new Pen();
-            //g.Score = new ScoreAndLives(GameState);
+            g.Score = new ScoreAndLives(g);
 
             //read text from file
             string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName +
@@ -52,7 +52,7 @@ namespace PacmanLibrary
 
             //On going Implementation / 
              
-            /*for (int i = 0; i < map.GetLength(0); i++)
+            for (int i = 0; i < map.GetLength(0); i++)
               {
                   for (int j = 0; j < map.GetLength(0); j++)
                   {
@@ -116,7 +116,7 @@ namespace PacmanLibrary
                       }
 
                   }
-              }*/
+              }
 
             return g;
         }
@@ -144,11 +144,11 @@ namespace PacmanLibrary
             get { return Pen; }
             private set { Pen = value; }
         }
-        /*public ScoreAndLives Score 
+        public ScoreAndLives Score 
         {
             get { return Score; }
             private set { Score = value; }
         }
-        */
+        
     }
 }
