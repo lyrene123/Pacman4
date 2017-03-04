@@ -11,14 +11,16 @@ using System.Threading.Tasks;
 namespace PacmanLibrary
 {
     
-    //for Amin
+    /// <summary>
+    /// 
+    /// </summary>
     public class GameState
     {
         public static GameState Parse(string file)
         {
             //string 2d array to hold the elements from the file text.
             string[,] map = new string[23, 23];
-            Tile[,] array = new Tile[23, 23];
+            Tile[,] tileArray = new Tile[23, 23];
             //Setting GameState Object to hold the state of the game and its properties
             GameState g = new GameState();
             //g.Pacman = new Pacman(GameState);
@@ -63,27 +65,31 @@ namespace PacmanLibrary
                         case "w":
                               Wall wall = new Wall(i, j);
                               //g.Maze[i, j] = wall;
-                              array[i, j] = wall;
+                              tileArray[i, j] = wall;
                               break;
                         case "p":
                             Pellet pellet = new Pellet();
                             pellet.CollisionEvent += g.Score.incrementScore;
                             Structure.Path pelletMazePath = new Structure.Path(i, j, pellet);
-                            g.Maze[i, j] = pelletMazePath;
+                            //g.Maze[i, j] = pelletMazePath;
+                            tileArray[i, j] = pelletMazePath;
                             break;
                         case "e":
                             Energizer energizer = new Energizer(g.GhostPack);
                             energizer.CollisionEvent += g.Score.incrementScore;
                             Structure.Path energizerPath = new Structure.Path(i, j, energizer);
-                            g.Maze[i, j] = energizerPath;
+                            //g.Maze[i, j] = energizerPath;
+                            tileArray[i, j] = energizerPath;
                             break;
                         case "m":
                               Structure.Path emptyMazePath = new Structure.Path(i,j,null);
-                              g.Maze[i, j] = emptyMazePath;
-                              break;
+                              //g.Maze[i, j] = emptyMazePath;
+                              tileArray[i, j] = emptyMazePath;
+                            break;
                         case "x":
                               Structure.Path emptyPath = new Structure.Path(i, j, null);
-                              g.Maze[i, j] = emptyPath;
+                              //g.Maze[i, j] = emptyPath;
+                              tileArray[i, j] = emptyPath;
                               g.Pen.AddTile(emptyPath);   
                               break;
                         case "1":
@@ -94,7 +100,7 @@ namespace PacmanLibrary
                               //Structure.Path blinkyPath = new Structure.Path(i, j, blinky);
                               g.GhostPack.Add(blinky);
                               //g.Maze[i, j] = blinkyPath;
-                              g.Maze[i,j] = new Structure.Path(i, j, null);
+                              tileArray[i, j] = new Structure.Path(i, j, null);
                               break;
                           case "2":
                               Vector2 pinky_target = new Vector2(g.Pacman.Position.X + 4, g.Pacman.Position.Y);
@@ -104,7 +110,7 @@ namespace PacmanLibrary
                               g.GhostPack.Add(pinky);
                               //Structure.Path pinkyPath = new Structure.Path(i, j, pinky);
                               //g.Maze[i, j] = pinkyPath;
-                              g.Maze[i, j] = new Structure.Path(i, j, null);
+                              tileArray[i, j] = new Structure.Path(i, j, null);
                               g.Pen.AddTile(g.Maze[i,j]);
                               g.Pen.AddToPen(pinky);
                               break;
@@ -116,7 +122,7 @@ namespace PacmanLibrary
                               g.GhostPack.Add(inky);
                               //Structure.Path inkyPath = new Structure.Path(i, j, inky);
                               //g.Maze[i, j] = inkyPath;
-                              g.Maze[i, j] = new Structure.Path(i, j, null);
+                              tileArray[i, j] = new Structure.Path(i, j, null);
                               g.Pen.AddTile(g.Maze[i, j]);
                               g.Pen.AddToPen(inky);
                             break;
@@ -128,23 +134,21 @@ namespace PacmanLibrary
                               g.GhostPack.Add(clyde);
                               //Structure.Path clydePath = new Structure.Path(i, j, clyde);
                               //g.Maze[i, j] = clydePath;
-                              g.Maze[i, j] = new Structure.Path(i, j, null);
+                              tileArray[i, j] = new Structure.Path(i, j, null);
                               g.Pen.AddTile(g.Maze[i, j]);
                               g.Pen.AddToPen(clyde);
                               break;
                           case "P":
-                              g.Maze[i, j] = new Structure.Path(i, j, null);
+                              tileArray[i, j] = new Structure.Path(i, j, null);
                               break;
                       }
 
                   }
               }
+            //set the Tiles in the Maze object to the tileArray
+            g.Maze.SetTiles(tileArray);
 
             return g;
-        }
-        private void SubscribeElements(ICollidable member)
-        {
-
         }
         public Pacman Pacman
         {
