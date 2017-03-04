@@ -16,6 +16,9 @@ namespace PacmanLibrary
     /// that run the pacman game providing setters and getters. It also
     /// contains a static method Parse which is responsable for all objects
     /// instantiations and the Maze settings. 
+    /// 
+    /// author: Daniel C
+    /// version: March 2017
     /// </summary>
     public class GameState
     {
