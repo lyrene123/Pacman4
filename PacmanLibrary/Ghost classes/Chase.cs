@@ -21,6 +21,7 @@ namespace PacmanLibrary.Ghost_classes
         private Maze maze;
         private Vector2 target;
         private Pacman pacman;
+        private int relativeDistance;
 
         /// <summary>
         /// Four-parameter constructor to initialize the Chase state. 
@@ -40,6 +41,10 @@ namespace PacmanLibrary.Ghost_classes
             this.maze = maze;
             this.target = target;
             this.pacman = pacman;
+
+            //
+            Random rnd = new Random();
+            this.relativeDistance = rnd.Next(1, 5); //1 to 4
         }
 
         /// <summary>
@@ -62,8 +67,8 @@ namespace PacmanLibrary.Ghost_classes
             if (num == 0)
                 throw new Exception("Nowhere to go");
 
-            this.target = new Vector2(this.pacman.Position.X + 2, this.pacman.Position.Y);
-
+            //update ghost's target depending on the new position of pacman
+            this.target = new Vector2(this.pacman.Position.X + this.relativeDistance, this.pacman.Position.Y);
 
             //set lowestDistance and closestTile relative to the first tile 
             //in the list as a start
@@ -93,12 +98,6 @@ namespace PacmanLibrary.Ghost_classes
 
             //set new position
             ghost.Position = tiles[(int)lowestDistance].Position;
-
-            //update target if ghost has reached its target
-            if(ghost.Position == this.target)
-            {
-                this.target = new Vector2(pacman.Position.X + 2, pacman.Position.Y);
-            }
         }
         
      }
