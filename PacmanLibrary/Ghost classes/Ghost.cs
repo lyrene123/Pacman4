@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
-using System.Threading;
+using System.Timers
 using PacmanLibrary.Structure;
 
 namespace PacmanLibrary.Ghost_classes
@@ -105,12 +105,6 @@ namespace PacmanLibrary.Ghost_classes
         public int Points { get; set; }
 
         /// <summary>
-        /// The Penned property method gets and sets the boolean 
-        /// value of a ghost whether it was penned or not when initialized
-        /// </summary>
-        public bool Penned { get; set; }
-
-        /// <summary>
         /// The Move method will call the ghost's current state 
         /// move method
         /// </summary>
@@ -121,6 +115,12 @@ namespace PacmanLibrary.Ghost_classes
         }
 
 
+        /// <summary>
+        /// CheckCollisions method will check if the current position
+        /// of a ghost object has the same vector position as pacman and
+        /// if so, then the collide method will be executed
+        /// </summary>
+        /// <param name="target">A Vector2 object</param>
         public void CheckCollisions(Vector2 target)
         {
             if (this.Position == target)
@@ -128,8 +128,6 @@ namespace PacmanLibrary.Ghost_classes
                 Collide();
             }
         }
-
-
 
 
         /// <summary>

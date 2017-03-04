@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PacmanLibrary.Ghost_classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,10 +42,18 @@ namespace PacmanLibrary
             {
                 OnGameOver();
             }
+            else
+            {
+                this.gameState.GhostPack.ResetGhosts();
+            }
         }
         public void incrementScore(ICollidable member)
         {
             this.Score += member.Points;
+            if(member is Scared)
+            {
+                this.gameState.GhostPack.ScareGhosts();
+            }
         }
 
     }
