@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
-using System.Timers
+using System.Timers;
 using PacmanLibrary.Structure;
 
 namespace PacmanLibrary.Ghost_classes

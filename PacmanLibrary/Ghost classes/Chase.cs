@@ -57,11 +57,13 @@ namespace PacmanLibrary.Ghost_classes
         public void Move()
         {
             float lowestDistance;
-            List<Tile> tiles = new List<Tile>();
-            tiles =  maze.GetAvailableNeighbours(ghost.Position, ghost.Direction);
+            List<Tile> tiles =  maze.GetAvailableNeighbours(ghost.Position, ghost.Direction);
             int num = tiles.Count;
             if (num == 0)
                 throw new Exception("Nowhere to go");
+
+            this.target = new Vector2(this.pacman.Position.X + 2, this.pacman.Position.Y);
+
 
             //set lowestDistance and closestTile relative to the first tile 
             //in the list as a start
