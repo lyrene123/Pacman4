@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections;
 
 namespace PacmanLibrary.Ghost_classes
 {
@@ -17,7 +18,7 @@ namespace PacmanLibrary.Ghost_classes
     /// author: Daniel C
     /// version: Feb 2017
     /// </summary>
-    public class GhostPack
+    public class GhostPack : IEnumerable<GhostPack>
     {
         private List<Ghost> ghosts;
         /// <summary>
@@ -35,17 +36,12 @@ namespace PacmanLibrary.Ghost_classes
         /// <param name="target">A Vector2 object to check collision with</param>
         /// <returns>It returns true if any ghost in the list is in the 
         ///           same position as the target</returns>
-        public bool CheckCollideGhosts(Vector2 target)
+        public void CheckCollideGhosts(Vector2 target)
         {
-            Boolean areEqual = false;
-            foreach(Ghost monster in ghosts)
+            foreach (var monster in ghosts)
             {
-                if(monster.Position == target)
-                {
-                    areEqual = true;
-                }
+                monster.CheckCollisions(target);
             }
-            return areEqual;
         }
         /// <summary>
         /// The ResetGhosts method will invoke the Reset method provided
@@ -53,7 +49,7 @@ namespace PacmanLibrary.Ghost_classes
         /// </summary>
         public void ResetGhosts()
         {
-            foreach(Ghost monster in ghosts)
+            foreach (Ghost monster in ghosts)
             {
                 monster.Reset();
             }
@@ -66,7 +62,7 @@ namespace PacmanLibrary.Ghost_classes
         /// </summary>
         public void ScareGhosts()
         {
-            foreach(Ghost monster in ghosts)
+            foreach (Ghost monster in ghosts)
             {
                 monster.ChangeState(GhostState.Scared);
             }
@@ -90,6 +86,16 @@ namespace PacmanLibrary.Ghost_classes
         {
             ghosts.Add(g);
         }
-        
+
+        public IEnumerator<GhostPack> GetEnumerator()
+        {
+            //????????????????????????????????
+            throw new NotImplementedException();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ghosts.GetEnumerator();
+        }
     }
 }

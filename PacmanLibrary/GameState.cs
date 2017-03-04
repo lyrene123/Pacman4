@@ -95,6 +95,7 @@ namespace PacmanLibrary
                         case "1":
                               Vector2 blinky_target = new Vector2(g.Pacman.Position.X + 2, g.Pacman.Position.Y);
                               Ghost blinky = new Ghost(g, i, j, blinky_target, GhostState.Chasing, Color.Red);
+                              Ghost.ReleasePosition = blinky.Position;  
                               blinky.CollisionEvent += g.Score.incrementScore;
                               blinky.PacmanDiedEvent += g.Score.deadPacman;
                               //Structure.Path blinkyPath = new Structure.Path(i, j, blinky);

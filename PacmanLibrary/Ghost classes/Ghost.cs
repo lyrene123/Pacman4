@@ -32,6 +32,7 @@ namespace PacmanLibrary.Ghost_classes
         private IGhostState currentState;
 
         public static Timer scared;
+        public static Vector2 ReleasePosition;
         public event CollisionEventHandler CollisionEvent; //event to encapsulate collision event
         public event PacmanDiedEventHandler PacmanDiedEvent; //event encapsulating pacman died event
 
@@ -50,14 +51,13 @@ namespace PacmanLibrary.Ghost_classes
         /// <param name="start">the ghoststate enum of the ghost</param>
         /// <param name="c">the color of the ghost</param>
         public Ghost(GameState g, int x, int y, Vector2 target, GhostState start, Color c)
-        {     
+        {
             this.pacman = g.Pacman;
             this.maze = g.Maze;
             this.pen = g.Pen;
             this.target = target;
             this.colour = c;
             this.Position = new Vector2(x, y);
-            this.StartPosition = this.Position; //keep track of the start position of the ghost
 
             if (start == GhostState.Scared)
                 this.currentState = new Scared(this, this.maze);
@@ -98,12 +98,6 @@ namespace PacmanLibrary.Ghost_classes
         public Vector2 Position { get; set; }
 
         /// <summary>
-        /// The StartPosition property method gets the 
-        /// vector start position of the ghost when initialized
-        /// </summary>
-        public Vector2 StartPosition { get; }
-
-        /// <summary>
         /// The Points property method gets and sets the point
         /// value of a ghost which will only be used when ghost
         /// collided with pacman during scared mode
@@ -123,7 +117,20 @@ namespace PacmanLibrary.Ghost_classes
         public void Move()
         {
             this.currentState.Move();
+            CheckCollisions(this.pacman.Position);
         }
+
+
+        public void CheckCollisions(Vector2 target)
+        {
+            if (this.Position == target)
+            {
+                Collide();
+            }
+        }
+
+
+
 
         /// <summary>
         /// The Collide method will call the appropriate method
@@ -140,18 +147,16 @@ namespace PacmanLibrary.Ghost_classes
             if (this.CurrentState == GhostState.Chasing)
             {
                 OnPacmanDiedEvent(); //raise pacman died event
-            }                         
+            }
         }
 
         /// <summary>
         /// The Reset method will place the ghost object
-        /// back to it's original position when it was created
+        /// back to the pen
         /// </summary>
         public void Reset()
         {
-            this.Position = new Vector2(StartPosition.X, StartPosition.Y);
-            //when ghost was originally in the pen, place it back to the pen
-            if (Penned) this.pen.AddToPen(this); 
+            this.pen.AddToPen(this);
         }
 
         /// <summary>
@@ -175,7 +180,7 @@ namespace PacmanLibrary.Ghost_classes
         /// </summary>
         public Color ghostColor
         {
-            get { return this.colour;  }
+            get { return this.colour; }
         }
 
         /// <summary>
@@ -186,21 +191,22 @@ namespace PacmanLibrary.Ghost_classes
         /// <param name="g">A ghoststate enum</param>
         public void ChangeState(GhostState g)
         {
-            if (g == GhostState.Scared)
+            switch (g)
             {
-                this.currentState = new Scared(this, this.maze);
+                case GhostState.Scared:
+                    this.currentState = new Scared(this, this.maze);
+                    break;
+                case GhostState.Chasing:
+                    this.currentState = new Chase(this, this.maze, this.target, this.pacman);
+                    break;
+                case GhostState.Released:
+                    this.Position = new Vector2(8, 11);
+                    this.currentState = new Chase(this, this.maze, this.target, this.pacman);
+                    break;
+                default:
+                    this.currentState = new Chase(this, this.maze, this.target, this.pacman);
+                    break;
             }
-            if (g == GhostState.Chasing)
-            {
-                this.currentState = new Chase(this, this.maze, this.target, this.pacman);
-            }
-            if (g == GhostState.Released)
-            {
-                //release ghost from pen and put it outside the pen
-                this.Position = new Vector2(8, 11);
-                //chase by default
-                this.currentState = new Chase(this, this.maze, this.target, this.pacman); 
-            }              
         }
     }
 }
