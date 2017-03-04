@@ -54,6 +54,7 @@
     <Compile Include="Interfaces\IGhostState.cs" />
     <Compile Include="Interfaces\IMovable.cs" />
     <Compile Include="Pacman.cs" />
+    <Compile Include="ScoreAndLives.cs" />
     <Compile Include="Structure\Energizer.cs" />
     <Compile Include="Structure\Maze.cs" />
     <Compile Include="Structure\Path.cs" />
