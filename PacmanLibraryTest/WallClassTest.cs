@@ -9,6 +9,7 @@ namespace PacmanLibraryTest
         [TestMethod]
         public void TestMethod1()
         {
+
         }
     }
 }
