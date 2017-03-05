@@ -36,7 +36,7 @@ namespace PacmanLibrary
         /// </summary>
         /// <param name="file">The text file to read from</param>
         /// <returns></returns>
-        public static GameState Parse()
+        public static GameState Parse(String file)
         {
             //string 2d array to hold the elements from the file text.
             string[,] map = null;
@@ -64,7 +64,7 @@ namespace PacmanLibrary
 
             //read text from file
             string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.FullName +
-            System.IO.Path.DirectorySeparatorChar + "TextFiles" + System.IO.Path.DirectorySeparatorChar + "levels.csv";
+            System.IO.Path.DirectorySeparatorChar + "TextFiles" + System.IO.Path.DirectorySeparatorChar + file;
             try
             {
                 string[] fileText = File.ReadAllLines(path);
