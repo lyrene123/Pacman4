@@ -22,6 +22,12 @@ namespace PacmanLibrary
     /// </summary>
     public class GameState
     {
+        /* private Pen _Pen;
+         private Maze _Maze;
+         private GhostPack _GhostPack;
+         private ScoreAndLives _Score;
+         private Pacman _Pacman;*/
+
         /// <summary>
         /// The Parse method reads from a file and creates a GameState object. 
         /// In the process of creation it instantiates all objects necessary to 
@@ -30,28 +36,41 @@ namespace PacmanLibrary
         /// </summary>
         /// <param name="file">The text file to read from</param>
         /// <returns></returns>
-        public static GameState Parse(string file)
+        public static GameState Parse()
         {
             //string 2d array to hold the elements from the file text.
-            string[,] map = new string[23, 23];
-            Tile[,] tileArray = new Tile[23, 23];
+            string[,] map = null;
+            Tile[,] tileArray = null;
 
             //Setting GameState Object to hold the state of the game and its properties
             GameState g = new GameState();
+            Pen pen = new Pen();
+            Maze maze = new Maze();
+            GhostPack gpack = new GhostPack();
 
             //g.Pacman = new Pacman(GameState);
-            g.Pen = new Pen();
-            g.Maze = new Maze();
-            g.GhostPack = new GhostPack();
-            g.Score = new ScoreAndLives(g);
-            g.Pacman = new Pacman(g);
+            g.Pen = pen;
+            g.Maze = maze;
+            g.GhostPack = gpack;
+
+            ScoreAndLives score = new ScoreAndLives(g);
+            Pacman pacman = new Pacman(g);
+            Vector2 myPac = new Vector2(1, 1);
+            pacman.Position = myPac;
+
+            g.Pacman = pacman;
+            g.Score = score;
+
 
             //read text from file
-            string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName +
-            System.IO.Path.DirectorySeparatorChar + "TextFiles" + System.IO.Path.DirectorySeparatorChar + file;
+            string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.FullName +
+            System.IO.Path.DirectorySeparatorChar + "TextFiles" + System.IO.Path.DirectorySeparatorChar + "levels.csv";
             try
             {
-                string[] fileText = File.ReadAllLines(file);
+                string[] fileText = File.ReadAllLines(path);
+                int mapSize = fileText.Length;
+                map = new string[mapSize, mapSize];
+                tileArray = new Tile[mapSize, mapSize];
                 //assign elements to the map string array
                 Char delimiter = ',';
                 for (int i = 0; i < map.GetLength(0); i++)
@@ -70,6 +89,8 @@ namespace PacmanLibrary
             }
 
 
+
+
             //Iterate through the map 2d array that holds the elements from the file text.
 
             for (int y = 0; y < map.GetLength(0); y++)
@@ -80,6 +101,7 @@ namespace PacmanLibrary
                     {
                         case "w":
                             Wall wall = new Wall(x, y);
+                            Structure.Path wallPath = new Structure.Path(x, y, null);
                             tileArray[x, y] = wall;
                             break;
                         case "p":
@@ -101,50 +123,56 @@ namespace PacmanLibrary
                         case "x":
                             Structure.Path emptyPath = new Structure.Path(x, y, null);
                             tileArray[x, y] = emptyPath;
-                            g.Pen.AddTile(emptyPath);
+                            pen.AddTile(emptyPath);
+                            break;
+                        case "P":
+                            Vector2 myPac2 = new Vector2(x, y);
+                            tileArray[x, y] = new Structure.Path(x, y, null);
+                            pacman.Position = myPac2;
                             break;
                         case "1":
-                            Vector2 blinky_target = new Vector2(g.Pacman.Position.X + 2, g.Pacman.Position.Y);
+                            Vector2 blinky_target = new Vector2(pacman.Position.X + 2, pacman.Position.Y);
                             Ghost blinky = new Ghost(g, x, y, blinky_target, GhostState.Chasing, Color.Red);
                             Ghost.ReleasePosition = blinky.Position;
-                            blinky.CollisionEvent += g.Score.incrementScore;
-                            blinky.PacmanDiedEvent += g.Score.deadPacman;
-                            g.GhostPack.Add(blinky);
+                            blinky.CollisionEvent += score.incrementScore;
+                            blinky.PacmanDiedEvent += score.deadPacman;
+                            gpack.Add(blinky);
                             tileArray[x, y] = new Structure.Path(x, y, null);
                             break;
                         case "2":
-                            Vector2 pinky_target = new Vector2(g.Pacman.Position.X + 4, g.Pacman.Position.Y);
+                            Vector2 pinky_target = new Vector2(pacman.Position.X + 4, pacman.Position.Y);
                             Ghost pinky = new Ghost(g, x, y, pinky_target, GhostState.Chasing, Color.Pink);
-                            pinky.CollisionEvent += g.Score.incrementScore;
-                            pinky.PacmanDiedEvent += g.Score.deadPacman;
-                            g.GhostPack.Add(pinky);
-                            tileArray[x, y] = new Structure.Path(x, y, null);
-                            g.Pen.AddTile(g.Maze[x, y]);
-                            g.Pen.AddToPen(pinky);
+                            pinky.CollisionEvent += score.incrementScore;
+                            pinky.PacmanDiedEvent += score.deadPacman;
+                            gpack.Add(pinky);
+                            Structure.Path aPath = new Structure.Path(x, y, null);
+                            tileArray[x, y] = aPath;
+                            pen.AddTile(aPath);
+                            pen.AddToPen(pinky);
                             break;
                         case "3":
-                            Vector2 inky_target = new Vector2(g.Pacman.Position.X + 6, g.Pacman.Position.Y);
+                            Vector2 inky_target = new Vector2(pacman.Position.X + 6, pacman.Position.Y);
                             Ghost inky = new Ghost(g, x, y, inky_target, GhostState.Chasing, Color.Blue);
-                            inky.CollisionEvent += g.Score.incrementScore;
-                            inky.PacmanDiedEvent += g.Score.deadPacman;
-                            g.GhostPack.Add(inky);
-                            tileArray[x, y] = new Structure.Path(x, y, null);
-                            g.Pen.AddTile(g.Maze[x, y]);
-                            g.Pen.AddToPen(inky);
+                            inky.CollisionEvent += score.incrementScore;
+                            inky.PacmanDiedEvent += score.deadPacman;
+                            gpack.Add(inky);
+                            Structure.Path aPath1 = new Structure.Path(x, y, null);
+                            tileArray[x, y] = aPath1;
+                            pen.AddTile(aPath1);
+                            pen.AddToPen(inky);
                             break;
                         case "4":
-                            Vector2 clyde_target = new Vector2(g.Pacman.Position.X + 1, g.Pacman.Position.Y);
+                            Vector2 clyde_target = new Vector2(pacman.Position.X + 1, pacman.Position.Y);
                             Ghost clyde = new Ghost(g, x, y, clyde_target, GhostState.Chasing, Color.Green);
-                            clyde.CollisionEvent += g.Score.incrementScore;
-                            clyde.PacmanDiedEvent += g.Score.deadPacman;
-                            g.GhostPack.Add(clyde);
-                            tileArray[x, y] = new Structure.Path(x, y, null);
-                            g.Pen.AddTile(g.Maze[x, y]);
-                            g.Pen.AddToPen(clyde);
+                            clyde.CollisionEvent += score.incrementScore;
+                            clyde.PacmanDiedEvent += score.deadPacman;
+                            gpack.Add(clyde);
+                            Structure.Path aPath2 = new Structure.Path(x, y, null);
+                            tileArray[x, y] = aPath2;
+                            pen.AddTile(aPath2);
+                            pen.AddToPen(clyde);
                             break;
-                        case "P":
-                            tileArray[x, y] = new Structure.Path(x, y, null);
-                            break;
+
                     }
 
                 }
@@ -159,8 +187,8 @@ namespace PacmanLibrary
         /// </summary>
         public Pacman Pacman
         {
-            get { return Pacman; }
-            private set { Pacman = value; }
+            get;
+            private set;
         }
         /// <summary>
         /// The GhostPack property gets and sets a GhostPack Object.
@@ -168,32 +196,32 @@ namespace PacmanLibrary
         /// </summary>
         public GhostPack GhostPack
         {
-            get { return GhostPack; }
-            private set { GhostPack = value; }
+            get;
+            private set;
         }
         /// <summary>
         /// The Maze property gets and sets a Maze Object.
         /// </summary>
         public Maze Maze
         {
-            get { return Maze; }
-            private set { Maze = value; }
+            get;
+            private set;
         }
         /// <summary>
         /// The Pen property gets and sets a Pen Object.
         /// </summary>
         public Pen Pen
         {
-            get { return Pen; }
-            private set { Pen = value; }
+            get;
+            private set;
         }
         /// <summary>
         /// The Score property gets and sets a ScoreAndLives Object.
         /// </summary>
         public ScoreAndLives Score
         {
-            get { return Score; }
-            private set { Score = value; }
+            get;
+            private set;
         }
 
     }
