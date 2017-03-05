@@ -33,7 +33,6 @@ namespace PacmanLibrary
         {
             this.gamestate = gs;
             this.maze = this.gamestate.Maze;
-            this.position = this.gamestate.Pacman.position;
             this.ghostPack = this.gamestate.GhostPack;
         }
 

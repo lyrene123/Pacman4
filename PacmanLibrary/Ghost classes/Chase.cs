@@ -70,7 +70,7 @@ namespace PacmanLibrary.Ghost_classes
             //update ghost's target depending on the new position of pacman
             this.target = new Vector2(this.pacman.Position.X + this.relativeDistance, this.pacman.Position.Y);
 
-            //set lowestDistance and closestTile relative to the first tile 
+            //set lowestDistance and closestTile as the first tile 
             //in the list as a start
             lowestDistance = tiles[0].GetDistance(target);
             Tile closestTile = tiles[0];
@@ -82,8 +82,7 @@ namespace PacmanLibrary.Ghost_classes
                 {
                     lowestDistance = element.GetDistance(target);
                     closestTile = element;
-                }
-                
+                }          
             }
 
             //determine new direction
