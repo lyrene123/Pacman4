@@ -32,8 +32,12 @@ namespace PacmanLibrary
         /// <param name="y">int y position</param>
         public Tile(int x, int y)
         {
-            position.X = x;
-            position.Y = y;
+            if (x < 0 || y < 0)
+                throw new ArgumentException("The x and y position of a Tile object must " +
+                    "have a value of 0 or above.");
+
+            this.position.X = x;
+            this.position.Y = y;
         }
 
         /// <summary>
@@ -43,7 +47,14 @@ namespace PacmanLibrary
         public Vector2 Position
         {
             get{ return position;}
-            set{ position = value;}
+            set
+            {
+                Vector2 pos = value;
+                if (pos.X < 0 || pos.Y < 0)
+                    throw new ArgumentException("The Tile object's position x and y must "+ 
+                       "be positive");
+                position = pos;
+            }
         }
 
         /// <summary>

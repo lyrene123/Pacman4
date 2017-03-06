@@ -61,7 +61,7 @@ namespace PacmanLibrary
         /// </summary>
         public void deadPacman()
         {
-            gameState.Score.Lives -= 1;
+            gameState.Score.Lives--;
             if(gameState.Score.Lives == 0)
             {
                 OnGameOver();
@@ -79,7 +79,11 @@ namespace PacmanLibrary
         /// <param name="member"></param>
         public void incrementScore(ICollidable member)
         {
-            gameState.Score.Score += member.Points;
+            gameState.Score.Score += member.Points; //increment score
+
+            //everytime increment score, check if there are any pellets/energizers
+            //left, if no more then a PacmanWon event will be raised
+            this.gameState.Maze.CheckMembersLeft();
             if(member is Energizer)
             {
                 this.gameState.GhostPack.ScareGhosts();

@@ -42,7 +42,7 @@ namespace PacmanLibrary.Ghost_classes
             this.target = target;
             this.pacman = pacman;
 
-            //
+            //generate a random number between 1 to 4 as a distance relative to pacman
             Random rnd = new Random();
             this.relativeDistance = rnd.Next(1, 5); //1 to 4
         }

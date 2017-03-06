@@ -61,7 +61,8 @@ namespace PacmanLibrary.Structure
         /// The IsEmpty method will throw a NotSupportedException
         /// since a wall is never empty and in a pacman game, there
         /// is no purpose in checking if a wall is empty or not for 
-        /// a wall does not have any special functionality
+        /// a wall does not have any special functionality and does 
+        /// not contain any ICollidable object
         /// </summary>
         /// <returns>a boolean value</returns>
         public override bool IsEmpty()
