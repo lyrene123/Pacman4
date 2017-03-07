@@ -23,20 +23,22 @@ namespace PacmanLibrary
         public event GameOverDelegate GameOver;
         /// <summary>
         /// The one parameter constructor ScoreAndLives receives
-        /// 
+        /// a GameState object and sets its members and will also
+        /// set the number of lives of Pacman to 3 by default
         /// </summary>
         /// <param name="gameState"></param>
         public ScoreAndLives (GameState g)
         {
             this.gameState = g;
+            this.lives = 3; //default
         }
         /// <summary>
         /// The Lives property gets and sets the lives of pacman.
         /// </summary>
         public int Lives
         {
-            get { return gameState.Score.Lives;  }
-            set { gameState.Score.Lives = value; }
+            get { return this.lives;  }
+            set { this.lives = value; }
         }
         /// <summary>
         /// The Score property gets and sets the score of the game.

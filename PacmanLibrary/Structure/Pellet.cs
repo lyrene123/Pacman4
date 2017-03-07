@@ -31,19 +31,26 @@ namespace PacmanLibrary.Structure
         }
         /// <summary>
         /// Points Property. Provides a flexible mechanism 
-        /// to get and set the points of the Pellet.
+        /// to get and set the points of the Pellet. An ArgumentException
+        /// will be thrown if the input is less than 0 
         /// </summary>
         public int Points
-        {
-                      
+        {              
             get { return points; }
-            set { points = value; }
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentException("The points of a Pellet must have a value of 0 " +
+                                                    "or above");
+                points = value;
+            }
         }
         /// <summary>
         /// The OnCollisionEvent method will raise the event CollisionEvent 
         /// which will call all methods or event handlers subscribed. When
         /// a pacman object collides with a Pellet object, the score of pacman
-        /// should simply increment
+        /// should simply increment. An ArgumentException will be thrown if 
+        /// the input is null
         /// </summary>
         /// <param name="x">A Pellet Object</param>
         protected virtual void OnCollisionEvent(Pellet x)
@@ -55,8 +62,7 @@ namespace PacmanLibrary.Structure
         /// </summary>
         public void Collide()
         {
-            OnCollisionEvent(this);
-            
+            OnCollisionEvent(this);           
         }
 
    }

@@ -18,7 +18,7 @@ namespace PacmanLibrary.Structure
     /// </summary>
     public class Path: Tile
     {
-        //an ICollidable member that a path may contain
+        //an ICollidable member that a path may or may not contain
         private ICollidable member;
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace PacmanLibrary.Structure
         public override void Collide()
         {         
             member?.Collide();
-            this.member = null;     
+            this.member = null; //set the path as empty     
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace PacmanLibrary.Structure
         /// <returns>a boolean value</returns>
         public override bool IsEmpty()
         {
-            return this.member == null ? false : true;
+            return this.member == null ? true : false;
         }
 
         

@@ -27,31 +27,48 @@ namespace PacmanLibrary.Structure
         /// The Energizer constructor initializes its points to 100 by default
         /// until user decides to change the Energizer value with the points 
         /// property. Keeps track of all ghosts that was passed to its paramenter.
+        /// An ArgumentException will be thrown if the input is null
         /// </summary>
         /// <param name="ghosts">GhostPack object. A list of Ghosts objects</param>
-        public Energizer(GhostPack ghosts) // Class GhostPack  still to be created
+        public Energizer(GhostPack ghosts) 
         {
+            if (Object.ReferenceEquals(null, ghosts))
+                throw new ArgumentException("The GhostPack object passed as input to the " +
+                    "Energizer object must not be null");
+
             this.ghosts = ghosts;
             this.points = 100;
         }
         /// <summary>
         /// Points Property. Provides a flexible mechanism 
         /// to get and set the points of the energizer.
+        /// An ArgumentException will be thrown if 
+        /// the input is less than 0
         /// </summary>
         public int Points
         {
             get { return points; }
-            set { points = value;}
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentException("The points of an Energizer must have a value of 0 " +
+                                                    "or above");
+                points = value;
+            }
         }
         /// <summary>
         /// The OnCollisionEvent method will raise the event CollisionEvent 
         /// which will call all methods subscribed. When a pacman object
         /// collides with an Energizer object, all ghosts should turn
-        /// into scared mode
+        /// into scared mode. An ArgumentException will be thrown if 
+        /// the input is null
         /// </summary>
         /// <param name="x">An Energizer Object</param>
         protected virtual void OnCollisionEvent(Energizer x)
         {
+            if (Object.ReferenceEquals(null, x))
+                throw new ArgumentException("The Energizer object passed as input " +
+                                            "to the OnCollisionEvent must not be null");
             CollisionEvent?.Invoke(x);
         }
         /// <summary>

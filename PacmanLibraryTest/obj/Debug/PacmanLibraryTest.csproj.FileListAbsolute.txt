@@ -1,6 +1,5 @@
 C:\Users\Lyrene Labor\LD2017\PacmanLibraryTest\bin\Debug\PacmanLibraryTest.dll
 C:\Users\Lyrene Labor\LD2017\PacmanLibraryTest\bin\Debug\PacmanLibraryTest.pdb
-C:\Users\Lyrene Labor\LD2017\PacmanLibraryTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
 C:\Users\Lyrene Labor\LD2017\PacmanLibraryTest\bin\Debug\MonoGame.Framework.dll
 C:\Users\Lyrene Labor\LD2017\PacmanLibraryTest\bin\Debug\PacmanLibrary.dll
 C:\Users\Lyrene Labor\LD2017\PacmanLibraryTest\bin\Debug\SharpDX.XAudio2.dll

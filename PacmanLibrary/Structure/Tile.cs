@@ -26,7 +26,8 @@ namespace PacmanLibrary
 
         /// <summary>
         /// The Tile constructor will initiliaze the
-        /// position of the tile in a maze
+        /// position of the tile in a maze. An ArgumentException will be thrown if 
+        /// the input is less than 0
         /// </summary>
         /// <param name="x">int x position</param>
         /// <param name="y">int y position</param>
@@ -42,7 +43,8 @@ namespace PacmanLibrary
 
         /// <summary>
         /// The Position property will get and set 
-        /// the position of a tile in a maze
+        /// the position of a tile in a maze. An ArgumentException will be thrown if 
+        /// the input is less than 0
         /// </summary>
         public Vector2 Position
         {
