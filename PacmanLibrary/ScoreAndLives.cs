@@ -25,12 +25,14 @@ namespace PacmanLibrary
         /// The one parameter constructor ScoreAndLives receives
         /// a GameState object and sets its members and will also
         /// set the number of lives of Pacman to 3 by default
+        /// and initialize the total scores to 0
         /// </summary>
         /// <param name="gameState"></param>
         public ScoreAndLives (GameState g)
         {
             this.gameState = g;
             this.lives = 3; //default
+            this.score = 0;
         }
         /// <summary>
         /// The Lives property gets and sets the lives of pacman.
@@ -45,8 +47,8 @@ namespace PacmanLibrary
         /// </summary>
         public int Score
         {
-            get { return gameState.Score.Score; }
-            set { gameState.Score.Score = value; }
+            get { return this.score; }
+            set { this.score = value; }
         }
         /// <summary>
         /// OnGameOver method will raise the GameOver event
@@ -63,8 +65,8 @@ namespace PacmanLibrary
         /// </summary>
         public void deadPacman()
         {
-            gameState.Score.Lives--;
-            if(gameState.Score.Lives == 0)
+            this.lives--;
+            if(this.lives == 0)
             {
                 OnGameOver();
             }
@@ -81,7 +83,7 @@ namespace PacmanLibrary
         /// <param name="member"></param>
         public void incrementScore(ICollidable member)
         {
-            gameState.Score.Score += member.Points; //increment score
+            this.score += member.Points; //increment score
 
             //everytime increment score, check if there are any pellets/energizers
             //left, if no more then a PacmanWon event will be raised

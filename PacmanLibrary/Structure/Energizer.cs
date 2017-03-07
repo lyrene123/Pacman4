@@ -20,7 +20,6 @@ namespace PacmanLibrary.Structure
     public class Energizer : ICollidable
     {
         public event CollisionEventHandler CollisionEvent;
-        private GhostPack ghosts; 
         private int points;
 
         /// <summary>
@@ -30,13 +29,8 @@ namespace PacmanLibrary.Structure
         /// An ArgumentException will be thrown if the input is null
         /// </summary>
         /// <param name="ghosts">GhostPack object. A list of Ghosts objects</param>
-        public Energizer(GhostPack ghosts) 
+        public Energizer() 
         {
-            if (Object.ReferenceEquals(null, ghosts))
-                throw new ArgumentException("The GhostPack object passed as input to the " +
-                    "Energizer object must not be null");
-
-            this.ghosts = ghosts;
             this.points = 100;
         }
         /// <summary>
@@ -66,9 +60,6 @@ namespace PacmanLibrary.Structure
         /// <param name="x">An Energizer Object</param>
         protected virtual void OnCollisionEvent(Energizer x)
         {
-            if (Object.ReferenceEquals(null, x))
-                throw new ArgumentException("The Energizer object passed as input " +
-                                            "to the OnCollisionEvent must not be null");
             CollisionEvent?.Invoke(x);
         }
         /// <summary>

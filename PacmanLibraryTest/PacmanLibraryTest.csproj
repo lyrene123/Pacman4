@@ -54,6 +54,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="PelletClassTest.cs" />
+    <Compile Include="EnergizerClassTest.cs" />
     <Compile Include="WallClassTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -4,6 +4,12 @@ using PacmanLibrary.Structure;
 
 namespace PacmanLibraryTest
 {
+    /// <summary>
+    /// Author: Amin Manai
+    /// version: March 2017
+    /// </summary>
+
+
     [TestClass]
     public class PelletClassTest
     {
@@ -40,7 +46,8 @@ namespace PacmanLibraryTest
         public void PointGetterTest()
         {
             Pellet pellet = new Pellet();
-            int expected = 10;
+            pellet.Points = 200;
+            int expected = 200;
             int actual = pellet.Points;
             Assert.AreEqual(expected, actual);
         }
