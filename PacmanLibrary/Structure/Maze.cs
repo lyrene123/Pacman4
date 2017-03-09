@@ -44,6 +44,8 @@ namespace PacmanLibrary.Structure
         /// <param name="tiles">A 2D rectangular array of Tiles object</param>
         public void SetTiles(Tile[,] tiles)
         {
+            if (object.ReferenceEquals(tiles, null))
+                throw new ArgumentException("The tiles array input to the SetTiles method must not be null");
             this.maze = tiles;
         }
 
@@ -76,7 +78,7 @@ namespace PacmanLibrary.Structure
         /// </summary>
         public int Size
         {
-            get { return this.maze.GetLength(0); }
+            get { return this.maze.GetLength(1); }
         }
 
         /// <summary>

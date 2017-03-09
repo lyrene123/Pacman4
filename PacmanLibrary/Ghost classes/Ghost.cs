@@ -198,7 +198,7 @@ namespace PacmanLibrary.Ghost_classes
                     this.currentState = new Chase(this, this.maze, this.target, this.pacman);
                     break;
                 case GhostState.Released:
-                    this.Position = new Vector2(8, 11);
+                    this.Position = ReleasePosition;
                     this.currentState = new Chase(this, this.maze, this.target, this.pacman);
                     break;
                 default:

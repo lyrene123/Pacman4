@@ -36,7 +36,7 @@ namespace PacmanLibrary
         /// </summary>
         /// <param name="file">The text file to read from</param>
         /// <returns></returns>
-        public static GameState Parse(String file)
+        public static GameState Parse(String content)
         {
             //string 2d array to hold the elements from the file text.
             string[,] map = null;
@@ -63,11 +63,13 @@ namespace PacmanLibrary
 
 
             //read text from file
-            string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.FullName +
+            /*string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.FullName +
             System.IO.Path.DirectorySeparatorChar + "TextFiles" + System.IO.Path.DirectorySeparatorChar + file;
+            Console.WriteLine(path);
+            */
             try
             {
-                string[] fileText = File.ReadAllLines(path);
+                string[] fileText = content.Split(new String[] { Environment.NewLine }, StringSplitOptions.None);
                 int mapSize = fileText.Length;
                 map = new string[mapSize, mapSize];
                 tileArray = new Tile[mapSize, mapSize];
@@ -87,9 +89,6 @@ namespace PacmanLibrary
             {
                 Console.WriteLine("Could Not Find File");
             }
-
-
-
 
             //Iterate through the map 2d array that holds the elements from the file text.
 
@@ -111,7 +110,7 @@ namespace PacmanLibrary
                             tileArray[x, y] = pelletMazePath;
                             break;
                         case "e":
-                            Energizer energizer = new Energizer( );
+                            Energizer energizer = new Energizer();
                             energizer.CollisionEvent += g.Score.incrementScore;
                             Structure.Path energizerPath = new Structure.Path(x, y, energizer);
                             tileArray[x, y] = energizerPath;
