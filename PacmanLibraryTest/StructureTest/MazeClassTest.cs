@@ -7,12 +7,12 @@ namespace PacmanLibraryTest.StructureTest
     [TestClass]
     public class MazeClassTest
     {
-        GameState gstate = GameState.Parse("empty");
-
+        private GameState gstate = GameState.Parse("empty.csv");
 
         [TestMethod]
         public void TestMethod1()
         {
+
         }
     }
 }

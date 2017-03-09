@@ -19,7 +19,7 @@ namespace PacmanLibrary.Ghost_classes
     /// author: Daniel C
     /// version: Feb 2017
     /// </summary>
-    public class GhostPack : IEnumerable<GhostPack>
+    public class GhostPack : IEnumerable<Ghost>
     {
         private List<Ghost> ghosts;
         /// <summary>
@@ -115,10 +115,9 @@ namespace PacmanLibrary.Ghost_classes
             ghosts.Add(g);
         }
 
-        public IEnumerator<GhostPack> GetEnumerator()
+        public IEnumerator<Ghost> GetEnumerator()
         {
-            //????????????????????????????????
-            throw new NotImplementedException();
+            return ghosts.GetEnumerator(); 
         }
 
         IEnumerator IEnumerable.GetEnumerator()
