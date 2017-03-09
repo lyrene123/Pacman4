@@ -68,7 +68,15 @@ namespace PacmanLibrary.Structure
         public Tile this[int x, int y]
         {
             get { return this.maze[x, y]; }
-            set { this.maze[x, y] = value; }
+            set
+            {
+                if (x < 0 || y < 0)
+                    throw new ArgumentException("Cannot access maze element with negative x and y positions");
+                if(x >= this.Size || y >= this.Size)
+                    throw new ArgumentException("Cannot access maze element with the input x and y positions");
+
+                this.maze[x, y] = value;
+            }
         }
 
         /// <summary>
@@ -78,7 +86,7 @@ namespace PacmanLibrary.Structure
         /// </summary>
         public int Size
         {
-            get { return this.maze.GetLength(1); }
+            get { return this.maze.GetLength(0); }
         }
 
         /// <summary>

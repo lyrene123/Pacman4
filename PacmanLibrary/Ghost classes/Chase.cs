@@ -86,17 +86,17 @@ namespace PacmanLibrary.Ghost_classes
             }
 
             //determine new direction
-            if (tiles[(int)lowestDistance].Position.X == ghost.Position.X + 1)
+            if (closestTile.Position.X == ghost.Position.X + 1)
                 ghost.Direction = Direction.Right;
-            else if (tiles[(int)lowestDistance].Position.X == ghost.Position.X - 1)
+            else if (closestTile.Position.X == ghost.Position.X - 1)
                 ghost.Direction = Direction.Left;
-            else if (tiles[(int)lowestDistance].Position.Y == ghost.Position.Y - 1)
+            else if (closestTile.Position.X == ghost.Position.Y - 1)
                 ghost.Direction = Direction.Up;
             else
                 ghost.Direction = Direction.Down;
 
             //set new position
-            ghost.Position = tiles[(int)lowestDistance].Position;
+            ghost.Position = closestTile.Position;
         }
         
      }

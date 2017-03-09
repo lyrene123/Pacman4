@@ -62,7 +62,7 @@ namespace PacmanLibraryTest.StructureTest
             {
                 for (int j = 0; j < tiles.GetLength(1); j++)
                 {
-                    if (tiles[i, j].GetType() != maze[j, i].GetType())
+                    if (tiles[j, i].GetType() != maze[i, j].GetType())
                     {
                         actual = false;
                     }
@@ -73,11 +73,51 @@ namespace PacmanLibraryTest.StructureTest
 
 
         [TestMethod]
-        public void IndexerSetTest()
+        public void IndexerSetTest_ValidInput()
         {
+            GameState gs = getState();
+            Maze maze = gs.Maze;
+            bool expected = true;
+            bool actual = true;
+            for (int i = 0; i < maze.Size; i++)
+            {
+                for (int j = 0; j < maze.Size; j++)
+                {
+                    maze[j, i] = new Wall(i,j);
+                }
+            }
 
+            for (int i = 0; i < maze.Size; i++)
+            {
+                for (int j = 0; j < maze.Size; j++)
+                {
+                    if(maze[j,i].GetType() != typeof(Wall))
+                    {
+                        actual = false;
+                    }
+                }
+            }
+            Assert.AreEqual(expected, actual);
         }
 
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void IndexerSetTest_InvalidInputNegative()
+        {
+            GameState gs = getState();
+            Maze maze = gs.Maze;
+            maze[-1, 1] = new Wall(1,1);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void IndexerSetTest_InvalidInputOutOfBounds()
+        {
+            GameState gs = getState();
+            Maze maze = gs.Maze;
+            maze[10, 1] = new Wall(1, 1);
+        }
 
 
         public Tile[,] getEmptyMaze()
