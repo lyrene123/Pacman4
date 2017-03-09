@@ -37,7 +37,7 @@ namespace PacmanLibrary.Structure
         /// <summary>
         /// Member Property method will get and set the
         /// ICollidable object that a specific Path can
-        /// contain in a maze
+        /// contain in a maze which can me null or not
         /// </summary>
         public override ICollidable Member
         {

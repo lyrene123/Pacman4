@@ -53,9 +53,10 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="PelletClassTest.cs" />
-    <Compile Include="EnergizerClassTest.cs" />
-    <Compile Include="WallClassTest.cs" />
+    <Compile Include="StructureTest\PelletClassTest.cs" />
+    <Compile Include="StructureTest\EnergizerClassTest.cs" />
+    <Compile Include="StructureTest\PathClassTest.cs" />
+    <Compile Include="StructureTest\WallClassTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

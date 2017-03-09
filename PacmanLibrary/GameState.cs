@@ -111,7 +111,7 @@ namespace PacmanLibrary
                             tileArray[x, y] = pelletMazePath;
                             break;
                         case "e":
-                            Energizer energizer = new Energizer(g.GhostPack);
+                            Energizer energizer = new Energizer();
                             energizer.CollisionEvent += g.Score.incrementScore;
                             Structure.Path energizerPath = new Structure.Path(x, y, energizer);
                             tileArray[x, y] = energizerPath;
