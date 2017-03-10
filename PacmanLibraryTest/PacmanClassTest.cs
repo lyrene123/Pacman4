@@ -16,6 +16,8 @@ namespace PacmanLibraryTest
         public PacmanClassTest()
         {
             gs = getState();
+            PacmanLibrary.Tile tile = new PacmanLibrary.Structure.Path(1, 3, null);
+            gs.Pen.AddTile(tile);
         }
         [TestMethod]
         public void PositionPropertyTestGet()
@@ -92,23 +94,26 @@ namespace PacmanLibraryTest
             Assert.AreEqual(expected, actual);
 
         }
-        /*[TestMethod]
+        [TestMethod]
         public void CollisionMethodTest_Valid()
         {
+            Ghost ghost = null;
             gs.Pacman.Position = new Vector2(3, 1);
             bool expected = true;
             bool actual = false;
-            var g = gs.GhostPack.GetEnumerator();
-                      
-            g.PacmanDiedEvent += () =>
+            foreach (Ghost g in gs.GhostPack)
+            {
+                ghost = g;
+            }
+            ghost.PacmanDiedEvent += () =>
             {
                 actual = true;
             };
-            g.CheckCollisions(gs.Pacman.Position);
+            ghost.CheckCollisions(gs.Pacman.Position);
+            //ghost.CheckCollisions(gs.Pacman.Position);
             Assert.AreEqual(expected, actual);
 
         }
-        */
         public GameState getState()
         {
             String content = File.ReadAllText(@"ghostAndPacman.csv");
