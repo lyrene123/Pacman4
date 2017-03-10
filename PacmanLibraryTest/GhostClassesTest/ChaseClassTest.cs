@@ -126,6 +126,29 @@ namespace PacmanLibraryTest.GhostClassesTest
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
+        public void MoveMethodTest_MovingDown()
+        {
+            GameState state = getState();
+            Ghost g = null;
+            foreach (var ghost in state.GhostPack)
+            {
+                ghost.Position = new Vector2(1, 1);
+                g = ghost;
+            }
+            Vector2 newPos = new Vector2(1, 2);
+            Direction newDir = Direction.Up;
+            g.Move(); //this should move the chase's move method
+
+            bool expected = true;
+            bool actual = true;
+
+            if (g.Position != newPos || g.Direction != newDir)
+                actual = false;
+
+            Assert.AreEqual(expected, actual);
+        }
+
 
         public GameState getState()
         {
