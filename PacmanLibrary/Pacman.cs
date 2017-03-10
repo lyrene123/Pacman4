@@ -44,8 +44,18 @@ namespace PacmanLibrary
         public Vector2 Position
         {
             get { return this.position; }
-            set { this.position = value; }
+            set
+            {
+                if (value.X < 0)
+                {
+                    throw new ArgumentException("Vector can not be negative");
+                }
+
+                this.position = value;
+
+            }
         }
+
 
         /// <summary>
         /// The Move method will take care of pacman's movements.
