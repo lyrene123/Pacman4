@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="GhostClassesTest\GhostClassTest.cs" />
     <Compile Include="GhostClassesTest\ChaseClassTest.cs" />
+    <Compile Include="PacmanClassTest.cs" />
     <Compile Include="StructureTest\PelletClassTest.cs" />
     <Compile Include="StructureTest\EnergizerClassTest.cs" />
     <Compile Include="StructureTest\PathClassTest.cs" />
