@@ -105,13 +105,13 @@ namespace PacmanLibrary
                             break;
                         case "p":
                             Pellet pellet = new Pellet();
-                            pellet.CollisionEvent += g.Score.incrementScore;
+                            pellet.CollisionEvent += g.Score.IncrementScore;
                             Structure.Path pelletMazePath = new Structure.Path(x, y, pellet);
                             tileArray[x, y] = pelletMazePath;
                             break;
                         case "e":
                             Energizer energizer = new Energizer();
-                            energizer.CollisionEvent += g.Score.incrementScore;
+                            energizer.CollisionEvent += g.Score.IncrementScore;
                             Structure.Path energizerPath = new Structure.Path(x, y, energizer);
                             tileArray[x, y] = energizerPath;
                             break;
@@ -133,16 +133,16 @@ namespace PacmanLibrary
                             Vector2 blinky_target = new Vector2(pacman.Position.X + 2, pacman.Position.Y);
                             Ghost blinky = new Ghost(g, x, y, blinky_target, GhostState.Chasing, Enums.Color.Red);
                             Ghost.ReleasePosition = blinky.Position;
-                            blinky.CollisionEvent += score.incrementScore;
-                            blinky.PacmanDiedEvent += score.deadPacman;
+                            blinky.CollisionEvent += score.IncrementScore;
+                            blinky.PacmanDiedEvent += score.DeadPacman;
                             gpack.Add(blinky);
                             tileArray[x, y] = new Structure.Path(x, y, null);
                             break;
                         case "2":
                             Vector2 pinky_target = new Vector2(pacman.Position.X + 4, pacman.Position.Y);
                             Ghost pinky = new Ghost(g, x, y, pinky_target, GhostState.Chasing, Enums.Color.Pink);
-                            pinky.CollisionEvent += score.incrementScore;
-                            pinky.PacmanDiedEvent += score.deadPacman;
+                            pinky.CollisionEvent += score.IncrementScore;
+                            pinky.PacmanDiedEvent += score.DeadPacman;
                             gpack.Add(pinky);
                             Structure.Path aPath = new Structure.Path(x, y, null);
                             tileArray[x, y] = aPath;
@@ -152,8 +152,8 @@ namespace PacmanLibrary
                         case "3":
                             Vector2 inky_target = new Vector2(pacman.Position.X + 6, pacman.Position.Y);
                             Ghost inky = new Ghost(g, x, y, inky_target, GhostState.Chasing, Enums.Color.Blue);
-                            inky.CollisionEvent += score.incrementScore;
-                            inky.PacmanDiedEvent += score.deadPacman;
+                            inky.CollisionEvent += score.IncrementScore;
+                            inky.PacmanDiedEvent += score.DeadPacman;
                             gpack.Add(inky);
                             Structure.Path aPath1 = new Structure.Path(x, y, null);
                             tileArray[x, y] = aPath1;
@@ -163,8 +163,8 @@ namespace PacmanLibrary
                         case "4":
                             Vector2 clyde_target = new Vector2(pacman.Position.X + 1, pacman.Position.Y);
                             Ghost clyde = new Ghost(g, x, y, clyde_target, GhostState.Chasing, Enums.Color.Green);
-                            clyde.CollisionEvent += score.incrementScore;
-                            clyde.PacmanDiedEvent += score.deadPacman;
+                            clyde.CollisionEvent += score.IncrementScore;
+                            clyde.PacmanDiedEvent += score.DeadPacman;
                             gpack.Add(clyde);
                             Structure.Path aPath2 = new Structure.Path(x, y, null);
                             tileArray[x, y] = aPath2;

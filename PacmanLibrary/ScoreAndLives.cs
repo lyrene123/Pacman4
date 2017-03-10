@@ -30,6 +30,8 @@ namespace PacmanLibrary
         /// <param name="gameState"></param>
         public ScoreAndLives (GameState g)
         {
+            if (Object.ReferenceEquals(null, g))
+                throw new ArgumentException("The GameState object passed to the ScoreAndLives constructor must not be null");
             this.gameState = g;
             this.lives = 3; //default
             this.score = 0;
@@ -40,15 +42,25 @@ namespace PacmanLibrary
         public int Lives
         {
             get { return this.lives;  }
-            set { this.lives = value; }
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentException("Pacman's lives value must not be negative");
+                this.lives = value;
+            }
         }
         /// <summary>
-        /// The Score property gets and sets the score of the game.
+        /// The Score property gets and sets the score of the game by incrementing.
         /// </summary>
         public int Score
         {
             get { return this.score; }
-            set { this.score = value; }
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentException("Pacman's score value must not be negative");
+                this.score += value;
+            }
         }
         /// <summary>
         /// OnGameOver method will raise the GameOver event
@@ -58,12 +70,12 @@ namespace PacmanLibrary
             GameOver?.Invoke();
         }
         /// <summary>
-        /// deadPacman method will invoke the OnGameOver method if 
+        /// DeadPacman method will invoke the OnGameOver method if 
         /// pacman looses all his lives or reset all Ghosts to the 
         /// initial position of the game if pacman dies and still have 
         /// remaining lives.
         /// </summary>
-        public void deadPacman()
+        public void DeadPacman()
         {
             this.lives--;
             if(this.lives == 0)
@@ -76,13 +88,16 @@ namespace PacmanLibrary
             }
         }
         /// <summary>
-        /// The incrementScore method will increment the score every time 
+        /// The IncrementScore method will increment the score every time 
         /// Pacman eats a Pellet or an energizer. If Pacman eats
         /// an energizer the ScareGhosts method will be invoked.
         /// </summary>
         /// <param name="member"></param>
-        public void incrementScore(ICollidable member)
+        public void IncrementScore(ICollidable member)
         {
+            if (Object.ReferenceEquals(null, member))
+                throw new ArgumentException("The ICollidable member passed as input to the IncrementScore must not be null");
+
             this.score += member.Points; //increment score
 
             //everytime increment score, check if there are any pellets/energizers
