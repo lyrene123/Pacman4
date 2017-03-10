@@ -3,6 +3,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PacmanLibrary;
 using PacmanLibrary.Structure;
 using System.IO;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace PacmanLibraryTest.StructureTest
 {
@@ -118,6 +120,127 @@ namespace PacmanLibraryTest.StructureTest
             Maze maze = gs.Maze;
             maze[10, 1] = new Wall(1, 1);
         }
+
+        [TestMethod]
+        public void SizePropertyTest()
+        {
+            GameState gs = getState();
+            Maze maze = gs.Maze;
+            int expected = 5;
+            int actual = maze.Size;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void GetAvailableNeighbours_InvalidInputPosition()
+        {
+            GameState gs = getState();
+            Maze maze = gs.Maze;
+            Vector2 pos = new Vector2(-1, 1);
+            List<Tile> tiles = maze.GetAvailableNeighbours(pos, Direction.Down);
+        }
+
+        [TestMethod]
+        public void GetAvailableNeighbours_ValidInputDown()
+        {
+            GameState gs = getState();
+            Maze maze = gs.Maze;
+            Vector2 pos = new Vector2(1, 1);
+            PacmanLibrary.Structure.Path path1 = new PacmanLibrary.Structure.Path(2, 1,new Pellet());
+            PacmanLibrary.Structure.Path path2 = new PacmanLibrary.Structure.Path(1, 2, new Energizer());
+            List<Tile> tiles1 = new List<Tile>();
+            tiles1.Add(path2);
+            tiles1.Add(path1);
+            List<Tile> tiles2 = maze.GetAvailableNeighbours(pos, Direction.Down);
+
+            bool expected = true;
+            bool actual = true;
+            for(int i = 0; i<tiles1.Count; i++)
+            {
+                if(tiles1[i].GetType() != tiles2[i].GetType() || tiles1[i].Member.GetType() != tiles2[i].Member.GetType())
+                {
+                    actual = false;
+                }
+            }
+
+            Assert.AreEqual(expected, actual);
+        }
+
+
+        [TestMethod]
+        public void GetAvailableNeighbours_ValidInputUp()
+        {
+            GameState gs = getState();
+            Maze maze = gs.Maze;
+            Vector2 pos = new Vector2(1, 1);
+            PacmanLibrary.Structure.Path path1 = new PacmanLibrary.Structure.Path(2, 1, new Pellet());
+            List<Tile> tiles1 = new List<Tile>();
+            tiles1.Add(path1);
+            List<Tile> tiles2 = maze.GetAvailableNeighbours(pos, Direction.Up);
+
+            bool expected = true;
+            bool actual = true;
+            for (int i = 0; i < tiles1.Count; i++)
+            {
+                if (tiles1[i].GetType() != tiles2[i].GetType() || tiles1[i].Member.GetType() != tiles2[i].Member.GetType())
+                {
+                    actual = false;
+                }
+            }
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void GetAvailableNeighbours_ValidInputLeft()
+        {
+            GameState gs = getState();
+            Maze maze = gs.Maze;
+            Vector2 pos = new Vector2(1, 1);
+            PacmanLibrary.Structure.Path path1 = new PacmanLibrary.Structure.Path(1, 2, new Energizer());
+            List<Tile> tiles1 = new List<Tile>();
+            tiles1.Add(path1);
+            List<Tile> tiles2 = maze.GetAvailableNeighbours(pos, Direction.Left);
+
+            bool expected = true;
+            bool actual = true;
+            for (int i = 0; i < tiles1.Count; i++)
+            {
+                if (tiles1[i].GetType() != tiles2[i].GetType() || tiles1[i].Member.GetType() != tiles2[i].Member.GetType())
+                {
+                    actual = false;
+                }
+            }
+            Assert.AreEqual(expected, actual);
+        }
+
+
+        [TestMethod]
+        public void GetAvailableNeighbours_ValidInputRight()
+        {
+            GameState gs = getState();
+            Maze maze = gs.Maze;
+            Vector2 pos = new Vector2(1, 1);
+            PacmanLibrary.Structure.Path path1 = new PacmanLibrary.Structure.Path(2, 1, new Pellet());
+            PacmanLibrary.Structure.Path path2 = new PacmanLibrary.Structure.Path(1, 2, new Energizer());
+            List<Tile> tiles1 = new List<Tile>();
+            tiles1.Add(path2);
+            tiles1.Add(path1);
+            List<Tile> tiles2 = maze.GetAvailableNeighbours(pos, Direction.Right);
+
+            bool expected = true;
+            bool actual = true;
+            for (int i = 0; i < tiles1.Count; i++)
+            {
+                if (tiles1[i].GetType() != tiles2[i].GetType() || tiles1[i].Member.GetType() != tiles2[i].Member.GetType())
+                {
+                    actual = false;
+                }
+            }
+            Assert.AreEqual(expected, actual);
+        }
+
+
 
 
         public Tile[,] getEmptyMaze()

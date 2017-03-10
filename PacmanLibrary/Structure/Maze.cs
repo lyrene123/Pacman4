@@ -100,6 +100,9 @@ namespace PacmanLibrary.Structure
         /// <returns>A List of tiles containing available tiles</returns>
         public List<Tile> GetAvailableNeighbours(Vector2 position, Direction direction)
         {
+            if (position.X < 0 || position.Y < 0)
+                throw new ArgumentException("The input position of GetAvailableNeighbours method must have an x,y values bigger than 0");
+
             List<Tile> availables = new List<Tile>();
             Tile down = null;
             Tile up = null;
