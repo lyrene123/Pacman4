@@ -30,7 +30,6 @@ namespace PacmanLibrary.Ghost_classes
         {
             ghosts = new List<Ghost>();
         }
-        
         /// <summary>
         /// The CheckCollideGhosts method will check if any ghost in the
         /// list collided with Pacman(target).
