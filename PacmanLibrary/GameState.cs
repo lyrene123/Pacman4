@@ -131,7 +131,7 @@ namespace PacmanLibrary
                             break;
                         case "1":
                             Vector2 blinky_target = new Vector2(pacman.Position.X + 2, pacman.Position.Y);
-                            Ghost blinky = new Ghost(g, x, y, blinky_target, GhostState.Chasing, Color.Red);
+                            Ghost blinky = new Ghost(g, x, y, blinky_target, GhostState.Chasing, Enums.Color.Red);
                             Ghost.ReleasePosition = blinky.Position;
                             blinky.CollisionEvent += score.incrementScore;
                             blinky.PacmanDiedEvent += score.deadPacman;
@@ -140,7 +140,7 @@ namespace PacmanLibrary
                             break;
                         case "2":
                             Vector2 pinky_target = new Vector2(pacman.Position.X + 4, pacman.Position.Y);
-                            Ghost pinky = new Ghost(g, x, y, pinky_target, GhostState.Chasing, Color.Pink);
+                            Ghost pinky = new Ghost(g, x, y, pinky_target, GhostState.Chasing, Enums.Color.Pink);
                             pinky.CollisionEvent += score.incrementScore;
                             pinky.PacmanDiedEvent += score.deadPacman;
                             gpack.Add(pinky);
@@ -151,7 +151,7 @@ namespace PacmanLibrary
                             break;
                         case "3":
                             Vector2 inky_target = new Vector2(pacman.Position.X + 6, pacman.Position.Y);
-                            Ghost inky = new Ghost(g, x, y, inky_target, GhostState.Chasing, Color.Blue);
+                            Ghost inky = new Ghost(g, x, y, inky_target, GhostState.Chasing, Enums.Color.Blue);
                             inky.CollisionEvent += score.incrementScore;
                             inky.PacmanDiedEvent += score.deadPacman;
                             gpack.Add(inky);
@@ -162,7 +162,7 @@ namespace PacmanLibrary
                             break;
                         case "4":
                             Vector2 clyde_target = new Vector2(pacman.Position.X + 1, pacman.Position.Y);
-                            Ghost clyde = new Ghost(g, x, y, clyde_target, GhostState.Chasing, Color.Green);
+                            Ghost clyde = new Ghost(g, x, y, clyde_target, GhostState.Chasing, Enums.Color.Green);
                             clyde.CollisionEvent += score.incrementScore;
                             clyde.PacmanDiedEvent += score.deadPacman;
                             gpack.Add(clyde);
@@ -173,7 +173,6 @@ namespace PacmanLibrary
                             break;
 
                     }
-
                 }
             }
             //set the Tiles in the Maze object with the tileArray 2d array.

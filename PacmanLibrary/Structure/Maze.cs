@@ -57,14 +57,7 @@ namespace PacmanLibrary.Structure
             PacmanWonEvent?.Invoke();
         }
 
-        /// <summary>
-        /// The PacmanWon method will call the OnPacmanWonEvent to raise the pacmanwon event
-        /// </summary>
-        public void PacmanWon()
-        {
-            OnPacmanWonEvent();
-        }
-
+        
         /// <summary>
         /// The Tile indexer method get or set a specific tile
         /// in the tiles array of the maze based on the x and y 
@@ -174,7 +167,7 @@ namespace PacmanLibrary.Structure
 
             if(count == 0)
             {
-                PacmanWon();
+                OnPacmanWonEvent();
             }
         }
 

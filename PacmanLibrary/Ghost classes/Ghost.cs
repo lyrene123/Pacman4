@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using System.Timers;
 using PacmanLibrary.Structure;
+using PacmanLibrary.Enums;
 
 namespace PacmanLibrary.Ghost_classes
 {
@@ -25,10 +26,12 @@ namespace PacmanLibrary.Ghost_classes
     public class Ghost : IMovable, ICollidable
     {
         private Pacman pacman;
+        private Vector2 position;
         private Vector2 target;
+        private int points;
         private Pen pen;
         private Maze maze;
-        private Color colour;
+        private Enums.Color colour;
         private IGhostState currentState;
 
         public static Timer scared;
@@ -50,21 +53,24 @@ namespace PacmanLibrary.Ghost_classes
         /// <param name="target">the vector target of the ghost</param>
         /// <param name="start">the ghoststate enum of the ghost</param>
         /// <param name="c">the color of the ghost</param>
-        public Ghost(GameState g, int x, int y, Vector2 target, GhostState start, Color c)
+        public Ghost(GameState g, int x, int y, Vector2 target, GhostState start, Enums.Color c)
         {
+            if (Object.ReferenceEquals(null, g))
+                throw new ArgumentException("The input GameState object passed to the Ghost constructor must not be null");
+
             this.pacman = g.Pacman;
             this.maze = g.Maze;
             this.pen = g.Pen;
             this.target = target;
             this.colour = c;
-            this.Position = new Vector2(x, y);
+            this.position = new Vector2(x, y);
 
             if (start == GhostState.Scared)
                 this.currentState = new Scared(this, this.maze);
             if (start == GhostState.Chasing)
                 this.currentState = new Chase(this, this.maze, this.target, this.pacman);
 
-            this.Points = 200; //default points set to 200
+            this.points = 200; //default points set to 200
         }
 
         /// <summary>
@@ -95,14 +101,61 @@ namespace PacmanLibrary.Ghost_classes
         /// The Position property method get and sets the current 
         /// vector position of the ghost object
         /// </summary>
-        public Vector2 Position { get; set; }
+        public Vector2 Position
+        {
+            get { return this.position; }
+
+            set
+            {
+                Vector2 pos = value;
+                if (pos.X < 0 || pos.Y < 0)
+                    throw new ArgumentException("The X and Y position of a ghost must not be negative");
+                this.position = pos;
+            }
+
+        }
 
         /// <summary>
         /// The Points property method gets and sets the point
         /// value of a ghost which will only be used when ghost
         /// collided with pacman during scared mode
         /// </summary>
-        public int Points { get; set; }
+        public int Points
+        {
+            get { return this.points; }
+
+            set
+            {
+                if (value <= 0)
+                    throw new ArgumentException("The Ghost's point value must be larger than 0");
+                this.points = value;
+            }
+
+        }
+
+        /// <summary>
+        /// CurrentState property will return the current state 
+        /// of the ghost object
+        /// </summary>
+        public GhostState CurrentState
+        {
+            get
+            {
+                if (this.currentState is Scared)
+                    return GhostState.Scared;
+
+                return GhostState.Chasing;
+            }
+        }
+
+        /// <summary>
+        /// ghostColor property will return the current color
+        /// of the ghost object
+        /// </summary>
+        public Enums.Color ghostColor
+        {
+            get { return this.colour; }
+        }
 
         /// <summary>
         /// The Move method will call the ghost's current state 
@@ -123,6 +176,9 @@ namespace PacmanLibrary.Ghost_classes
         /// <param name="target">A Vector2 object</param>
         public void CheckCollisions(Vector2 target)
         {
+            if (target.X < 0 || target.Y < 0)
+                throw new ArgumentException("The vector position x and y position passed to the CheckCollisions method must not be negative");
+
             if (this.Position == target)
             {
                 Collide();
@@ -157,29 +213,7 @@ namespace PacmanLibrary.Ghost_classes
             this.pen.AddToPen(this);
         }
 
-        /// <summary>
-        /// CurrentState property will return the current state 
-        /// of the ghost object
-        /// </summary>
-        public GhostState CurrentState
-        {
-            get
-            {
-                if (this.currentState is Scared)
-                    return GhostState.Scared;
-
-                return GhostState.Chasing;
-            }
-        }
-
-        /// <summary>
-        /// ghostColor property will return the current color
-        /// of the ghost object
-        /// </summary>
-        public Color ghostColor
-        {
-            get { return this.colour; }
-        }
+        
 
         /// <summary>
         /// ChangeState method will take as input a GhostState enum

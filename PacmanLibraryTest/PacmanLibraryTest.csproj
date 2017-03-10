@@ -53,6 +53,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="GhostClassesTest\GhostClassTest.cs" />
     <Compile Include="StructureTest\PelletClassTest.cs" />
     <Compile Include="StructureTest\EnergizerClassTest.cs" />
     <Compile Include="StructureTest\PathClassTest.cs" />
