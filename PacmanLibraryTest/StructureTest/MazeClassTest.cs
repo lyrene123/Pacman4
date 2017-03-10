@@ -23,8 +23,8 @@ namespace PacmanLibraryTest.StructureTest
         [TestMethod]
         public void SetTilesMethodTest_ValidInput()
         {
-            Tile[,] tiles = { { new Wall(0,0), new Wall(0,1), new Wall(0,2) },
-                 {new Wall(1,0), new PacmanLibrary.Structure.Path(1,1,new Pellet()), new Wall(1,2)}};
+            Tile[,] tiles = { { new Wall(0,0), new Wall(0,1) },
+                 {new Wall(1,0), new Wall(1,1)}};
             Maze maze = new Maze();
             maze.SetTiles(tiles);
 
@@ -34,7 +34,7 @@ namespace PacmanLibraryTest.StructureTest
             {
                 for (int j = 0; j < tiles.GetLength(1); j++)
                 {
-                    if (tiles[i, j] != maze[i, j])
+                    if (tiles[i, j].GetType() != maze[j, i].GetType())
                     {
                         actual = false;
                     }
@@ -158,7 +158,7 @@ namespace PacmanLibraryTest.StructureTest
             bool actual = true;
             for(int i = 0; i<tiles1.Count; i++)
             {
-                if(tiles1[i].GetType() != tiles2[i].GetType() || tiles1[i].Member.GetType() != tiles2[i].Member.GetType())
+                if(tiles1[i].GetType() != tiles2[i].GetType() || tiles1[i].Member?.GetType() != tiles2[i].Member?.GetType())
                 {
                     actual = false;
                 }
@@ -183,7 +183,7 @@ namespace PacmanLibraryTest.StructureTest
             bool actual = true;
             for (int i = 0; i < tiles1.Count; i++)
             {
-                if (tiles1[i].GetType() != tiles2[i].GetType() || tiles1[i].Member.GetType() != tiles2[i].Member.GetType())
+                if (tiles1[i].GetType() != tiles2[i].GetType() || tiles1[i].Member?.GetType() != tiles2[i].Member?.GetType())
                 {
                     actual = false;
                 }
@@ -206,7 +206,7 @@ namespace PacmanLibraryTest.StructureTest
             bool actual = true;
             for (int i = 0; i < tiles1.Count; i++)
             {
-                if (tiles1[i].GetType() != tiles2[i].GetType() || tiles1[i].Member.GetType() != tiles2[i].Member.GetType())
+                if (tiles1[i].GetType() != tiles2[i].GetType() || tiles1[i].Member?.GetType() != tiles2[i].Member?.GetType())
                 {
                     actual = false;
                 }
@@ -232,11 +232,54 @@ namespace PacmanLibraryTest.StructureTest
             bool actual = true;
             for (int i = 0; i < tiles1.Count; i++)
             {
-                if (tiles1[i].GetType() != tiles2[i].GetType() || tiles1[i].Member.GetType() != tiles2[i].Member.GetType())
+                if (tiles1[i].GetType() != tiles2[i].GetType() || tiles1[i].Member?.GetType() != tiles2[i].Member?.GetType())
                 {
                     actual = false;
                 }
             }
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void CheckMembersLeftTest_NoEventRaised()
+        {
+            GameState gs = getState();
+            Maze maze = gs.Maze;
+            maze[1, 1].Member = null;
+            maze[1, 2].Member = null;
+            maze[1, 3].Member = null;
+            bool expected = false;
+            bool actual = false;
+            maze.PacmanWonEvent += () =>
+            {
+                actual = true;
+            };
+            maze.CheckMembersLeft();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void CheckMembersLeftTest_EventRaised()
+        {
+            GameState gs = getState();
+            Maze maze = gs.Maze;
+            for (int i = 0; i < maze.Size; i++)
+            {
+                for (int j = 0; j < maze.Size; j++)
+                {
+                    if(maze[j,i] is PacmanLibrary.Structure.Path)
+                    {
+                        maze[j, i].Member = null;
+                    }
+                }
+            }
+            bool expected = true;
+            bool actual = false;
+            maze.PacmanWonEvent += () =>
+            {
+                actual = true;
+            };
+            maze.CheckMembersLeft();
             Assert.AreEqual(expected, actual);
         }
 
@@ -257,7 +300,7 @@ namespace PacmanLibraryTest.StructureTest
                         new Wall(2, 4)},
                                 {new Wall(3,0), new PacmanLibrary.Structure.Path(3,1,new Pellet()),
                         new Wall(3,2),
-                        new PacmanLibrary.Structure.Path(3,3,new Pellet()),
+                        new PacmanLibrary.Structure.Path(3,3,null),
                         new Wall(3,4)},
                                 { new Wall(4,0), new Wall(4, 1), new Wall(4, 2),
                             new Wall(4,3),new Wall(4,4)}

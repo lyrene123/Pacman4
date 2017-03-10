@@ -50,11 +50,19 @@ namespace PacmanLibrary.Structure
         }
 
         /// <summary>
-        /// The PacmanWon method will raise or invoke the Pacman won event
+        /// The OnPacmanWonEvent method will raise or invoke the Pacman won event
         /// </summary>
-        protected virtual void PacmanWon()
+        protected virtual void OnPacmanWonEvent()
         {
             PacmanWonEvent?.Invoke();
+        }
+
+        /// <summary>
+        /// The PacmanWon method will call the OnPacmanWonEvent to raise the pacmanwon event
+        /// </summary>
+        public void PacmanWon()
+        {
+            OnPacmanWonEvent();
         }
 
         /// <summary>
@@ -155,7 +163,7 @@ namespace PacmanLibrary.Structure
         /// </summary>
         public void CheckMembersLeft()
         {
-            int count = 0;
+            int count = 0; 
             foreach(Tile item in this.maze)
             {
                 if (item is Path && item.IsEmpty() == false)
