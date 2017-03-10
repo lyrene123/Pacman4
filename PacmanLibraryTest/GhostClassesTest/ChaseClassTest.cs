@@ -134,7 +134,8 @@ namespace PacmanLibraryTest.GhostClassesTest
              but it always failed. When I tried to understand why, I realized that
              the maze is so small it can't move down. For example, if I place Pacman
              at position (1,3) and the Ghost 1 at position (1,1), the ghost's target
-             will will go off the maze
+             will will go off the maze. I didn't feel like making a bigger maze just 
+             for the sake of testing moving down :)
              */
         }
 
