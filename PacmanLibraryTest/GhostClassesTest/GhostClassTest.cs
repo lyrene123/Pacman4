@@ -51,7 +51,7 @@ namespace PacmanLibraryTest.GhostClassesTest
         [TestMethod]
         public void PositionPropertyTestGet()
         {
-            Ghost ghost = createGhost();
+            Ghost ghost = getGhost();
             Vector2 expected = new Vector2(3, 1);
             Vector2 actual = ghost.Position;
             Assert.AreEqual(expected, actual);
@@ -60,7 +60,7 @@ namespace PacmanLibraryTest.GhostClassesTest
         [TestMethod]
         public void PositionPropertyTestSet_ValidInput()
         {
-            Ghost ghost = createGhost();
+            Ghost ghost = getGhost();
             ghost.Position = new Vector2(1, 1);
             Vector2 expected = new Vector2(1, 1);
             Vector2 actual = ghost.Position;
@@ -71,7 +71,7 @@ namespace PacmanLibraryTest.GhostClassesTest
         [ExpectedException(typeof(ArgumentException))]
         public void PositionPropertyTestSet_InvalidInput()
         {
-            Ghost ghost = createGhost();
+            Ghost ghost = getGhost();
             ghost.Position = new Vector2(-1, 1);
         }
 
@@ -79,7 +79,7 @@ namespace PacmanLibraryTest.GhostClassesTest
         [TestMethod]
         public void PointsPropertyTestGet()
         {
-            Ghost ghost = createGhost();
+            Ghost ghost = getGhost();
             int expected = 200;
             int actual = ghost.Points;
             Assert.AreEqual(expected, actual);
@@ -89,7 +89,7 @@ namespace PacmanLibraryTest.GhostClassesTest
         [TestMethod]
         public void PointsPropertyTestSet_ValidInput()
         {
-            Ghost ghost = createGhost();
+            Ghost ghost = getGhost();
             ghost.Points = 1000;
             int expected = 1000;
             int actual = ghost.Points;
@@ -101,7 +101,7 @@ namespace PacmanLibraryTest.GhostClassesTest
         [ExpectedException(typeof(ArgumentException))]
         public void PointsPropertyTestSet_InvalidInput()
         {
-            Ghost ghost = createGhost();
+            Ghost ghost = getGhost();
             ghost.Points = -1000;
         }
 
@@ -109,7 +109,7 @@ namespace PacmanLibraryTest.GhostClassesTest
         [TestMethod]
         public void CurrentStatePropertyTestGet()
         {
-            Ghost ghost = createGhost();
+            Ghost ghost = getGhost();
             GhostState expected = GhostState.Chasing;
             GhostState actual = ghost.CurrentState;
             Assert.AreEqual(expected, actual);
@@ -118,7 +118,7 @@ namespace PacmanLibraryTest.GhostClassesTest
         [TestMethod]
         public void ColorPropertyTestGet()
         {
-            Ghost ghost = createGhost();
+            Ghost ghost = getGhost();
             PacmanLibrary.Enums.Color expected = PacmanLibrary.Enums.Color.Red;
             PacmanLibrary.Enums.Color actual = ghost.ghostColor;
             Assert.AreEqual(expected, actual);
@@ -127,7 +127,7 @@ namespace PacmanLibraryTest.GhostClassesTest
         [TestMethod]
         public void ChangeStateMethodTest_IntoScared()
         {
-            Ghost ghost = createGhost();
+            Ghost ghost = getGhost();
             ghost.ChangeState(GhostState.Scared);
             GhostState expected = GhostState.Scared;
             GhostState actual = ghost.CurrentState;
@@ -137,7 +137,7 @@ namespace PacmanLibraryTest.GhostClassesTest
         [TestMethod]
         public void ChangeStateMethodTest_IntoRelease()
         {
-            Ghost ghost = createGhost();
+            Ghost ghost = getGhost();
             ghost.ChangeState(GhostState.Released);
             GhostState expected = GhostState.Chasing;
             GhostState actual = ghost.CurrentState;
@@ -148,7 +148,7 @@ namespace PacmanLibraryTest.GhostClassesTest
         [TestMethod]
         public void ChangeStateMethodTest_IntoChasing()
         {
-            Ghost ghost = createGhost();
+            Ghost ghost = getGhost();
             ghost.ChangeState(GhostState.Scared);
             ghost.ChangeState(GhostState.Chasing);
             GhostState expected = GhostState.Chasing;
@@ -160,7 +160,7 @@ namespace PacmanLibraryTest.GhostClassesTest
         [TestMethod]
         public void CollideMethodTest_PacmanDiedEventRaised()
         {
-            Ghost ghost = createGhost();
+            Ghost ghost = getGhost();
             bool expected = true;
             bool actual = false;
             ghost.PacmanDiedEvent += () =>
@@ -174,7 +174,7 @@ namespace PacmanLibraryTest.GhostClassesTest
         [TestMethod]
         public void CollideMethodTest_CollisionEventRaised()
         {
-            Ghost ghost = createGhost();
+            Ghost ghost = getGhost();
             ghost.ChangeState(GhostState.Scared);
             
             bool expected = true;
@@ -190,7 +190,7 @@ namespace PacmanLibraryTest.GhostClassesTest
         [TestMethod]
         public void CheckCollisionsMethodTest_ValidInput()
         {
-            Ghost ghost = createGhost();
+            Ghost ghost = getGhost();
             Vector2 pacmanPos = new Vector2(2, 2);
             ghost.Position = pacmanPos;
             bool expected = true;
@@ -208,7 +208,7 @@ namespace PacmanLibraryTest.GhostClassesTest
         [ExpectedException(typeof(ArgumentException))]
         public void CheckCollisionsMethodTest_InvalidInput()
         {
-            Ghost ghost = createGhost();
+            Ghost ghost = getGhost();
             ghost.CheckCollisions(new Vector2(-1,1));
         }
 
@@ -221,7 +221,7 @@ namespace PacmanLibraryTest.GhostClassesTest
         }
 
 
-        public Ghost createGhost()
+        public Ghost getGhost()
         {
             GameState gs = getState();
             PacmanLibrary.Tile tile = new PacmanLibrary.Structure.Path(3, 3, null);

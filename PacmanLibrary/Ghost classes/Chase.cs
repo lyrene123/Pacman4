@@ -37,6 +37,15 @@ namespace PacmanLibrary.Ghost_classes
         /// <param name="pacman">Pacman Object</param>
         public Chase(Ghost ghost, Maze maze, Vector2 target, Pacman pacman)
         {
+            if (Object.ReferenceEquals(null, ghost))
+                throw new ArgumentException("The input Ghost object to the Chase Constructor must not be null");
+            if (Object.ReferenceEquals(null, maze))
+                throw new ArgumentException("The input Maze object to the Chase Constructor must not be null");
+            if (Object.ReferenceEquals(null, pacman))
+                throw new ArgumentException("The input Pacman object to the Chase Constructor must not be null");
+            if(target.X < 0 || target.Y < 0)
+                throw new ArgumentException("The input target X and Y positions to the Chase Constructor must not be negative");
+
             this.ghost = ghost;
             this.maze = maze;
             this.target = target;
@@ -44,7 +53,7 @@ namespace PacmanLibrary.Ghost_classes
 
             //generate a random number between 1 to 4 as a distance relative to pacman
             Random rnd = new Random();
-            this.relativeDistance = rnd.Next(1, 5); //1 to 4
+            this.relativeDistance = rnd.Next(1, 2); //1 to 4
         }
 
         /// <summary>
@@ -90,7 +99,7 @@ namespace PacmanLibrary.Ghost_classes
                 ghost.Direction = Direction.Right;
             else if (closestTile.Position.X == ghost.Position.X - 1)
                 ghost.Direction = Direction.Left;
-            else if (closestTile.Position.X == ghost.Position.Y - 1)
+            else if (closestTile.Position.Y == ghost.Position.Y - 1)
                 ghost.Direction = Direction.Up;
             else
                 ghost.Direction = Direction.Down;
