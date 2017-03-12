@@ -25,7 +25,8 @@ namespace PacmanLibrary
         /// The one parameter constructor ScoreAndLives receives
         /// a GameState object and sets its members and will also
         /// set the number of lives of Pacman to 3 by default
-        /// and initialize the total scores to 0
+        /// and initialize the total scores to 0. An exception
+        /// will be thrown if the object passed is null
         /// </summary>
         /// <param name="gameState"></param>
         public ScoreAndLives (GameState g)
@@ -38,6 +39,7 @@ namespace PacmanLibrary
         }
         /// <summary>
         /// The Lives property gets and sets the lives of pacman.
+        /// An exception will be thrown if pacman's lives is negative
         /// </summary>
         public int Lives
         {
@@ -51,6 +53,7 @@ namespace PacmanLibrary
         }
         /// <summary>
         /// The Score property gets and sets the score of the game by incrementing.
+        /// An exeption will be thrown if the value is passed is negative
         /// </summary>
         public int Score
         {
@@ -91,6 +94,8 @@ namespace PacmanLibrary
         /// The IncrementScore method will increment the score every time 
         /// Pacman eats a Pellet or an energizer. If Pacman eats
         /// an energizer the ScareGhosts method will be invoked.
+        /// An exception will be thrown if the object passed
+        /// is null
         /// </summary>
         /// <param name="member"></param>
         public void IncrementScore(ICollidable member)

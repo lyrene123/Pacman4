@@ -8,6 +8,8 @@ using System.Collections.Generic;
 
 namespace PacmanLibraryTest.StructureTest
 {
+    //Author: Lyrene L.
+
     [TestClass]
     public class MazeClassTest
     {
@@ -45,11 +47,22 @@ namespace PacmanLibraryTest.StructureTest
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void SetTilesMethodTest_InvalidInput()
+        public void SetTilesMethodTest_InvalidInputNull()
         {
             Maze maze = new Maze();
             maze.SetTiles(null);
         }
+
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void SetTilesMethodTest_InvalidInputNotSquare()
+        {
+            Maze maze = new Maze();
+            Tile[,] tiles = new Tile[5, 10];
+            maze.SetTiles(tiles);
+        }
+
 
         [TestMethod]
         public void IndexerGetTest()

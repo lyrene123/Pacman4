@@ -6,6 +6,8 @@ using Microsoft.Xna.Framework;
 
 namespace PacmanLibraryTest
 {
+    //Author: Lyrene L.
+
     [TestClass]
     public class WallClassTest
     {

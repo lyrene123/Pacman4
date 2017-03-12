@@ -8,6 +8,8 @@ using PacmanLibrary.Structure;
 
 namespace PacmanLibraryTest.GhostClassesTest
 {
+    //Author: Lyrene L.
+
     [TestClass]
     public class ChaseClassTest
     {

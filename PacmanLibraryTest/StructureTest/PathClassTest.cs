@@ -6,6 +6,8 @@ using PacmanLibrary;
 
 namespace PacmanLibraryTest.StructureTest
 {
+    //Author: Amin M.
+
     [TestClass]
     public class PathClassTest
     {

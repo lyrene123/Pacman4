@@ -12,7 +12,8 @@ namespace PacmanLibrary.Structure
     /// It keeps track of the points of the energizers.
     /// It also implements the collide method in which raises the
     /// Collision Event. Every time Pacman eats an Energizer a method
-    /// subscribed to it will be triggered. The event will change the Ghost State to Scared mode. 
+    /// subscribed to it will be triggered. The event will change the Ghost 
+    /// State to Scared mode. 
     /// 
     /// author: Daniel C
     /// version: Feb 2017

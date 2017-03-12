@@ -22,7 +22,6 @@ namespace PacmanLibrary
     public abstract class Tile
     {
         private Vector2 position;//position of the tile
-        private ICollidable member;//an ICollidable object a tile can contain
 
         /// <summary>
         /// The Tile constructor will initiliaze the

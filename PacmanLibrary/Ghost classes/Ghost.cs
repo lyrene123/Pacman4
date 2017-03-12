@@ -23,6 +23,7 @@ namespace PacmanLibrary.Ghost_classes
     /// </summary>
 
     public delegate void PacmanDiedEventHandler(); //delegate for the pacman died event
+
     public class Ghost : IMovable, ICollidable
     {
         private Pacman pacman;
@@ -45,7 +46,9 @@ namespace PacmanLibrary.Ghost_classes
         /// and the pen of the ghosts. The constructor will also initialize
         /// the position fo the ghost, its target relative to Pacman's position, 
         /// a ghoststate enum and a color of the ghost with the input with 
-        /// the input values passed to the method
+        /// the input values passed to the method. An exception will be thrown
+        /// if the gamestate object passed is null or if the target's x or y
+        /// values are negative
         /// </summary>
         /// <param name="g">A GameState object</param>
         /// <param name="x">the int x coordinates of the ghost position</param>
@@ -57,6 +60,9 @@ namespace PacmanLibrary.Ghost_classes
         {
             if (Object.ReferenceEquals(null, g))
                 throw new ArgumentException("The input GameState object passed to the Ghost constructor must not be null");
+
+            if (x < 0 || y < 0)
+                throw new ArgumentException("The Ghost's x and y position must be negative");
 
             this.pacman = g.Pacman;
             this.maze = g.Maze;
@@ -99,7 +105,8 @@ namespace PacmanLibrary.Ghost_classes
 
         /// <summary>
         /// The Position property method get and sets the current 
-        /// vector position of the ghost object
+        /// vector position of the ghost object. An exception will be
+        /// thrown if the x and y values are negative
         /// </summary>
         public Vector2 Position
         {
@@ -118,7 +125,8 @@ namespace PacmanLibrary.Ghost_classes
         /// <summary>
         /// The Points property method gets and sets the point
         /// value of a ghost which will only be used when ghost
-        /// collided with pacman during scared mode
+        /// collided with pacman during scared mode. An exception
+        /// will be thrown if the value is passed is 0 or below
         /// </summary>
         public int Points
         {
@@ -171,7 +179,8 @@ namespace PacmanLibrary.Ghost_classes
         /// <summary>
         /// CheckCollisions method will check if the current position
         /// of a ghost object has the same vector position as pacman and
-        /// if so, then the collide method will be executed
+        /// if so, then the collide method will be executed. An exception
+        /// will be thrown if the target's x or y values are negative
         /// </summary>
         /// <param name="target">A Vector2 object</param>
         public void CheckCollisions(Vector2 target)

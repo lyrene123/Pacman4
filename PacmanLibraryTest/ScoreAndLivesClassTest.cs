@@ -7,6 +7,8 @@ using PacmanLibrary.Ghost_classes;
 
 namespace PacmanLibraryTest
 {
+    //Author: Lyrene Labor
+
     [TestClass]
     public class ScoreAndLivesClassTest
     {

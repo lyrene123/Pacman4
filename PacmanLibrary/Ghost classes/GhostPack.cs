@@ -32,13 +32,17 @@ namespace PacmanLibrary.Ghost_classes
         }
         /// <summary>
         /// The CheckCollideGhosts method will check if any ghost in the
-        /// list collided with Pacman(target).
+        /// list collided with Pacman(target). An exception will be thrown if
+        /// the target's x or y values are negative
         /// </summary>
         /// <param name="target">A Vector2 object to check collision with</param>
         /// <returns>It returns true if any ghost in the list is in the 
         ///           same position as the target</returns>
         public void CheckCollideGhosts(Vector2 target)
         {
+            if (target.X < 0 || target.Y < 0)
+                throw new ArgumentException("The target position x and y passed to the CheckCollideGhosts method must not be negative");
+
             foreach (var monster in ghosts)
             {
                 monster.CheckCollisions(target);
@@ -108,18 +112,32 @@ namespace PacmanLibrary.Ghost_classes
         }
         /// <summary>
         /// The Add method Adds a ghost object to the end of the list.
+        /// An exception will be thrown if the input is null
         /// </summary>
         /// <param name="g">Ghost object</param>
         public void Add(Ghost g)
         {
+            if (Object.ReferenceEquals(null, g))
+                throw new ArgumentException("The input Ghost object of Add method must not be null");
+
             ghosts.Add(g);
         }
 
+        /// <summary>
+        /// The GetEnumerator method will return an IEnumerator 
+        /// for a list in order to make the GhostPack's list of ghost enumerable 
+        /// </summary>
+        /// <returns>IEnumerator of type Ghost</returns>
         public IEnumerator<Ghost> GetEnumerator()
         {
             return ghosts.GetEnumerator(); 
         }
 
+        /// <summary>
+        /// The GhostPack GetEnumarator will return an enumerator
+        /// for iterating through a non generic collection
+        /// </summary>
+        /// <returns></returns>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return ghosts.GetEnumerator();

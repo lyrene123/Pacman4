@@ -39,13 +39,18 @@ namespace PacmanLibrary.Structure
         /// <summary>
         /// The SetTiles method will take as input a 2D rectangular array
         /// of Tiles object and will assign in to the tiles array member 
-        /// of the class
+        /// of the class. An exception will be thrown if the input is null
+        /// or the tile's dimensions are not equal
         /// </summary>
         /// <param name="tiles">A 2D rectangular array of Tiles object</param>
         public void SetTiles(Tile[,] tiles)
         {
             if (object.ReferenceEquals(tiles, null))
                 throw new ArgumentException("The tiles array input to the SetTiles method must not be null");
+
+            if (tiles.GetLength(0) != tiles.GetLength(1))
+                throw new ArgumentException("The maze's height and length must be equal");
+
             this.maze = tiles;
         }
 
@@ -61,7 +66,9 @@ namespace PacmanLibrary.Structure
         /// <summary>
         /// The Tile indexer method get or set a specific tile
         /// in the tiles array of the maze based on the x and y 
-        /// position passed as input to the method
+        /// position passed as input to the method. An exception will
+        /// be thrown if the input x and y are negative or larger than
+        /// the maze's dimensions
         /// </summary>
         /// <param name="x">integer x position</param>
         /// <param name="y">integer y position</param>
@@ -83,10 +90,11 @@ namespace PacmanLibrary.Structure
         /// <summary>
         /// The Size property of the maze class only returns
         /// the size of the maze or the array of tiles that 
-        /// make up the maze
+        /// make up the maze 
         /// </summary>
         public int Size
         {
+            //assuming that the maze is always square
             get { return this.maze.GetLength(0); }
         }
 
@@ -94,7 +102,8 @@ namespace PacmanLibrary.Structure
         /// The GetAvailableNeighbours method takes in the current Tile position
         /// as well as the current Direction enum, and returns a list of available Tiles 
         /// besides a wall object and besides the one tile that goes backwards from
-        /// the current Direction. 
+        /// the current Direction. An exception will be thrown if the position's x and
+        /// y values are negative
         /// </summary>
         /// <param name="position">Vector2 object for position</param>
         /// <param name="direction">Direction enum for the current direction</param>

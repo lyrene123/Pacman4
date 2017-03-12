@@ -16,6 +16,9 @@ namespace PacmanLibrary
     /// The Pacman class will take care of its current 
     /// position movementand its collision with any 
     /// ghost during the game.
+    /// 
+    /// Author: Lyrene L.
+    /// Version: March 2017
     /// </summary>
     public class Pacman
     {
@@ -26,11 +29,15 @@ namespace PacmanLibrary
 
         /// <summary>
         /// The constructor will use the input GameState
-        /// to initialize its fields
+        /// to initialize its fields. An exception will be
+        /// thrown if the object passed as input is null
         /// </summary>
         /// <param name="gs">A GameState object</param>
         public Pacman(GameState gs)
         {
+            if (Object.ReferenceEquals(null, gs))
+                throw new ArgumentException("The GameState object passed to Pacman must not be null");
+
             this.gamestate = gs;
             this.maze = this.gamestate.Maze;
             this.ghostPack = this.gamestate.GhostPack;
@@ -39,14 +46,15 @@ namespace PacmanLibrary
         /// <summary>
         /// The Position property gets and sets
         /// the current vector position of pacman in a
-        /// pacman game
+        /// pacman game. An exception will be thrown if
+        /// the x or y value position are negative
         /// </summary>
         public Vector2 Position
         {
             get { return this.position; }
             set
             {
-                if (value.X < 0)
+                if (value.X < 0 || value.Y < 0)
                 {
                     throw new ArgumentException("Vector can not be negative");
                 }

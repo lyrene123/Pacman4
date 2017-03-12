@@ -5,6 +5,8 @@ using PacmanLibrary.Structure;
 
 namespace PacmanLibraryTest
 {
+    //Author: Amin M.
+
     [TestClass]
     public class EnergizerClassTest
     {

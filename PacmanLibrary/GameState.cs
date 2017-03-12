@@ -22,12 +22,6 @@ namespace PacmanLibrary
     /// </summary>
     public class GameState
     {
-        /* private Pen _Pen;
-         private Maze _Maze;
-         private GhostPack _GhostPack;
-         private ScoreAndLives _Score;
-         private Pacman _Pacman;*/
-
         /// <summary>
         /// The Parse method reads from a file and creates a GameState object. 
         /// In the process of creation it instantiates all objects necessary to 
@@ -63,10 +57,6 @@ namespace PacmanLibrary
 
 
             //read text from file
-            /*string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.FullName +
-            System.IO.Path.DirectorySeparatorChar + "TextFiles" + System.IO.Path.DirectorySeparatorChar + file;
-            Console.WriteLine(path);
-            */
             try
             {
                 string[] fileText = content.Split(new String[] { Environment.NewLine }, StringSplitOptions.None);

@@ -28,7 +28,9 @@ namespace PacmanLibrary.Ghost_classes
         /// It requires a handle to the Ghost who is chasing Pacman
         /// as well as the Maze to know which tiles are available, a
         /// target which is relative to Pacman position as well as
-        /// Pacman.
+        /// Pacman. An exception will be thrown if the input ghost object is null,
+        /// if the maze is null, if pacaman is null, if the target x and y values are 
+        /// negative.
         /// </summary>
         /// <param name="ghost">Ghost Object</param>
         /// <param name="maze">Maze Object</param>
@@ -53,7 +55,7 @@ namespace PacmanLibrary.Ghost_classes
 
             //generate a random number between 1 to 4 as a distance relative to pacman
             Random rnd = new Random();
-            this.relativeDistance = rnd.Next(1, 5); //1 to 4
+            this.relativeDistance = rnd.Next(1, 5);     
         }
 
         /// <summary>
@@ -77,8 +79,8 @@ namespace PacmanLibrary.Ghost_classes
                 throw new Exception("Nowhere to go");
 
             //update ghost's target depending on the new position of pacman
-            this.target = new Vector2(this.pacman.Position.X + this.relativeDistance, this.pacman.Position.Y);
-
+            this.target = new Vector2(this.relativeDistance, 0) + this.pacman.Position;
+            
             //set lowestDistance and closestTile as the first tile 
             //in the list as a start
             lowestDistance = tiles[0].GetDistance(target);

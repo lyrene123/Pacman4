@@ -8,6 +8,8 @@ using PacmanLibrary.Ghost_classes;
 
 namespace PacmanLibraryTest.GhostClassesTest
 {
+    //Author: Lyrene L.
+
     [TestClass]
     public class GhostClassTest
     {
@@ -38,7 +40,7 @@ namespace PacmanLibraryTest.GhostClassesTest
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void ConstructorTest_InvalidInput()
+        public void ConstructorTest_InvalidInputNull()
         {
             GameState gs = null;
             Vector2 pos = new Vector2(3, 1);
@@ -47,6 +49,20 @@ namespace PacmanLibraryTest.GhostClassesTest
             PacmanLibrary.Enums.Color c = PacmanLibrary.Enums.Color.Red;
             Ghost ghost = new Ghost(gs, 3, 1, target, state, c);
         }
+
+
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ConstructorTest_InvalidInputNegativePosition()
+        {
+            GameState gs = null;
+            Vector2 target = new Vector2(2, 2);
+            GhostState state = GhostState.Chasing;
+            PacmanLibrary.Enums.Color c = PacmanLibrary.Enums.Color.Red;
+            Ghost ghost = new Ghost(gs, -3, 1, target, state, c);
+        }
+
 
         [TestMethod]
         public void PositionPropertyTestGet()

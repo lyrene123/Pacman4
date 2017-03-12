@@ -9,6 +9,8 @@ using System.Collections.Generic;
 
 namespace PacmanLibraryTest
 {
+    //Author: Daniel C.
+
     [TestClass]
     public class PacmanClassTest
     {
@@ -19,6 +21,16 @@ namespace PacmanLibraryTest
             PacmanLibrary.Tile tile = new PacmanLibrary.Structure.Path(1, 3, null);
             gs.Pen.AddTile(tile);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void PacmanConstructorTest_InvalidInput()
+        {
+            Pacman p = new Pacman(null);
+        }
+
+
+
         [TestMethod]
         public void PositionPropertyTestGet()
         {
