@@ -11,10 +11,8 @@ namespace PacmanGame
 {
     public class MazeSprite : DrawableGameComponent
     {
-        private Wall wall;  //the business logic
-        private GameState g;
         GameState gs;
-
+        Game1 game;
         //to render
         private SpriteBatch spriteBatch;
         private Texture2D imageWall;
@@ -24,15 +22,15 @@ namespace PacmanGame
         private Texture2D imagePellet;
         private Texture2D imageEmpty;
         private KeyboardState oldState;
-        private Game1 game;
+        
         private List<Wall> list;
        
         public TimeSpan TargetElapsedTime { get; private set; }
 
-        public MazeSprite(Game1 game) : base(game)
+        public MazeSprite(Game1 game1) : base(game1)
         {
-            this.game = game;
-            gs = new GameState();
+            this.game = game1;
+            gs = game1.gameState;
             list = new List<Wall>();
 
         }
@@ -49,18 +47,8 @@ namespace PacmanGame
             imageEnergizer = game.Content.Load<Texture2D>("energizer");
             imagePellet = game.Content.Load<Texture2D>("pellet2");
             imageEmpty = game.Content.Load<Texture2D>("empty");
-
-            Tile[,] tiles = new Tile[23, 23];
-            String content = File.ReadAllText(@"levels.csv");
-            gs = GameState.Parse(content);
-            for (var i = 0; i < 23; i++)
-            {
-                for (var j = 0; j < 23; j++)
-                {
-                    tiles[i, j] = gs.Maze[i, j];
-                }
-            }
-
+            
+            
             base.LoadContent();
         }
         public override void Update(GameTime gameTime)
@@ -73,7 +61,7 @@ namespace PacmanGame
             {
                 LoadContent();
             }
-
+            
             spriteBatch.Begin();
             for (var i = 0; i < gs.Maze.Size; i++)
             {

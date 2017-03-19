@@ -1,6 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using PacmanLibrary;
+using System;
+using System.IO;
 
 namespace PacmanGame
 {
@@ -10,8 +13,11 @@ namespace PacmanGame
     public class Game1 : Game
     {
         private MazeSprite wall;
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        private GhostsSprite ghosts;
+        public GameState gameState;
+        private GraphicsDeviceManager graphics;
+        private SpriteBatch spriteBatch;
+        private String content;
 
         public Game1()
         {
@@ -19,6 +25,8 @@ namespace PacmanGame
             graphics.PreferredBackBufferHeight = 736;
             graphics.PreferredBackBufferWidth = 736;
             Content.RootDirectory = "Content";
+            content = File.ReadAllText(@"levels.csv");
+            gameState = GameState.Parse(content);
         }
 
         /// <summary>
@@ -29,8 +37,12 @@ namespace PacmanGame
         /// </summary>
         protected override void Initialize()
         {
+            // Create a new SpriteBatch, which can be used to draw textures.
+            ghosts = new GhostsSprite(this);
             wall = new MazeSprite(this);
+            //ghosts = new GhostsSprite(this);
             Components.Add(wall);
+            Components.Add(ghosts);
 
             base.Initialize();
         }
@@ -43,8 +55,7 @@ namespace PacmanGame
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            // TODO: use this.Content to load your game content here
+            
         }
 
         /// <summary>
