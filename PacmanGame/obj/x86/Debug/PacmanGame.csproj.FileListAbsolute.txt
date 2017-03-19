@@ -50,3 +50,4 @@ D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\pellet2.xnb
 D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\pen.xnb
 D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\penDoor.xnb
 D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\wall.xnb
+D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\pacman.xnb

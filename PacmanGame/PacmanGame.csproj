@@ -42,6 +42,7 @@
     <Compile Include="Game1.cs" />
     <Compile Include="GhostsSprite.cs" />
     <Compile Include="MazeSprite.cs" />
+    <Compile Include="Pacman.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

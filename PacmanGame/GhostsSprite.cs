@@ -34,13 +34,12 @@ namespace PacmanGame
         private Texture2D imageYellowGhostLookDown;
         private Texture2D imageYellowGhostLookRight;
         private Texture2D imageYellowGhostLookLeft;
-        private int counter;
-        private int threshold;
+        //private int counter;
+       
                
-        double millisecondsPerFrame = 100; //Update every x second
+        double millisecondsPerFrame = 800; //Update every x second
         double timeSinceLastUpdate = 0; //Accumulate the elapsed time
-        double millisecondsPerFramePacman = 500; //Update every x second
-        double timeSinceLastUpdatePacman = 0; //Accumulate the elapsed time
+        
 
         public TimeSpan TargetElapsedTime { get; private set; }
 
@@ -105,11 +104,7 @@ namespace PacmanGame
 
                 }
             }
-            timeSinceLastUpdatePacman += gameTime.ElapsedGameTime.TotalMilliseconds;
-            if (timeSinceLastUpdatePacman >= millisecondsPerFramePacman)
-            {
-                timeSinceLastUpdatePacman = 0;
-            }
+            
             
             base.Update(gameTime);
         }

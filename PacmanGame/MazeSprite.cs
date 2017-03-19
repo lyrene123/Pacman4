@@ -21,7 +21,7 @@ namespace PacmanGame
         private Texture2D imageEnergizer;
         private Texture2D imagePellet;
         private Texture2D imageEmpty;
-        private KeyboardState oldState;
+       
         
         private List<Wall> list;
        

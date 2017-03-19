@@ -13,6 +13,7 @@ namespace PacmanGame
     public class Game1 : Game
     {
         private MazeSprite wall;
+        private Pacman pacman;
         private GhostsSprite ghosts;
         public GameState gameState;
         private GraphicsDeviceManager graphics;
@@ -38,10 +39,12 @@ namespace PacmanGame
         protected override void Initialize()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            ghosts = new GhostsSprite(this);
             wall = new MazeSprite(this);
-            //ghosts = new GhostsSprite(this);
+            pacman = new Pacman(this);
+            ghosts = new GhostsSprite(this);
+            
             Components.Add(wall);
+            Components.Add(pacman);
             Components.Add(ghosts);
 
             base.Initialize();
