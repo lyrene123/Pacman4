@@ -8,6 +8,6 @@ namespace PacmanLibrary.Enums
 {
     public enum Color
     {
-        Red, Blue, Pink, Green
+        Red, Yellow, Pink, Green
     }
 }

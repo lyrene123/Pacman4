@@ -141,7 +141,7 @@ namespace PacmanLibrary
                             break;
                         case "3":
                             Vector2 inky_target = new Vector2(pacman.Position.X + 6, pacman.Position.Y);
-                            Ghost inky = new Ghost(g, x, y, inky_target, GhostState.Chasing, Enums.Color.Blue);
+                            Ghost inky = new Ghost(g, x, y, inky_target, GhostState.Chasing, Enums.Color.Yellow);
                             inky.CollisionEvent += score.IncrementScore;
                             inky.PacmanDiedEvent += score.DeadPacman;
                             gpack.Add(inky);
