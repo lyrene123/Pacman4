@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>D:/LD2017/PacmanGame/Content/greenGhostLookDown.png</File>
+    <File>D:/LD2017/PacmanGame/Content/greenGhostLookLeft.png</File>
+    <File>D:/LD2017/PacmanGame/Content/greenGhostLookRight.png</File>
+    <File>D:/LD2017/PacmanGame/Content/greenGhostLookUp.png</File>
+    <File>D:/LD2017/PacmanGame/Content/pinkGhostLookDown.png</File>
+    <File>D:/LD2017/PacmanGame/Content/pinkGhostLookLeft.png</File>
+    <File>D:/LD2017/PacmanGame/Content/pinkGhostLookRight.png</File>
+    <File>D:/LD2017/PacmanGame/Content/pinkGhostLookUp.png</File>
+    <File>D:/LD2017/PacmanGame/Content/redGhostLookDown.png</File>
+    <File>D:/LD2017/PacmanGame/Content/redGhostLookLeft.png</File>
+    <File>D:/LD2017/PacmanGame/Content/redGhostLookRight.png</File>
+    <File>D:/LD2017/PacmanGame/Content/redGhostLookUp.png</File>
+    <File>D:/LD2017/PacmanGame/Content/yellowGhostLookDown.png</File>
+    <File>D:/LD2017/PacmanGame/Content/yellowGhostLookLeft.png</File>
+    <File>D:/LD2017/PacmanGame/Content/yellowGhostLookRight.png</File>
+    <File>D:/LD2017/PacmanGame/Content/yellowGhostLookUp.png</File>
+    <File>D:/LD2017/PacmanGame/Content/empty.png</File>
+    <File>D:/LD2017/PacmanGame/Content/energizer.png</File>
+    <File>D:/LD2017/PacmanGame/Content/pellet2.png</File>
+    <File>D:/LD2017/PacmanGame/Content/pen.png</File>
+    <File>D:/LD2017/PacmanGame/Content/penDoor.png</File>
+    <File>D:/LD2017/PacmanGame/Content/wall.png</File>
+  </SourceFiles>
+</SourceFileCollection>
