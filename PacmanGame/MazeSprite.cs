@@ -79,7 +79,7 @@ namespace PacmanGame
                         }
                         else if (i >= 9 && i <= 14 && j == 9)
                         {
-                            if (i == 12 || i == 11)
+                            if (i == 12 || i == 11 || i == 10)
                             {
                                 spriteBatch.Draw(imagePenDoor, new Rectangle(i * 32, j * 32, 32, 32), Color.White);
                             }

@@ -2,15 +2,10 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using PacmanLibrary;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PacmanGame
 {
-    public class Pacman : DrawableGameComponent
+    public class PacmanSprite : DrawableGameComponent
     {
         GameState gs;
         Game1 game;
@@ -18,18 +13,33 @@ namespace PacmanGame
         private SpriteBatch spriteBatch;
         private KeyboardState oldState;
         private Texture2D imagePacman;
+        private Texture2D imgPacman;
+        private Texture2D imgPacMoveRight;
+        private Texture2D imgPacMoveLeft;
+        private Texture2D imgPacMoveDown;
+        private Texture2D imgPacMoveUp;
+        private Texture2D currentAnimation;
+
+        //Variable to manage animation
+        Rectangle destinationRect;
+        Rectangle sourceRect;
+        float elapsed;
+        float delay = 200f;
+        int frames = 0;
+
+        // variable to manage loop animation
         private int counter;
         private int threshold = 0;
-        double millisecondsPerFramePacman = 500; //Update every x second
+        double millisecondsPerFramePacman = 200; //Update every x second
         double timeSinceLastUpdatePacman = 0; //Accumulate the elapsed time
-        public TimeSpan TargetElapsedTime { get; private set; }
+        
 
         enum MyDirections
         {
             Right, Left, Up, Down
         };
 
-        public Pacman(Game1 game1) : base(game1)
+        public PacmanSprite(Game1 game1) : base(game1)
         {
             this.game = game1;
             gs = game1.gameState;
@@ -37,24 +47,54 @@ namespace PacmanGame
         }
         public override void Initialize()
         {
+            destinationRect = new Rectangle((int)gs.Pacman.Position.X * 32, (int)gs.Pacman.Position.Y * 32, 32, 32);
             base.Initialize();
         }
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            imagePacman = game.Content.Load<Texture2D>("pacman");
+            imgPacMoveRight = game.Content.Load<Texture2D>("imgPacMoveRight");
+            imgPacMoveLeft = game.Content.Load<Texture2D>("imgPacMoveLeft");
+            imgPacMoveUp = game.Content.Load<Texture2D>("imgPacMoveUp");
+            imgPacMoveDown = game.Content.Load<Texture2D>("imgPacMoveDown");
+
+            currentAnimation = imgPacMoveRight;
+
             base.LoadContent();
+        }
+        private void Animate(GameTime gameTime)
+        {
+            elapsed += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            if (elapsed >= delay)
+            {
+                if (frames >= 1)
+                {
+                    frames = 0;
+
+                }
+                else
+                {
+                    frames++;
+
+                }
+                elapsed = 0;
+            }
+
+            sourceRect = new Rectangle(32 * frames, 0, 32, 32);
+
         }
         public override void Update(GameTime gameTime)
         {
+            Animate(gameTime);
             timeSinceLastUpdatePacman += gameTime.ElapsedGameTime.TotalMilliseconds;
             if (timeSinceLastUpdatePacman >= millisecondsPerFramePacman)
             {
                 timeSinceLastUpdatePacman = 0;
+
                 checkInput();
-
-
             }
+
+            destinationRect = new Rectangle((int)gs.Pacman.Position.X * 32, (int)gs.Pacman.Position.Y * 32, 32, 32);
             base.Update(gameTime);
         }
         public override void Draw(GameTime gameTime)
@@ -65,8 +105,8 @@ namespace PacmanGame
             }
 
             spriteBatch.Begin();
-            spriteBatch.Draw(imagePacman, new Rectangle((int)gs.Pacman.Position.X * 32, (int)gs.Pacman.Position.Y * 32, 32, 32), Color.White);
-
+            spriteBatch.Draw(currentAnimation, destinationRect, 
+                sourceRect, Color.White);
             spriteBatch.End();
             base.Draw(gameTime);
         }
@@ -75,7 +115,7 @@ namespace PacmanGame
         KeyboardState newState = Keyboard.GetState();
         if (newState.IsKeyDown(Keys.Right))
         {
-           
+            currentAnimation = imgPacMoveRight;
             // If not down last update, key has just been pressed.
             if (!oldState.IsKeyDown(Keys.Right))
             {
@@ -90,9 +130,9 @@ namespace PacmanGame
             }
         }
 
-        if (newState.IsKeyDown(Keys.Left))
+        else if (newState.IsKeyDown(Keys.Left))
         {
-
+                currentAnimation = imgPacMoveLeft;
             // If not down last update, key has just been pressed.
             if (!oldState.IsKeyDown(Keys.Left))
             {
@@ -106,9 +146,9 @@ namespace PacmanGame
                     gs.Pacman.Move(Direction.Left);
             }
         }
-        if (newState.IsKeyDown(Keys.Down))
+        else if (newState.IsKeyDown(Keys.Down))
         {
-
+                currentAnimation = imgPacMoveDown;
             // If not down last update, key has just been pressed.
             if (!oldState.IsKeyDown(Keys.Down))
             {
@@ -122,9 +162,9 @@ namespace PacmanGame
                     gs.Pacman.Move(Direction.Down);
             }
         }
-        if (newState.IsKeyDown(Keys.Up))
+        else if (newState.IsKeyDown(Keys.Up))
         {
-
+                currentAnimation = imgPacMoveUp;
             // If not down last update, key has just been pressed.
             if (!oldState.IsKeyDown(Keys.Up))
             {
