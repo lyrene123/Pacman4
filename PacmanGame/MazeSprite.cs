@@ -38,7 +38,7 @@ namespace PacmanGame
         }
         public override void Initialize()
         {
-            frame_height = 28;
+            frame_height = 32;
             frame_width = 32;
             base.Initialize();
         }

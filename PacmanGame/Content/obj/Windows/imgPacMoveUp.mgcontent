@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>D:/LD2017/PacmanGame/Content/imgPacMoveUp.png</SourceFile>
-  <SourceTime>2017-03-19T22:04:28.9694268-04:00</SourceTime>
+  <SourceTime>2017-03-20T12:35:06.692552-04:00</SourceTime>
   <DestFile>D:/LD2017/PacmanGame/Content/bin/Windows/imgPacMoveUp.xnb</DestFile>
-  <DestTime>2017-03-19T22:09:16.6092207-04:00</DestTime>
+  <DestTime>2017-03-20T12:35:12.8780313-04:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T02:36:08-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

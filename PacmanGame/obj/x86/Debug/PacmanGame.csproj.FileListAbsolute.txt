@@ -73,3 +73,5 @@ D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\yellow_GhostLookDown.xnb
 D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\yellow_GhostLookLeft.xnb
 D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\yellow_GhostLookRight.xnb
 D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\yellow_GhostLookUp.xnb
+D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\scareGhosts.xnb
+D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\scare_Ghosts.xnb

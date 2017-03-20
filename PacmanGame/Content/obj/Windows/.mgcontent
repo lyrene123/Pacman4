@@ -49,5 +49,7 @@
     <File>D:/LD2017/PacmanGame/Content/yellow_GhostLookLeft.png</File>
     <File>D:/LD2017/PacmanGame/Content/yellow_GhostLookRight.png</File>
     <File>D:/LD2017/PacmanGame/Content/yellow_GhostLookUp.png</File>
+    <File>D:/LD2017/PacmanGame/Content/scareGhosts.png</File>
+    <File>D:/LD2017/PacmanGame/Content/scare_Ghosts.png</File>
   </SourceFiles>
 </SourceFileCollection>

@@ -45,13 +45,13 @@ namespace PacmanGame
         {
             this.game = game1;
             gs = game1.gameState;
-            
+           
         }
         public override void Initialize()
         {
-            frame_height = 28;
+            frame_height = 32;
             frame_width = 32;
-            destinationRect = new Rectangle((int)gs.Pacman.Position.X * 32, (int)gs.Pacman.Position.Y * 28, 32, 32);
+            destinationRect = new Rectangle((int)gs.Pacman.Position.X * 32, (int)gs.Pacman.Position.Y * 32, 32, 32);
             base.Initialize();
         }
         protected override void LoadContent()
@@ -84,7 +84,7 @@ namespace PacmanGame
                 elapsed = 0;
             }
 
-            sourceRect = new Rectangle(frame_width * frames, 0, 32, 32);
+            sourceRect = new Rectangle(32 * frames, 0, 32, 32);
 
         }
         public override void Update(GameTime gameTime)

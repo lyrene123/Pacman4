@@ -23,8 +23,10 @@ namespace PacmanGame
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferHeight = 736;
+            graphics.PreferredBackBufferHeight = 835;
             graphics.PreferredBackBufferWidth = 736;
+            //graphics.ToggleFullScreen();
+            
             Content.RootDirectory = "Content";
             content = File.ReadAllText(@"levels.csv");
             gameState = GameState.Parse(content);
