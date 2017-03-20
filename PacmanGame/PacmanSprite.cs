@@ -19,6 +19,8 @@ namespace PacmanGame
         private Texture2D imgPacMoveDown;
         private Texture2D imgPacMoveUp;
         private Texture2D currentAnimation;
+        private int frame_height;
+        private int frame_width;
 
         //Variable to manage animation
         Rectangle destinationRect;
@@ -47,7 +49,9 @@ namespace PacmanGame
         }
         public override void Initialize()
         {
-            destinationRect = new Rectangle((int)gs.Pacman.Position.X * 32, (int)gs.Pacman.Position.Y * 32, 32, 32);
+            frame_height = 28;
+            frame_width = 32;
+            destinationRect = new Rectangle((int)gs.Pacman.Position.X * 32, (int)gs.Pacman.Position.Y * 28, 32, 32);
             base.Initialize();
         }
         protected override void LoadContent()
@@ -80,7 +84,7 @@ namespace PacmanGame
                 elapsed = 0;
             }
 
-            sourceRect = new Rectangle(32 * frames, 0, 32, 32);
+            sourceRect = new Rectangle(frame_width * frames, 0, 32, 32);
 
         }
         public override void Update(GameTime gameTime)
@@ -94,7 +98,7 @@ namespace PacmanGame
                 checkInput();
             }
 
-            destinationRect = new Rectangle((int)gs.Pacman.Position.X * 32, (int)gs.Pacman.Position.Y * 32, 32, 32);
+            destinationRect = new Rectangle((int)gs.Pacman.Position.X * frame_width, (int)gs.Pacman.Position.Y * frame_height, 32, 32);
             base.Update(gameTime);
         }
         public override void Draw(GameTime gameTime)
