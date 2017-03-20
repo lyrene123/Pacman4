@@ -34,10 +34,12 @@ namespace PacmanGame
         private Texture2D imageYellowGhostLookDown;
         private Texture2D imageYellowGhostLookRight;
         private Texture2D imageYellowGhostLookLeft;
+        private int frame_height;
+        private int frame_width;
         //private int counter;
 
         //Variable to manage animation
-       
+
         float elapsed;
         float delay = 200f;
         int frames = 0;
@@ -72,6 +74,8 @@ namespace PacmanGame
         }
         public override void Initialize()
         {
+            frame_height = 28;
+            frame_width = 32;
             destinationRect = new Rectangle((int)gs.Pacman.Position.X * 32, (int)gs.Pacman.Position.Y * 32, 32, 32);
             base.Initialize();
         }
@@ -120,7 +124,7 @@ namespace PacmanGame
                 elapsed = 0;
             }
 
-            ghostSourceRect = new Rectangle(32 * frames, 0, 32, 32);
+            ghostSourceRect = new Rectangle(frame_width * frames, 0, 32, 32);
             /*yellow_GhostSourceRect = new Rectangle(32 * frames, 0, 32, 32);
             pink_GhostSourceRect = new Rectangle(32 * frames, 0, 32, 32);
             green_GhostSourceRect = new Rectangle(32 * frames, 0, 32, 32);
@@ -143,7 +147,7 @@ namespace PacmanGame
                 }
             }
 
-            destinationRect = new Rectangle((int)gs.Pacman.Position.X * 32, (int)gs.Pacman.Position.Y * 32, 32, 32);
+            destinationRect = new Rectangle((int)gs.Pacman.Position.X * frame_width, (int)gs.Pacman.Position.Y * frame_height, 32, 32);
             base.Update(gameTime);
         }
         public override void Draw(GameTime gameTime)
@@ -161,76 +165,76 @@ namespace PacmanGame
                 {
                     if (g.Direction.ToString("G").Equals(MyDirections.Right.ToString("G")))
                     {
-                        spriteBatch.Draw(imageRedGhostLookRight, new Rectangle((int)g.Position.X * 32, (int)g.Position.Y * 32, 32, 32), ghostSourceRect, Color.White);
+                        spriteBatch.Draw(imageRedGhostLookRight, new Rectangle((int)g.Position.X * frame_width, (int)g.Position.Y * frame_height, 32, 32), ghostSourceRect, Color.White);
                     }
                     else if (g.Direction.ToString("G").Equals(MyDirections.Left.ToString("G")))
                     {
-                        spriteBatch.Draw(imageRedGhostLookLeft, new Rectangle((int)g.Position.X * 32, (int)g.Position.Y * 32, 32, 32), ghostSourceRect, Color.White);
+                        spriteBatch.Draw(imageRedGhostLookLeft, new Rectangle((int)g.Position.X * frame_width, (int)g.Position.Y * frame_height, 32, 32), ghostSourceRect, Color.White);
                     }
                     else if (g.Direction.ToString("G").Equals(MyDirections.Down.ToString("G")))
                     {
-                        spriteBatch.Draw(imageRedGhostLookDown, new Rectangle((int)g.Position.X * 32, (int)g.Position.Y * 32, 32, 32), ghostSourceRect, Color.White);
+                        spriteBatch.Draw(imageRedGhostLookDown, new Rectangle((int)g.Position.X * frame_width, (int)g.Position.Y * frame_height, 32, 32), ghostSourceRect, Color.White);
                     }
                     else if (g.Direction.ToString("G").Equals(MyDirections.Up.ToString("G")))
                     {
-                        spriteBatch.Draw(imageRedGhostLookUp, new Rectangle((int)g.Position.X * 32, (int)g.Position.Y * 32, 32, 32), ghostSourceRect, Color.White);
+                        spriteBatch.Draw(imageRedGhostLookUp, new Rectangle((int)g.Position.X * frame_width, (int)g.Position.Y * frame_height, 32, 32), ghostSourceRect, Color.White);
                     }
                 }
                 else if (g.ghostColor.ToString("G").Equals(MyColors.Green.ToString("G")))
                 {
                     if (g.Direction.ToString("G").Equals(MyDirections.Right.ToString("G")))
                     {
-                        spriteBatch.Draw(imageGreenGhostLookRight, new Rectangle((int)g.Position.X * 32, (int)g.Position.Y * 32, 32, 32), ghostSourceRect, Color.White);
+                        spriteBatch.Draw(imageGreenGhostLookRight, new Rectangle((int)g.Position.X * frame_width, (int)g.Position.Y * frame_height, 32, 32), ghostSourceRect, Color.White);
                     }
                     else if (g.Direction.ToString("G").Equals(MyDirections.Left.ToString("G")))
                     {
-                        spriteBatch.Draw(imageGreenGhostLookLeft, new Rectangle((int)g.Position.X * 32, (int)g.Position.Y * 32, 32, 32), ghostSourceRect, Color.White);
+                        spriteBatch.Draw(imageGreenGhostLookLeft, new Rectangle((int)g.Position.X * frame_width, (int)g.Position.Y * frame_height, 32, 32), ghostSourceRect, Color.White);
                     }
                     else if (g.Direction.ToString("G").Equals(MyDirections.Down.ToString("G")))
                     {
-                        spriteBatch.Draw(imageGreenGhostLookDown, new Rectangle((int)g.Position.X * 32, (int)g.Position.Y * 32, 32, 32), ghostSourceRect, Color.White);
+                        spriteBatch.Draw(imageGreenGhostLookDown, new Rectangle((int)g.Position.X * frame_width, (int)g.Position.Y * frame_height, 32, 32), ghostSourceRect, Color.White);
                     }
                     else if (g.Direction.ToString("G").Equals(MyDirections.Up.ToString("G")))
                     {
-                        spriteBatch.Draw(imageGreenGhostLookUp, new Rectangle((int)g.Position.X * 32, (int)g.Position.Y * 32, 32, 32), ghostSourceRect, Color.White);
+                        spriteBatch.Draw(imageGreenGhostLookUp, new Rectangle((int)g.Position.X * frame_width, (int)g.Position.Y * frame_height, 32, 32), ghostSourceRect, Color.White);
                     }
                 }
                 else if (g.ghostColor.ToString("G").Equals(MyColors.Pink.ToString("G")))
                 {
                     if (g.Direction.ToString("G").Equals(MyDirections.Right.ToString("G")))
                     {
-                        spriteBatch.Draw(imagePinkGhostLookRight, new Rectangle((int)g.Position.X * 32, (int)g.Position.Y * 32, 32, 32), ghostSourceRect, Color.White);
+                        spriteBatch.Draw(imagePinkGhostLookRight, new Rectangle((int)g.Position.X * frame_width, (int)g.Position.Y * frame_height, 32, 32), ghostSourceRect, Color.White);
                     }
                     else if (g.Direction.ToString("G").Equals(MyDirections.Left.ToString("G")))
                     {
-                        spriteBatch.Draw(imagePinkGhostLookLeft, new Rectangle((int)g.Position.X * 32, (int)g.Position.Y * 32, 32, 32), ghostSourceRect, Color.White);
+                        spriteBatch.Draw(imagePinkGhostLookLeft, new Rectangle((int)g.Position.X * frame_width, (int)g.Position.Y * frame_height, 32, 32), ghostSourceRect, Color.White);
                     }
                     else if (g.Direction.ToString("G").Equals(MyDirections.Down.ToString("G")))
                     {
-                        spriteBatch.Draw(imagePinkGhostLookDown, new Rectangle((int)g.Position.X * 32, (int)g.Position.Y * 32, 32, 32), ghostSourceRect, Color.White);
+                        spriteBatch.Draw(imagePinkGhostLookDown, new Rectangle((int)g.Position.X * frame_width, (int)g.Position.Y * frame_height, 32, 32), ghostSourceRect, Color.White);
                     }
                     else if (g.Direction.ToString("G").Equals(MyDirections.Up.ToString("G")))
                     {
-                        spriteBatch.Draw(imagePinkGhostLookUp, new Rectangle((int)g.Position.X * 32, (int)g.Position.Y * 32, 32, 32), ghostSourceRect, Color.White);
+                        spriteBatch.Draw(imagePinkGhostLookUp, new Rectangle((int)g.Position.X * frame_width, (int)g.Position.Y * frame_height, 32, 32), ghostSourceRect, Color.White);
                     }
                 }
                 else if (g.ghostColor.ToString("G").Equals(MyColors.Yellow.ToString("G")))
                 {
                     if (g.Direction.ToString("G").Equals(MyDirections.Right.ToString("G")))
                     {
-                        spriteBatch.Draw(imageYellowGhostLookRight, new Rectangle((int)g.Position.X * 32, (int)g.Position.Y * 32, 32, 32), ghostSourceRect, Color.White);
+                        spriteBatch.Draw(imageYellowGhostLookRight, new Rectangle((int)g.Position.X * frame_width, (int)g.Position.Y * frame_height, 32, 32), ghostSourceRect, Color.White);
                     }
                     else if (g.Direction.ToString("G").Equals(MyDirections.Left.ToString("G")))
                     {
-                        spriteBatch.Draw(imageYellowGhostLookLeft, new Rectangle((int)g.Position.X * 32, (int)g.Position.Y * 32, 32, 32), ghostSourceRect, Color.White);
+                        spriteBatch.Draw(imageYellowGhostLookLeft, new Rectangle((int)g.Position.X * frame_width, (int)g.Position.Y * frame_height, 32, 32), ghostSourceRect, Color.White);
                     }
                     else if (g.Direction.ToString("G").Equals(MyDirections.Down.ToString("G")))
                     {
-                        spriteBatch.Draw(imageYellowGhostLookDown, new Rectangle((int)g.Position.X * 32, (int)g.Position.Y * 32, 32, 32), ghostSourceRect,Color.White);
+                        spriteBatch.Draw(imageYellowGhostLookDown, new Rectangle((int)g.Position.X * frame_width, (int)g.Position.Y * frame_height, 32, 32), ghostSourceRect,Color.White);
                     }
                     else if (g.Direction.ToString("G").Equals(MyDirections.Up.ToString("G")))
                     {
-                        spriteBatch.Draw(imageYellowGhostLookUp, new Rectangle((int)g.Position.X * 32, (int)g.Position.Y * 32, 32, 32),ghostSourceRect, Color.White);
+                        spriteBatch.Draw(imageYellowGhostLookUp, new Rectangle((int)g.Position.X * frame_width, (int)g.Position.Y * frame_height, 32, 32),ghostSourceRect, Color.White);
                     }
                 }
               

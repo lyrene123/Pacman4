@@ -21,6 +21,8 @@ namespace PacmanGame
         private Texture2D imageEnergizer;
         private Texture2D imagePellet;
         private Texture2D imageEmpty;
+        private int frame_height;
+        private int frame_width;
        
         
         private List<Wall> list;
@@ -36,6 +38,8 @@ namespace PacmanGame
         }
         public override void Initialize()
         {
+            frame_height = 28;
+            frame_width = 32;
             base.Initialize();
         }
         protected override void LoadContent()
@@ -71,47 +75,48 @@ namespace PacmanGame
                     {
                         if (i == 8 && j >= 9 && j <= 12)
                         {
-                            spriteBatch.Draw(imagePen, new Rectangle(i * 32, j * 32, 32, 32), Color.White);
+                            spriteBatch.Draw(imagePen, new Rectangle(i * frame_width, j * frame_height, 32, 32), Color.White);
                         }
                         else if (i == 14 && j >= 9 && j <= 12)
                         {
-                            spriteBatch.Draw(imagePen, new Rectangle(i * 32, j * 32, 32, 32), Color.White);
+                            spriteBatch.Draw(imagePen, new Rectangle(i * frame_width, j * frame_height, 32, 32), Color.White);
                         }
                         else if (i >= 9 && i <= 14 && j == 9)
                         {
                             if (i == 12 || i == 11 || i == 10)
                             {
-                                spriteBatch.Draw(imagePenDoor, new Rectangle(i * 32, j * 32, 32, 32), Color.White);
+                                spriteBatch.Draw(imagePenDoor, new Rectangle(i * frame_width, j * frame_height, 32, 32), Color.White);
                             }
                             else
                             {
-                                spriteBatch.Draw(imagePen, new Rectangle(i * 32, j * 32, 32, 32), Color.White);
+                                spriteBatch.Draw(imagePen, new Rectangle(i * frame_width, j * frame_height, 32, 32), Color.White);
                             }
 
                         }
                         else if (i >= 9 && i <= 14 && j == 12)
                         {
-                            spriteBatch.Draw(imagePen, new Rectangle(i * 32, j * 32, 32, 32), Color.White);
+                            spriteBatch.Draw(imagePen, new Rectangle(i * frame_width, j * frame_height, 32, 32), Color.White);
                         }
                         else
                         {
-                            spriteBatch.Draw(imageWall, new Rectangle(i * 32, j * 32, 32, 32), Color.White);
+                            spriteBatch.Draw(imageWall, new Rectangle(i * frame_width, j * frame_height, 32, 32), Color.White);
                         }
+                        
                     }
 
                     if (gs.Maze[i, j] is PacmanLibrary.Structure.Path)
                     {
                         if (gs.Maze[i, j].IsEmpty())
                         {
-                            spriteBatch.Draw(imageEmpty, new Rectangle(i * 32, j * 32, 32, 32), Color.White);
+                            spriteBatch.Draw(imageEmpty, new Rectangle(i * frame_width, j * frame_height, 32, 32), Color.White);
                         }
                         if (gs.Maze[i, j].Member is Pellet)
                         {
-                            spriteBatch.Draw(imagePellet, new Rectangle(i * 32, j * 32, 32, 32), Color.White);
+                            spriteBatch.Draw(imagePellet, new Rectangle(i * frame_width, j * frame_height, 32, 32), Color.White);
                         }
                         if (gs.Maze[i, j].Member is Energizer)
                         {
-                            spriteBatch.Draw(imageEnergizer, new Rectangle(i * 32, j * 32, 32, 32), Color.White);
+                            spriteBatch.Draw(imageEnergizer, new Rectangle(i * frame_width, j * frame_height, 32, 32), Color.White);
                         }
                     }
                 }
