@@ -192,12 +192,7 @@ namespace PacmanGame
                 {
                     spriteBatch.Draw(imgScareGhosts, new Rectangle((int)g.Position.X * frame_width,
                            (int)g.Position.Y * frame_height, 32, 32), ghostSourceRect, Color.White);
-                }
-               
-
-
-
-
+                }              
 
                 else
                 {
