@@ -77,28 +77,28 @@ namespace PacmanLibrary
         {
             if (dir == Direction.Down)
             {
-                if (IsMovePossible(Direction.Down, new Vector2(this.position.X, this.position.Y + 1)))
+                if (!(this.maze[(int)this.position.X, (int)this.position.Y + 1] is Wall))
                 {
                     this.position.Y++;
                 }
             }
             else if (dir == Direction.Up)
             {
-                if (IsMovePossible(Direction.Up, new Vector2(this.position.X, this.position.Y - 1)))
+                if (!(this.maze[(int)this.position.X, (int)this.position.Y - 1] is Wall))
                 {
                     this.position.Y--;
                 }
             }
             else if (dir == Direction.Left)
             {
-                if (IsMovePossible(Direction.Left, new Vector2(this.position.X - 1, this.position.Y)))
+                if (!(this.maze[(int)this.position.X-1, (int)this.position.Y] is Wall))
                 {
                     this.position.X--;
                 }
             }
             else
             {
-                if (IsMovePossible(Direction.Right, new Vector2(this.position.X + 1, this.position.Y)))
+                if (!(this.maze[(int)this.position.X+1, (int)this.position.Y] is Wall))
                 {
                     this.position.X++;
                 }
@@ -121,30 +121,6 @@ namespace PacmanLibrary
             }
             //ghost collision
             this.ghostPack.CheckCollideGhosts(this.position);
-        }
-
-
-
-        /// <summary>
-        /// The IsMovePossible method will check if a specific 
-        /// vector position is one of the possible movements
-        /// that pacman can do based on the input Direction
-        /// </summary>
-        /// <param name="dir">A Direction enum</param>
-        /// <param name="nextPos">A vector position</param>
-        /// <returns>a boolean true if the next position is a valid move
-        ///             or false otherwise</returns>
-        private bool IsMovePossible(Direction dir, Vector2 nextPos)
-        {
-            List<Tile> freeTiles = this.maze.GetAvailableNeighbours(this.position, dir);
-            foreach (var tile in freeTiles)
-            {
-                if (tile.Position == nextPos)
-                {
-                    return true;
-                }
-            }
-            return false;
         }
     }
 }
