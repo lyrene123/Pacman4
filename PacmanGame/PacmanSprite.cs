@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using PacmanLibrary;
@@ -19,6 +20,7 @@ namespace PacmanGame
         private Texture2D currentAnimation;
         private int frame_height;
         private int frame_width;
+        private SoundEffect pacman_chomp;
 
         //Variable to manage animation
         Rectangle destinationRect;
@@ -42,7 +44,7 @@ namespace PacmanGame
         public PacmanSprite(Game1 game1) : base(game1)
         {
             this.game = game1;
-
+            
 
         }
         public override void Initialize()
@@ -59,6 +61,7 @@ namespace PacmanGame
             imgPacMoveLeft = game.Content.Load<Texture2D>("imgPacMoveLeft");
             imgPacMoveUp = game.Content.Load<Texture2D>("imgPacMoveUp");
             imgPacMoveDown = game.Content.Load<Texture2D>("imgPacMoveDown");
+            pacman_chomp = game.Content.Load<SoundEffect>("pacman_chomp");
 
             currentAnimation = imgPacMoveRight;
             gs = game.GameState;
@@ -102,7 +105,7 @@ namespace PacmanGame
             {
                 LoadContent();
             }
-
+           
 
             base.Update(gameTime);
         }
@@ -111,6 +114,7 @@ namespace PacmanGame
             spriteBatch.Begin();
             spriteBatch.Draw(currentAnimation, destinationRect,
                 sourceRect, Color.White);
+            
             spriteBatch.End();
             base.Draw(gameTime);
         }
@@ -120,6 +124,7 @@ namespace PacmanGame
             if (newState.IsKeyDown(Keys.Right))
             {
                 currentAnimation = imgPacMoveRight;
+                pacman_chomp.Play();
                 // If not down last update, key has just been pressed.
                 if (!oldState.IsKeyDown(Keys.Right))
                 {
@@ -137,6 +142,7 @@ namespace PacmanGame
             else if (newState.IsKeyDown(Keys.Left))
             {
                 currentAnimation = imgPacMoveLeft;
+                pacman_chomp.Play();
                 // If not down last update, key has just been pressed.
                 if (!oldState.IsKeyDown(Keys.Left))
                 {
@@ -153,6 +159,7 @@ namespace PacmanGame
             else if (newState.IsKeyDown(Keys.Down))
             {
                 currentAnimation = imgPacMoveDown;
+                pacman_chomp.Play();
                 // If not down last update, key has just been pressed.
                 if (!oldState.IsKeyDown(Keys.Down))
                 {
@@ -169,6 +176,7 @@ namespace PacmanGame
             else if (newState.IsKeyDown(Keys.Up))
             {
                 currentAnimation = imgPacMoveUp;
+                pacman_chomp.Play();
                 // If not down last update, key has just been pressed.
                 if (!oldState.IsKeyDown(Keys.Up))
                 {

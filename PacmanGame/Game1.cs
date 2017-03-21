@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 using PacmanLibrary;
 using System;
 using System.Collections.Generic;
@@ -18,6 +17,7 @@ namespace PacmanGame
         private MazeSprite wall;
         private PacmanSprite pacman;
         private GhostsSprite ghosts;
+        private ScoreSprite score;
         private GameState gameState;
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
@@ -52,10 +52,12 @@ namespace PacmanGame
             wall = new MazeSprite(this);
             pacman = new PacmanSprite(this);
             ghosts = new GhostsSprite(this);
+            score = new ScoreSprite(this);
 
             Components.Add(wall);
             Components.Add(pacman);
             Components.Add(ghosts);
+            Components.Add(score);
 
             base.Initialize();
         }
@@ -129,5 +131,11 @@ namespace PacmanGame
             get { return this.gameState; }
 
         }
+        public SoundEffect this[int index]
+        {
+            get { return this.soundEffects[index]; }
+
+        }
+    
     }
 }

@@ -34,18 +34,34 @@ namespace PacmanGame
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            font = game.Content.Load<SpriteFont>("score.spritefont");
+            font = game.Content.Load<SpriteFont>("score");
+            lives = game.Content.Load<Texture2D>("pacmanLive");
             base.LoadContent();
-
-
-
+        
         }
         public override void Draw(GameTime gameTime)
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             spriteBatch.Begin();
             spriteBatch.DrawString(font, "SCORE: " + this.scores.Score, new Vector2(0, 800), Color.White);
-            spriteBatch.DrawString(font, "LIVES: " + this.scores.Lives, new Vector2(650, 800), Color.White);
+            //spriteBatch.DrawString(font, "LIVES: " + this.scores.Lives, new Vector2(650, 800), Color.White);
+            if(this.scores.Lives == 3)
+            {
+                spriteBatch.Draw(lives, new Rectangle(600, 800, 32, 32), Color.White);
+                spriteBatch.Draw(lives, new Rectangle(650, 800, 32, 32), Color.White);
+                spriteBatch.Draw(lives, new Rectangle(700, 800, 32, 32), Color.White);
+            }
+            else if(this.scores.Lives == 2)
+            {
+                spriteBatch.Draw(lives, new Rectangle(600, 800, 32, 32), Color.White);
+                spriteBatch.Draw(lives, new Rectangle(650, 800, 32, 32), Color.White);
+            }
+            else if (this.scores.Lives == 1)
+            {
+                spriteBatch.Draw(lives, new Rectangle(600, 800, 32, 32), Color.White);
+            }
+            
+
             spriteBatch.End();
 
             if (this.gs.Score.Lives <= 0)

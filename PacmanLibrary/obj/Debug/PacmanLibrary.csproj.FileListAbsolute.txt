@@ -37,7 +37,6 @@ D:\LD2017\PacmanLibrary\bin\Debug\SharpDX.Direct3D11.xml
 D:\LD2017\PacmanLibrary\bin\Debug\SharpDX.Direct2D1.xml
 D:\LD2017\PacmanLibrary\bin\Debug\SharpDX.XInput.xml
 D:\LD2017\PacmanLibrary\bin\Debug\SharpDX.MediaFoundation.xml
-D:\LD2017\PacmanLibrary\obj\Debug\PacmanLibrary.csprojResolveAssemblyReference.cache
 D:\LD2017\PacmanLibrary\obj\Debug\PacmanLibrary.dll
 D:\LD2017\PacmanLibrary\obj\Debug\PacmanLibrary.pdb
 C:\Users\1541901\Source\Repos\PACMAN\PacmanLibrary\bin\Debug\PacmanLibrary.dll
