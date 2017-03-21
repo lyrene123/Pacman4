@@ -75,7 +75,7 @@ namespace PacmanGame
         public GhostsSprite(Game1 game) : base(game)
         {
             this.game = game;
-            gs = game.gameState;
+            gs = game.GameState;
             
         }
         public override void Initialize()

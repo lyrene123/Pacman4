@@ -44,7 +44,7 @@ namespace PacmanGame
         public PacmanSprite(Game1 game1) : base(game1)
         {
             this.game = game1;
-            gs = game1.gameState;
+            gs = game1.GameState;
            
         }
         public override void Initialize()

@@ -152,3 +152,4 @@ C:\Users\1541901\Source\Repos\PACMAN\PacmanGame\bin\Windows\x86\Debug\SharpDX.Ra
 C:\Users\1541901\Source\Repos\PACMAN\PacmanGame\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
 C:\Users\1541901\Source\Repos\PACMAN\PacmanGame\obj\x86\Debug\PacmanGame.csprojResolveAssemblyReference.cache
 C:\Users\1541901\Source\Repos\PACMAN\PacmanGame\bin\Windows\x86\Debug\Content\scoreFont.xnb
+D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\scoreFont.xnb

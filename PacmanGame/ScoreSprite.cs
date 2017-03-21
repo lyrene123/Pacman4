@@ -20,7 +20,7 @@ namespace PacmanGame
         public ScoreSprite(Game1 game) : base(game)
         {
             this.game = game;
-            this.gs = game.gameState;
+            this.gs = game.GameState;
             this.scores = this.gs.Score;
         }
 

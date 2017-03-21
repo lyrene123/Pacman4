@@ -20,7 +20,7 @@ namespace PacmanGame
         private MazeSprite wall;
         private PacmanSprite pacman;
         private GhostsSprite ghosts;
-        public GameState gameState;
+        private GameState gameState;
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         private string content;
@@ -37,6 +37,14 @@ namespace PacmanGame
             Content.RootDirectory = "Content";
             content = File.ReadAllText(@"levels.csv");
             gameState = GameState.Parse(content);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public GameState GameState
+        {
+            get { return this.gameState; }
+
         }
 
         /// <summary>
