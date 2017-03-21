@@ -4,22 +4,6 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>D:/LD2017/PacmanGame/Content/greenGhostLookDown.png</File>
-    <File>D:/LD2017/PacmanGame/Content/greenGhostLookLeft.png</File>
-    <File>D:/LD2017/PacmanGame/Content/greenGhostLookRight.png</File>
-    <File>D:/LD2017/PacmanGame/Content/greenGhostLookUp.png</File>
-    <File>D:/LD2017/PacmanGame/Content/pinkGhostLookDown.png</File>
-    <File>D:/LD2017/PacmanGame/Content/pinkGhostLookLeft.png</File>
-    <File>D:/LD2017/PacmanGame/Content/pinkGhostLookRight.png</File>
-    <File>D:/LD2017/PacmanGame/Content/pinkGhostLookUp.png</File>
-    <File>D:/LD2017/PacmanGame/Content/redGhostLookDown.png</File>
-    <File>D:/LD2017/PacmanGame/Content/redGhostLookLeft.png</File>
-    <File>D:/LD2017/PacmanGame/Content/redGhostLookRight.png</File>
-    <File>D:/LD2017/PacmanGame/Content/redGhostLookUp.png</File>
-    <File>D:/LD2017/PacmanGame/Content/yellowGhostLookDown.png</File>
-    <File>D:/LD2017/PacmanGame/Content/yellowGhostLookLeft.png</File>
-    <File>D:/LD2017/PacmanGame/Content/yellowGhostLookRight.png</File>
-    <File>D:/LD2017/PacmanGame/Content/yellowGhostLookUp.png</File>
     <File>D:/LD2017/PacmanGame/Content/empty.png</File>
     <File>D:/LD2017/PacmanGame/Content/energizer.png</File>
     <File>D:/LD2017/PacmanGame/Content/pellet2.png</File>
@@ -52,5 +36,7 @@
     <File>D:/LD2017/PacmanGame/Content/scareGhosts.png</File>
     <File>D:/LD2017/PacmanGame/Content/scare_Ghosts.png</File>
     <File>D:/LD2017/PacmanGame/Content/scoreFont.spritefont</File>
+    <File>D:/LD2017/PacmanGame/Content/pacmanLives.png</File>
+    <File>D:/LD2017/PacmanGame/Content/pacmanLive.png</File>
   </SourceFiles>
 </SourceFileCollection>
