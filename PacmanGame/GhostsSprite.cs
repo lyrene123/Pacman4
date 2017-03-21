@@ -38,7 +38,7 @@ namespace PacmanGame
         private Texture2D imgScareGhosts;
         //private Texture2D imgEatenGhost;
 
-
+        private bool isUpdate = true;
 
         private int frame_height;
         private int frame_width;
@@ -140,27 +140,44 @@ namespace PacmanGame
             */
 
         }
+
+        public bool IsUpdate
+        {
+            get { return this.isUpdate; }
+            set { this.isUpdate = value; }
+        }
+
+
         public override void Update(GameTime gameTime)
         {
-            //this.TargetElapsedTime = TimeSpan.FromSeconds(1.0f / 1.0f);
-            Animate(gameTime);
-            timeSinceLastUpdate += gameTime.ElapsedGameTime.TotalMilliseconds;
-            if (timeSinceLastUpdate >= millisecondsPerFrame)
-            {
-                timeSinceLastUpdate = 0;
-
-                foreach (Ghost g in gs.GhostPack)
+            if (!IsUpdate)
+                return;
+            
+                //this.TargetElapsedTime = TimeSpan.FromSeconds(1.0f / 1.0f);
+                Animate(gameTime);
+                timeSinceLastUpdate += gameTime.ElapsedGameTime.TotalMilliseconds;
+                if (timeSinceLastUpdate >= millisecondsPerFrame)
                 {
-                   g.Move();
+                    timeSinceLastUpdate = 0;
 
+                    foreach (Ghost g in gs.GhostPack)
+                    {
+                        g.Move();
+
+                    }
                 }
-            }
 
-            destinationRect = new Rectangle((int)gs.Pacman.Position.X * frame_width, (int)gs.Pacman.Position.Y * frame_height, 32, 32);
-            base.Update(gameTime);
+                destinationRect = new Rectangle((int)gs.Pacman.Position.X * frame_width, (int)gs.Pacman.Position.Y * frame_height, 32, 32);
+                base.Update(gameTime);
+            
         }
         public override void Draw(GameTime gameTime)
         {
+
+            if (!IsUpdate)
+                return;
+
+
             if (gs.Score.Lives == 0)
             {
                 LoadContent();

@@ -3,10 +3,15 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using PacmanLibrary;
 using System;
+using System.Collections;
 using System.IO;
+using System.Timers;
 
 namespace PacmanGame
 {
+
+    
+
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
@@ -20,6 +25,7 @@ namespace PacmanGame
         private SpriteBatch spriteBatch;
         private string content;
         private ScoreSprite score;
+
 
         public Game1()
         {
@@ -54,7 +60,8 @@ namespace PacmanGame
 
             base.Initialize();
 
-            wall.MazeObject.PacmanWonEvent += gameEnded;
+            this.gameState.Maze.PacmanWonEvent += gameEnded;
+            this.gameState.Score.GameOver += gameEnded;      
         }
 
         /// <summary>
@@ -105,9 +112,12 @@ namespace PacmanGame
             base.Draw(gameTime);
         }
 
+
         private void gameEnded()
         {
             Components.Remove(pacman);
-        } 
+            this.ghosts.IsUpdate = false;        
+        }
+
     }
 }

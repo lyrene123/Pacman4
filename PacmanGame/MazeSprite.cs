@@ -60,15 +60,6 @@ namespace PacmanGame
             base.Update(gameTime);
         }
 
-        public Maze MazeObject
-        {
-            get
-            {
-                return this.gs.Maze;
-            }
-        }
-
-
         public override void Draw(GameTime gameTime)
         {
             if (gs.Score.Lives == 0)

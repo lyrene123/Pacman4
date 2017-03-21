@@ -40,6 +40,12 @@ namespace PacmanGame
             spriteBatch.DrawString(font, "LIVES: " + this.scores.Lives, new Vector2(600, 800), Color.White);
             spriteBatch.End();
 
+            if (this.gs.Score.Lives <= 0)
+            {
+                spriteBatch.Begin();
+                spriteBatch.DrawString(font, "GAME OVER!", new Vector2(300, 800), Color.White);
+                spriteBatch.End();
+            }
             base.Draw(gameTime);
         }
 
