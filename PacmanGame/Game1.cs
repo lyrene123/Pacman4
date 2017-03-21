@@ -1,50 +1,21 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using PacmanLibrary;
-using System;
-using System.Collections;
-using System.IO;
-using System.Timers;
 
 namespace PacmanGame
 {
-
-    
-
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
     public class Game1 : Game
     {
-        private MazeSprite wall;
-        private PacmanSprite pacman;
-        private GhostsSprite ghosts;
-        private GameState gameState;
-        private GraphicsDeviceManager graphics;
-        private SpriteBatch spriteBatch;
-        private string content;
-        private ScoreSprite score;
-
+        GraphicsDeviceManager graphics;
+        SpriteBatch spriteBatch;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferHeight = 835;
-            graphics.PreferredBackBufferWidth = 736;
-            //graphics.ToggleFullScreen();
-            
             Content.RootDirectory = "Content";
-            content = File.ReadAllText(@"levels.csv");
-            gameState = GameState.Parse(content);
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        public GameState GameState
-        {
-            get { return this.gameState; }
-
         }
 
         /// <summary>
@@ -55,21 +26,9 @@ namespace PacmanGame
         /// </summary>
         protected override void Initialize()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            wall = new MazeSprite(this);
-            pacman = new PacmanSprite(this);
-            ghosts = new GhostsSprite(this);
-            score = new ScoreSprite(this);
-            
-            Components.Add(wall);
-            Components.Add(pacman);
-            Components.Add(ghosts);
-            Components.Add(score);
+            // TODO: Add your initialization logic here
 
             base.Initialize();
-
-            this.gameState.Maze.PacmanWonEvent += gameEnded;
-            this.gameState.Score.GameOver += gameEnded;      
         }
 
         /// <summary>
@@ -80,7 +39,8 @@ namespace PacmanGame
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            
+
+            // TODO: use this.Content to load your game content here
         }
 
         /// <summary>
@@ -113,22 +73,11 @@ namespace PacmanGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
         }
-
-
-        private void gameEnded()
-        {
-            Components.Remove(this.pacman);
-            Components.Remove(this.ghosts);
-
-            if(this.gameState.Score.Lives > 0)
-                this.score.IsWon = true;      
-        }
-
     }
 }

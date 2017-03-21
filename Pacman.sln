@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PacmanLibrary", "PacmanLibr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PacmanLibraryTest", "PacmanLibraryTest\PacmanLibraryTest.csproj", "{BEE8A48B-BEC5-47DE-8280-B3B84BE33A88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PacmanGame", "PacmanGame\PacmanGame.csproj", "{308D3831-F3AF-44E6-89BA-1977B2D76594}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PacmanGame", "PacmanGame\PacmanGame.csproj", "{240F021D-2DD7-45B2-96D5-5DC61F94D4CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,13 +33,12 @@ Global
 		{BEE8A48B-BEC5-47DE-8280-B3B84BE33A88}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BEE8A48B-BEC5-47DE-8280-B3B84BE33A88}.Release|x86.ActiveCfg = Release|Any CPU
 		{BEE8A48B-BEC5-47DE-8280-B3B84BE33A88}.Release|x86.Build.0 = Release|Any CPU
-		{308D3831-F3AF-44E6-89BA-1977B2D76594}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{308D3831-F3AF-44E6-89BA-1977B2D76594}.Debug|Any CPU.Build.0 = Debug|x86
-		{308D3831-F3AF-44E6-89BA-1977B2D76594}.Debug|x86.ActiveCfg = Debug|x86
-		{308D3831-F3AF-44E6-89BA-1977B2D76594}.Debug|x86.Build.0 = Debug|x86
-		{308D3831-F3AF-44E6-89BA-1977B2D76594}.Release|Any CPU.ActiveCfg = Release|x86
-		{308D3831-F3AF-44E6-89BA-1977B2D76594}.Release|x86.ActiveCfg = Release|x86
-		{308D3831-F3AF-44E6-89BA-1977B2D76594}.Release|x86.Build.0 = Release|x86
+		{240F021D-2DD7-45B2-96D5-5DC61F94D4CB}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{240F021D-2DD7-45B2-96D5-5DC61F94D4CB}.Debug|x86.ActiveCfg = Debug|x86
+		{240F021D-2DD7-45B2-96D5-5DC61F94D4CB}.Debug|x86.Build.0 = Debug|x86
+		{240F021D-2DD7-45B2-96D5-5DC61F94D4CB}.Release|Any CPU.ActiveCfg = Release|x86
+		{240F021D-2DD7-45B2-96D5-5DC61F94D4CB}.Release|x86.ActiveCfg = Release|x86
+		{240F021D-2DD7-45B2-96D5-5DC61F94D4CB}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
