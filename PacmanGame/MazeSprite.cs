@@ -72,36 +72,8 @@ namespace PacmanGame
                 for (var j = 0; j < gs.Maze.Size; j++)
                 {
                     if (gs.Maze[i, j] is Wall)
-                    {
-                        if (i == 8 && j >= 9 && j <= 12)
-                        {
-                            spriteBatch.Draw(imagePen, new Rectangle(i * frame_width, j * frame_height, 32, 32), Color.White);
-                        }
-                        else if (i == 14 && j >= 9 && j <= 12)
-                        {
-                            spriteBatch.Draw(imagePen, new Rectangle(i * frame_width, j * frame_height, 32, 32), Color.White);
-                        }
-                        else if (i >= 9 && i <= 14 && j == 9)
-                        {
-                            if (i == 12 || i == 11 || i == 10)
-                            {
-                                spriteBatch.Draw(imagePenDoor, new Rectangle(i * frame_width, j * frame_height, 32, 32), Color.White);
-                            }
-                            else
-                            {
-                                spriteBatch.Draw(imagePen, new Rectangle(i * frame_width, j * frame_height, 32, 32), Color.White);
-                            }
-
-                        }
-                        else if (i >= 9 && i <= 14 && j == 12)
-                        {
-                            spriteBatch.Draw(imagePen, new Rectangle(i * frame_width, j * frame_height, 32, 32), Color.White);
-                        }
-                        else
-                        {
-                            spriteBatch.Draw(imageWall, new Rectangle(i * frame_width, j * frame_height, 32, 32), Color.White);
-                        }
-
+                    {                                           
+                       spriteBatch.Draw(imageWall, new Rectangle(i * frame_width, j * frame_height, 32, 32), Color.White);                       
                     }
 
                     if (gs.Maze[i, j] is PacmanLibrary.Structure.Path)

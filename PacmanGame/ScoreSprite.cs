@@ -67,19 +67,17 @@ namespace PacmanGame
             if (this.gs.Score.Lives <= 0)
             {
                 spriteBatch.Begin();
-                spriteBatch.DrawString(font, "GAME OVER!", new Vector2(300, 800), Color.White);
                 spriteBatch.DrawString(font, "GAME OVER!", new Vector2(300, 800), Color.Red);
                 spriteBatch.End();
             }
             
-                        if (this.gs.Score.Lives > 0 && this.isWon == true)
-                            {
+            if (this.gs.Score.Lives > 0 && this.isWon == true)
+            {
                 spriteBatch.Begin();
                 spriteBatch.DrawString(font, "PACMAN WON!", new Vector2(300, 800), Color.Red);
                 spriteBatch.End();
             }
-            
-                         base.Draw(gameTime);
+            base.Draw(gameTime);
         }
     }
 }

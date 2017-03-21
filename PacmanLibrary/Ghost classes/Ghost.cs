@@ -242,6 +242,7 @@ namespace PacmanLibrary.Ghost_classes
                     break;
                 case GhostState.Released:
                     this.Position = ReleasePosition;
+                    this.CheckCollisions(this.pacman.Position);
                     if(this.CurrentState != GhostState.Scared)
                         this.currentState = new Chase(this, this.maze, this.target, this.pacman);
                     break;

@@ -21,7 +21,7 @@ namespace PacmanGame
         private GameState gameState;
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
-        private String content;
+        private string content;
         private SoundEffect soundEffect;
         private SoundEffectInstance soundEffectInstance;
         List<SoundEffect> soundEffects;
@@ -60,6 +60,9 @@ namespace PacmanGame
             Components.Add(score);
 
             base.Initialize();
+            this.gameState.Maze.PacmanWonEvent += GameEnded;
+            this.gameState.Score.GameOver += GameEnded;
+
         }
 
         /// <summary>
@@ -104,12 +107,12 @@ namespace PacmanGame
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            if (gameState.Score.Lives == 0)
+           /* if (gameState.Score.Lives == 0)
             {
                 LoadContent();
                 soundEffectInstance.Dispose();
 
-            }
+            }*/
 
             base.Update(gameTime);
         }
@@ -135,6 +138,14 @@ namespace PacmanGame
         {
             get { return this.soundEffects[index]; }
 
+        }
+
+        private void GameEnded()
+        {
+            Components.Remove(pacman);
+            Components.Remove(ghosts);
+            if (this.gameState.Score.Lives > 0)
+                this.score.IsWon = true;
         }
     
     }

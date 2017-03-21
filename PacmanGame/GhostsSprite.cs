@@ -57,7 +57,7 @@ namespace PacmanGame
         Rectangle green_GhostSourceRect;
         Rectangle pink_GhostSourceRect;
         */
-        double millisecondsPerFrame = 700; //Update every x second
+        double millisecondsPerFrame = 350; //Update every x second
         double timeSinceLastUpdate = 0; //Accumulate the elapsed time
 
 
@@ -141,6 +141,7 @@ namespace PacmanGame
         public override void Update(GameTime gameTime)
         {
             //this.TargetElapsedTime = TimeSpan.FromSeconds(1.0f / 1.0f);
+             Animate(gameTime);
 
             timeSinceLastUpdate += gameTime.ElapsedGameTime.TotalMilliseconds;
             if (timeSinceLastUpdate >= millisecondsPerFrame)
@@ -153,13 +154,6 @@ namespace PacmanGame
 
                 }
             }
-            if (gs.Score.Lives == 0)
-            {
-                LoadContent();
-            }
-
-            Animate(gameTime);
-
             //destinationRect = new Rectangle((int)gs.Pacman.Position.X * frame_width, (int)gs.Pacman.Position.Y * frame_height, 32, 32);
             base.Update(gameTime);
         }
