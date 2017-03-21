@@ -1,6 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
+using PacmanLibrary;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace PacmanGame
 {
@@ -9,13 +15,29 @@ namespace PacmanGame
     /// </summary>
     public class Game1 : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        private MazeSprite wall;
+        private PacmanSprite pacman;
+        private GhostsSprite ghosts;
+        private GameState gameState;
+        private GraphicsDeviceManager graphics;
+        private SpriteBatch spriteBatch;
+        private String content;
+        private SoundEffect soundEffect;
+        private SoundEffectInstance soundEffectInstance;
+        List<SoundEffect> soundEffects;
+
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferHeight = 835;
+            graphics.PreferredBackBufferWidth = 736;
+            soundEffects = new List<SoundEffect>();
+            //graphics.ToggleFullScreen();
+
             Content.RootDirectory = "Content";
+            content = File.ReadAllText(@"levels.csv");
+            gameState = GameState.Parse(content);
         }
 
         /// <summary>
@@ -26,7 +48,14 @@ namespace PacmanGame
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            // Create a new SpriteBatch, which can be used to draw textures.
+            wall = new MazeSprite(this);
+            pacman = new PacmanSprite(this);
+            ghosts = new GhostsSprite(this);
+
+            Components.Add(wall);
+            Components.Add(pacman);
+            Components.Add(ghosts);
 
             base.Initialize();
         }
@@ -39,8 +68,19 @@ namespace PacmanGame
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            soundEffect = Content.Load<SoundEffect>("siren");
+            soundEffectInstance = soundEffect.CreateInstance();
+            soundEffectInstance.IsLooped = true;
+            //soundEffectInstance.Play();
 
-            // TODO: use this.Content to load your game content here
+            //Sound Effects
+            soundEffects.Add(Content.Load<SoundEffect>("pacman_chomp"));
+            soundEffects.Add(Content.Load<SoundEffect>("Soundenergizer"));
+            soundEffects.Add(Content.Load<SoundEffect>("pacmanDied"));
+
+            content = File.ReadAllText(@"levels.csv");
+            gameState = GameState.Parse(content);
+
         }
 
         /// <summary>
@@ -62,7 +102,12 @@ namespace PacmanGame
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            if (gameState.Score.Lives == 0)
+            {
+                LoadContent();
+                soundEffectInstance.Dispose();
+
+            }
 
             base.Update(gameTime);
         }
@@ -73,11 +118,16 @@ namespace PacmanGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
+        }
+        public GameState GameState
+        {
+            get { return this.gameState; }
+
         }
     }
 }
