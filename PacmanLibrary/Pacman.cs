@@ -104,6 +104,7 @@ namespace PacmanLibrary
                 }
             }
 
+            //this.gamestate.Maze.CheckMembersLeft();
             CheckCollisions();
         }
 

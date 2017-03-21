@@ -96,6 +96,7 @@ namespace PacmanGame
                 timeSinceLastUpdatePacman = 0;
 
                 checkInput();
+                this.gs.Maze.CheckMembersLeft();
             }
 
             destinationRect = new Rectangle((int)gs.Pacman.Position.X * frame_width, (int)gs.Pacman.Position.Y * frame_height, 32, 32);

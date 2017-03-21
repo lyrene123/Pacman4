@@ -38,8 +38,6 @@ namespace PacmanGame
         private Texture2D imgScareGhosts;
         //private Texture2D imgEatenGhost;
 
-        private bool isUpdate = true;
-
         private int frame_height;
         private int frame_width;
         //private int counter;
@@ -57,7 +55,7 @@ namespace PacmanGame
         Rectangle green_GhostSourceRect;
         Rectangle pink_GhostSourceRect;
         */
-        double millisecondsPerFrame = 250; //Update every x second
+        double millisecondsPerFrame = 350; //Update every x second
         double timeSinceLastUpdate = 0; //Accumulate the elapsed time
         
 
@@ -141,17 +139,8 @@ namespace PacmanGame
 
         }
 
-        public bool IsUpdate
-        {
-            get { return this.isUpdate; }
-            set { this.isUpdate = value; }
-        }
-
-
         public override void Update(GameTime gameTime)
         {
-            if (!IsUpdate)
-                return;
             
                 //this.TargetElapsedTime = TimeSpan.FromSeconds(1.0f / 1.0f);
                 Animate(gameTime);
@@ -173,10 +162,6 @@ namespace PacmanGame
         }
         public override void Draw(GameTime gameTime)
         {
-
-            if (!IsUpdate)
-                return;
-
 
             if (gs.Score.Lives == 0)
             {

@@ -123,8 +123,11 @@ namespace PacmanGame
 
         private void gameEnded()
         {
-            Components.Remove(pacman);
-            this.ghosts.IsUpdate = false;        
+            Components.Remove(this.pacman);
+            Components.Remove(this.ghosts);
+
+            if(this.gameState.Score.Lives > 0)
+                this.score.IsWon = true;      
         }
 
     }
