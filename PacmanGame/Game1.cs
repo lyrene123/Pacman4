@@ -18,7 +18,8 @@ namespace PacmanGame
         public GameState gameState;
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
-        private String content;
+        private string content;
+        private ScoreSprite score;
 
         public Game1()
         {
@@ -44,12 +45,16 @@ namespace PacmanGame
             wall = new MazeSprite(this);
             pacman = new PacmanSprite(this);
             ghosts = new GhostsSprite(this);
+            score = new ScoreSprite(this);
             
             Components.Add(wall);
             Components.Add(pacman);
             Components.Add(ghosts);
+            Components.Add(score);
 
             base.Initialize();
+
+            wall.MazeObject.PacmanWonEvent += gameEnded;
         }
 
         /// <summary>
@@ -99,5 +104,10 @@ namespace PacmanGame
 
             base.Draw(gameTime);
         }
+
+        private void gameEnded()
+        {
+            Components.Remove(pacman);
+        } 
     }
 }

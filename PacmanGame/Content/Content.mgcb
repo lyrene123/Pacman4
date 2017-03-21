@@ -577,3 +577,9 @@
 /processorParam:TextureFormat=Color
 /build:scare_Ghosts.png
 
+#begin scoreFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:scoreFont.spritefont
+

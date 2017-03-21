@@ -57,7 +57,7 @@ namespace PacmanGame
         Rectangle green_GhostSourceRect;
         Rectangle pink_GhostSourceRect;
         */
-        double millisecondsPerFrame = 600; //Update every x second
+        double millisecondsPerFrame = 250; //Update every x second
         double timeSinceLastUpdate = 0; //Accumulate the elapsed time
         
 

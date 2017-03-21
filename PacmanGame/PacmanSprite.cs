@@ -32,7 +32,7 @@ namespace PacmanGame
         // variable to manage loop animation
         private int counter;
         private int threshold = 0;
-        double millisecondsPerFramePacman = 200; //Update every x second
+        double millisecondsPerFramePacman = 215; //Update every x second
         double timeSinceLastUpdatePacman = 0; //Accumulate the elapsed time
         
 

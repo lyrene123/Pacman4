@@ -76,7 +76,7 @@ namespace PacmanLibrary.Ghost_classes
                 monster.ChangeState(GhostState.Scared);
             }
 
-            Ghost.scared = new Timer(6000);
+            Ghost.scared = new Timer(8000);
             Ghost.scared.Enabled = true;
             Ghost.scared.Elapsed += OnScareGhostDisable;        
         }
