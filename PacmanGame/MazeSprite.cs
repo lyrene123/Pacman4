@@ -16,7 +16,6 @@ namespace PacmanGame
         //to render
         private SpriteBatch spriteBatch;
         private Texture2D imageWall;
-        private Texture2D imgEnergizer;
         private Texture2D imagePen;
         private Texture2D imagePenDoor;
         private Texture2D imageEnergizer;
@@ -51,10 +50,10 @@ namespace PacmanGame
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             imageWall = game.Content.Load<Texture2D>("wall");
-            imageEnergizer = game.Content.Load<Texture2D>("energizer");
+            imageEnergizer = game.Content.Load<Texture2D>("energizer2");
             imagePellet = game.Content.Load<Texture2D>("pellet2");
             imageEmpty = game.Content.Load<Texture2D>("empty");
-            imgEnergizer = game.Content.Load<Texture2D>("energizer2");
+            
 
             gs = game.GameState;
             base.LoadContent();

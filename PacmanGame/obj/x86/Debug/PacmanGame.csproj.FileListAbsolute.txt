@@ -1,6 +1,5 @@
 D:\LD2017\PacmanGame\bin\Windows\x86\Debug\PacmanGame.exe.config
 D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\empty.xnb
-D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\energizer.xnb
 D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\green_GhostLookDown.xnb
 D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\green_GhostLookLeft.xnb
 D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\green_GhostLookRight.xnb
@@ -13,7 +12,6 @@ D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\pacmanDied.xnb
 D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\pacmanLive.xnb
 D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\pacman_chomp.xnb
 D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\pellet2.xnb
-D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\penDoor.xnb
 D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\pink_GhostLookDown.xnb
 D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\pink_GhostLookLeft.xnb
 D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\pink_GhostLookRight.xnb

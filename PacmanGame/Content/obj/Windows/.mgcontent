@@ -5,7 +5,6 @@
   <Config />
   <SourceFiles>
     <File>D:/LD2017/PacmanGame/Content/empty.png</File>
-    <File>D:/LD2017/PacmanGame/Content/energizer.png</File>
     <File>D:/LD2017/PacmanGame/Content/green_GhostLookDown.png</File>
     <File>D:/LD2017/PacmanGame/Content/green_GhostLookLeft.png</File>
     <File>D:/LD2017/PacmanGame/Content/green_GhostLookRight.png</File>
@@ -18,7 +17,6 @@
     <File>D:/LD2017/PacmanGame/Content/pacmanDied.wav</File>
     <File>D:/LD2017/PacmanGame/Content/pacmanLive.png</File>
     <File>D:/LD2017/PacmanGame/Content/pellet2.png</File>
-    <File>D:/LD2017/PacmanGame/Content/penDoor.png</File>
     <File>D:/LD2017/PacmanGame/Content/pink_GhostLookDown.png</File>
     <File>D:/LD2017/PacmanGame/Content/pink_GhostLookLeft.png</File>
     <File>D:/LD2017/PacmanGame/Content/pink_GhostLookRight.png</File>
