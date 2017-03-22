@@ -54,9 +54,9 @@ namespace PacmanLibrary.Ghost_classes
         /// </summary>
         public void ResetGhosts()
         {
-            foreach (Ghost monster in ghosts)
+            foreach (var monster in ghosts)
             {
-                monster.Reset();
+                    monster.Reset();
             }
 
         }
@@ -67,7 +67,7 @@ namespace PacmanLibrary.Ghost_classes
         /// </summary>
         public void ScareGhosts()
         {
-            foreach (Ghost monster in ghosts)
+            foreach (var monster in ghosts)
             {
                 //if the ghosts are already in scared mode, don't do anything
                 if (monster.CurrentState == GhostState.Scared)
@@ -92,7 +92,7 @@ namespace PacmanLibrary.Ghost_classes
         {
             Timer t = (Timer)sender;
             t.Enabled = false;
-            foreach (Ghost monster in ghosts)
+            foreach (var monster in ghosts)
             {
                 monster.ChangeState(GhostState.Chasing);
             }
@@ -105,7 +105,7 @@ namespace PacmanLibrary.Ghost_classes
         /// </summary>
         public void Move()
         {
-            foreach (Ghost monster in ghosts)
+            foreach (var monster in ghosts)
             {
                 monster.Move();
             }

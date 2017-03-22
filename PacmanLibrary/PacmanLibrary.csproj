@@ -49,6 +49,7 @@
     <Compile Include="Ghost classes\Ghost.cs" />
     <Compile Include="Ghost classes\GhostPack.cs" />
     <Compile Include="Ghost classes\Pen.cs" />
+    <Compile Include="Ghost classes\Penned.cs" />
     <Compile Include="Ghost classes\Scared.cs" />
     <Compile Include="Interfaces\ICollidable.cs" />
     <Compile Include="Interfaces\IGhostState.cs" />

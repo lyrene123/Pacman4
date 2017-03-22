@@ -151,7 +151,6 @@ namespace PacmanGame
                 foreach (Ghost g in gs.GhostPack)
                 {
                     g.Move();
-
                 }
             }
             //destinationRect = new Rectangle((int)gs.Pacman.Position.X * frame_width, (int)gs.Pacman.Position.Y * frame_height, 32, 32);
@@ -164,7 +163,7 @@ namespace PacmanGame
 
             foreach (Ghost g in gs.GhostPack)
             {
-                if (g.CurrentState == GhostState.Chasing)
+                if (g.CurrentState == GhostState.Chasing || g.CurrentState == GhostState.Penned)
                 {
                     spriteBatch.Begin();
                     if (g.ghostColor.Equals(PacmanLibrary.Enums.Color.Red))
