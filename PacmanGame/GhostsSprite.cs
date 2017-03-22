@@ -16,38 +16,42 @@ namespace PacmanGame
         GameState gs;
         Game1 game;
 
-        //to render
+        //variables to manage images
         private SpriteBatch spriteBatch;
+        //variables to manage Blinky Ghost movement images
         private Texture2D imageRedGhostLookUp;
         private Texture2D imageRedGhostLookDown;
         private Texture2D imageRedGhostLookRight;
         private Texture2D imageRedGhostLookLeft;
+
+        //variables to manage Pinky Ghost movement images
         private Texture2D imagePinkGhostLookUp;
         private Texture2D imagePinkGhostLookDown;
         private Texture2D imagePinkGhostLookRight;
         private Texture2D imagePinkGhostLookLeft;
+
+        //variables to manage Inky Ghost movement images
         private Texture2D imageGreenGhostLookUp;
         private Texture2D imageGreenGhostLookDown;
         private Texture2D imageGreenGhostLookRight;
         private Texture2D imageGreenGhostLookLeft;
+
+        //variables to manage Clyde Ghost movement images
         private Texture2D imageYellowGhostLookUp;
         private Texture2D imageYellowGhostLookDown;
         private Texture2D imageYellowGhostLookRight;
         private Texture2D imageYellowGhostLookLeft;
-
         private Texture2D imgScareGhosts;
-        //private Texture2D imgEatenGhost;
+
+        //Variable to manage animation
         private int frame_height;
         private int frame_width;
-       
-        //Variable to manage animation
-
         float elapsed;
         float delay = 200f;
         int frames = 0;
-
         Rectangle ghostSourceRect;
        
+
         double millisecondsPerFrame = 350; //Update every x second
         double timeSinceLastUpdate = 0; //Accumulate the elapsed time
         public TimeSpan TargetElapsedTime { get; private set; }
