@@ -34,10 +34,13 @@ namespace PacmanGame
             graphics.PreferredBackBufferWidth = 736;
             soundEffects = new List<SoundEffect>();
             //graphics.ToggleFullScreen();
-
+            
             Content.RootDirectory = "Content";
             content = File.ReadAllText(@"levels.csv");
             gameState = GameState.Parse(content);
+
+            this.gameState.Maze.PacmanWonEvent += GameEnded;
+            this.gameState.Score.GameOver += GameEnded;
         }
 
         /// <summary>
@@ -60,8 +63,7 @@ namespace PacmanGame
             Components.Add(score);
 
             base.Initialize();
-            this.gameState.Maze.PacmanWonEvent += GameEnded;
-            this.gameState.Score.GameOver += GameEnded;
+            
 
         }
 

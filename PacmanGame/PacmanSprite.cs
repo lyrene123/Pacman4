@@ -124,7 +124,7 @@ namespace PacmanGame
             if (newState.IsKeyDown(Keys.Right))
             {
                 currentAnimation = imgPacMoveRight;
-                pacman_chomp.Play();
+               
                 // If not down last update, key has just been pressed.
                 if (!oldState.IsKeyDown(Keys.Right))
                 {
@@ -142,7 +142,7 @@ namespace PacmanGame
             else if (newState.IsKeyDown(Keys.Left))
             {
                 currentAnimation = imgPacMoveLeft;
-                pacman_chomp.Play();
+                
                 // If not down last update, key has just been pressed.
                 if (!oldState.IsKeyDown(Keys.Left))
                 {
@@ -159,7 +159,7 @@ namespace PacmanGame
             else if (newState.IsKeyDown(Keys.Down))
             {
                 currentAnimation = imgPacMoveDown;
-                pacman_chomp.Play();
+                
                 // If not down last update, key has just been pressed.
                 if (!oldState.IsKeyDown(Keys.Down))
                 {
@@ -176,7 +176,7 @@ namespace PacmanGame
             else if (newState.IsKeyDown(Keys.Up))
             {
                 currentAnimation = imgPacMoveUp;
-                pacman_chomp.Play();
+                
                 // If not down last update, key has just been pressed.
                 if (!oldState.IsKeyDown(Keys.Up))
                 {

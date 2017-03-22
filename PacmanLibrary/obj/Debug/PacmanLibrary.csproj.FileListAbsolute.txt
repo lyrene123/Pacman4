@@ -60,3 +60,4 @@ C:\Users\1541901\Source\Repos\PACMAN\PacmanLibrary\bin\Debug\SharpDX.MediaFounda
 C:\Users\1541901\Source\Repos\PACMAN\PacmanLibrary\obj\Debug\PacmanLibrary.csprojResolveAssemblyReference.cache
 C:\Users\1541901\Source\Repos\PACMAN\PacmanLibrary\obj\Debug\PacmanLibrary.dll
 C:\Users\1541901\Source\Repos\PACMAN\PacmanLibrary\obj\Debug\PacmanLibrary.pdb
+D:\LD2017\PacmanLibrary\obj\Debug\PacmanLibrary.csprojResolveAssemblyReference.cache
