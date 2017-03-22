@@ -16,6 +16,7 @@ namespace PacmanGame
         //to render
         private SpriteBatch spriteBatch;
         private Texture2D imageWall;
+        private Texture2D imgEnergizer;
         private Texture2D imagePen;
         private Texture2D imagePenDoor;
         private Texture2D imageEnergizer;
@@ -23,6 +24,10 @@ namespace PacmanGame
         private Texture2D imageEmpty;
         private int frame_height;
         private int frame_width;
+        Rectangle sourceRect;
+        float elapsed;
+        float delay = 200f;
+        int frames = 0;
 
 
         private List<Wall> list;
@@ -46,17 +51,38 @@ namespace PacmanGame
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             imageWall = game.Content.Load<Texture2D>("wall");
-            imagePen = game.Content.Load<Texture2D>("pen");
-            imagePenDoor = game.Content.Load<Texture2D>("penDoor");
             imageEnergizer = game.Content.Load<Texture2D>("energizer");
             imagePellet = game.Content.Load<Texture2D>("pellet2");
             imageEmpty = game.Content.Load<Texture2D>("empty");
+            imgEnergizer = game.Content.Load<Texture2D>("energizer2");
 
             gs = game.GameState;
             base.LoadContent();
         }
+        private void Animate(GameTime gameTime)
+        {
+            elapsed += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            if (elapsed >= delay)
+            {
+                if (frames >= 1)
+                {
+                    frames = 0;
+
+                }
+                else
+                {
+                    frames++;
+
+                }
+                elapsed = 0;
+            }
+
+            sourceRect = new Rectangle(32 * frames, 0, 32, 32);
+
+        }
         public override void Update(GameTime gameTime)
         {
+            Animate(gameTime);
             base.Update(gameTime);
         }
         public override void Draw(GameTime gameTime)
@@ -84,7 +110,7 @@ namespace PacmanGame
                         }
                         if (gs.Maze[i, j].Member is Energizer)
                         {
-                            spriteBatch.Draw(imageEnergizer, new Rectangle(i * frame_width, j * frame_height, 32, 32), Color.White);
+                            spriteBatch.Draw(imageEnergizer, new Rectangle(i * frame_width, j * frame_height, 32, 32),sourceRect, Color.White);
                         }
                     }
                 }

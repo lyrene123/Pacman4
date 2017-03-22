@@ -120,3 +120,4 @@ C:\Users\1541901\Source\Repos\PACMAN\PacmanGame\bin\Windows\x86\Debug\SharpDX.XI
 C:\Users\1541901\Source\Repos\PACMAN\PacmanGame\bin\Windows\x86\Debug\SharpDX.RawInput.xml
 C:\Users\1541901\Source\Repos\PACMAN\PacmanGame\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
 C:\Users\1541901\Source\Repos\PACMAN\PacmanGame\obj\x86\Debug\PacmanGame.csprojResolveAssemblyReference.cache
+D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\energizer2.xnb

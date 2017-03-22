@@ -367,7 +367,7 @@
 /processorParam:TextureFormat=Compressed
 /build:score.spritefont
 
-#begin pen.png
+#begin energizer2.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -377,5 +377,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:pen.png
+/build:energizer2.png
 
