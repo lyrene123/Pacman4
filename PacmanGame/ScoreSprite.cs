@@ -67,7 +67,8 @@ namespace PacmanGame
             if (this.gs.Score.Lives <= 0)
             {
                 spriteBatch.Begin();
-                spriteBatch.DrawString(font, "GAME OVER!", new Vector2(300, 800), Color.Red);
+                spriteBatch.DrawString(font, "GAME OVER!", new Vector2(300, 780), Color.Red);
+                spriteBatch.DrawString(font, "Press 'p' to play again", new Vector2(230, 800), Color.Red);
                 spriteBatch.End();
             }
             

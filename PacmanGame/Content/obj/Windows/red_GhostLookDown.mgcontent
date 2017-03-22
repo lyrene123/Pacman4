@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/1541901/Source/Repos/PACMAN/PacmanGame/Content/red_GhostLookDown.png</SourceFile>
-  <SourceTime>2017-03-22T09:00:29.7183545-04:00</SourceTime>
+  <SourceTime>2017-03-22T10:49:37.4908376-04:00</SourceTime>
   <DestFile>C:/Users/1541901/Source/Repos/PACMAN/PacmanGame/Content/bin/Windows/red_GhostLookDown.xnb</DestFile>
-  <DestTime>2017-03-22T09:01:11.1771687-04:00</DestTime>
+  <DestTime>2017-03-22T10:51:42.5963447-04:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T02:36:08-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
