@@ -37,40 +37,20 @@ namespace PacmanGame
 
         private Texture2D imgScareGhosts;
         //private Texture2D imgEatenGhost;
-
-
-
         private int frame_height;
         private int frame_width;
-        //private int counter;
-
+       
         //Variable to manage animation
 
         float elapsed;
         float delay = 200f;
         int frames = 0;
 
-        //Rectangle destinationRect;
-
         Rectangle ghostSourceRect;
-        /*Rectangle yellow_GhostSourceRect;
-        Rectangle green_GhostSourceRect;
-        Rectangle pink_GhostSourceRect;
-        */
+       
         double millisecondsPerFrame = 350; //Update every x second
         double timeSinceLastUpdate = 0; //Accumulate the elapsed time
-
-
         public TimeSpan TargetElapsedTime { get; private set; }
-
-        enum MyColors
-        {
-            Red, Yellow, Pink, Green
-        };
-        enum MyDirections
-        {
-            Right, Left, Up, Down
-        };
 
         public GhostsSprite(Game1 game) : base(game)
         {
@@ -82,7 +62,6 @@ namespace PacmanGame
         {
             frame_height = 32;
             frame_width = 32;
-            //destinationRect = new Rectangle((int)gs.Pacman.Position.X * 32, (int)gs.Pacman.Position.Y * 32, 32, 32);
             gs = game.GameState;
             base.Initialize();
         }
@@ -111,9 +90,6 @@ namespace PacmanGame
             imagePinkGhostLookRight = game.Content.Load<Texture2D>("pink_GhostLookRight");
 
             imgScareGhosts = game.Content.Load<Texture2D>("scare_Ghosts");
-            //imgEatenGhost = game.Content.Load<Texture2D>("eatenGhost");
-
-            //GameState.Parse("levels.c");
             gs = game.GameState;
             base.LoadContent();
         }
@@ -122,22 +98,13 @@ namespace PacmanGame
             elapsed += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
             if (elapsed >= delay)
             {
-                if (frames >= 1)
-                {
-                    frames = 0;
-
-                }
-                else
-                {
-                    frames++;
-
-                }
+                if (frames >= 1){ frames = 0;}
+                else{  frames++;}
                 elapsed = 0;
-            }
-
+            }   
             ghostSourceRect = new Rectangle(frame_width * frames, 0, 32, 32);
-
-        }
+                
+         }         
         public override void Update(GameTime gameTime)
         {
             //this.TargetElapsedTime = TimeSpan.FromSeconds(1.0f / 1.0f);
@@ -148,19 +115,12 @@ namespace PacmanGame
             {
                 timeSinceLastUpdate = 0;
 
-                foreach (Ghost g in gs.GhostPack)
-                {
-                    g.Move();
-                }
+                foreach (Ghost g in gs.GhostPack){g.Move(); }
             }
-            //destinationRect = new Rectangle((int)gs.Pacman.Position.X * frame_width, (int)gs.Pacman.Position.Y * frame_height, 32, 32);
             base.Update(gameTime);
         }
         public override void Draw(GameTime gameTime)
         {
-
-            //spriteBatch.Begin();
-
             foreach (Ghost g in gs.GhostPack)
             {
                 if (g.CurrentState == GhostState.Chasing || g.CurrentState == GhostState.Penned)
@@ -168,22 +128,22 @@ namespace PacmanGame
                     spriteBatch.Begin();
                     if (g.ghostColor.Equals(PacmanLibrary.Enums.Color.Red))
                     {
-                        if (g.Direction.ToString("G").Equals(MyDirections.Right.ToString("G")))
+                        if (g.Direction.Equals(PacmanLibrary.Direction.Right))
                         {
                             spriteBatch.Draw(imageRedGhostLookRight, new Rectangle((int)g.Position.X * frame_width,
                                 (int)g.Position.Y * frame_height, 32, 32), ghostSourceRect, Color.White);
                         }
-                        else if (g.Direction.ToString("G").Equals(MyDirections.Left.ToString("G")))
+                        else if (g.Direction.Equals(PacmanLibrary.Direction.Left))
                         {
                             spriteBatch.Draw(imageRedGhostLookLeft, new Rectangle((int)g.Position.X * frame_width,
                                 (int)g.Position.Y * frame_height, 32, 32), ghostSourceRect, Color.White);
                         }
-                        else if (g.Direction.ToString("G").Equals(MyDirections.Down.ToString("G")))
+                        else if (g.Direction.Equals(PacmanLibrary.Direction.Down))
                         {
                             spriteBatch.Draw(imageRedGhostLookDown, new Rectangle((int)g.Position.X * frame_width,
                                 (int)g.Position.Y * frame_height, 32, 32), ghostSourceRect, Color.White);
                         }
-                        else if (g.Direction.ToString("G").Equals(MyDirections.Up.ToString("G")))
+                        else if (g.Direction.Equals(PacmanLibrary.Direction.Up))
                         {
                             spriteBatch.Draw(imageRedGhostLookUp, new Rectangle((int)g.Position.X * frame_width,
                                 (int)g.Position.Y * frame_height, 32, 32), ghostSourceRect, Color.White);
@@ -191,22 +151,22 @@ namespace PacmanGame
                     }
                     else if (g.ghostColor.Equals(PacmanLibrary.Enums.Color.Green))
                     {
-                        if (g.Direction.ToString("G").Equals(MyDirections.Right.ToString("G")))
+                        if (g.Direction.Equals(PacmanLibrary.Direction.Right))
                         {
                             spriteBatch.Draw(imageGreenGhostLookRight, new Rectangle((int)g.Position.X * frame_width,
                                 (int)g.Position.Y * frame_height, 32, 32), ghostSourceRect, Color.White);
                         }
-                        else if (g.Direction.ToString("G").Equals(MyDirections.Left.ToString("G")))
+                        else if (g.Direction.Equals(PacmanLibrary.Direction.Left))
                         {
                             spriteBatch.Draw(imageGreenGhostLookLeft, new Rectangle((int)g.Position.X * frame_width,
                                 (int)g.Position.Y * frame_height, 32, 32), ghostSourceRect, Color.White);
                         }
-                        else if (g.Direction.ToString("G").Equals(MyDirections.Down.ToString("G")))
+                        else if (g.Direction.Equals(PacmanLibrary.Direction.Down))
                         {
                             spriteBatch.Draw(imageGreenGhostLookDown, new Rectangle((int)g.Position.X * frame_width,
                                 (int)g.Position.Y * frame_height, 32, 32), ghostSourceRect, Color.White);
                         }
-                        else if (g.Direction.ToString("G").Equals(MyDirections.Up.ToString("G")))
+                        else if (g.Direction.Equals(PacmanLibrary.Direction.Up))
                         {
                             spriteBatch.Draw(imageGreenGhostLookUp, new Rectangle((int)g.Position.X * frame_width,
                                 (int)g.Position.Y * frame_height, 32, 32), ghostSourceRect, Color.White);
@@ -214,22 +174,22 @@ namespace PacmanGame
                     }
                     else if (g.ghostColor.Equals(PacmanLibrary.Enums.Color.Pink))
                     {
-                        if (g.Direction.ToString("G").Equals(MyDirections.Right.ToString("G")))
+                        if (g.Direction.Equals(PacmanLibrary.Direction.Right))
                         {
                             spriteBatch.Draw(imagePinkGhostLookRight, new Rectangle((int)g.Position.X * frame_width,
                                 (int)g.Position.Y * frame_height, 32, 32), ghostSourceRect, Color.White);
                         }
-                        else if (g.Direction.ToString("G").Equals(MyDirections.Left.ToString("G")))
+                        else if (g.Direction.Equals(PacmanLibrary.Direction.Left))
                         {
                             spriteBatch.Draw(imagePinkGhostLookLeft, new Rectangle((int)g.Position.X * frame_width,
                                 (int)g.Position.Y * frame_height, 32, 32), ghostSourceRect, Color.White);
                         }
-                        else if (g.Direction.ToString("G").Equals(MyDirections.Down.ToString("G")))
+                        else if (g.Direction.Equals(PacmanLibrary.Direction.Down))
                         {
                             spriteBatch.Draw(imagePinkGhostLookDown, new Rectangle((int)g.Position.X * frame_width,
                                 (int)g.Position.Y * frame_height, 32, 32), ghostSourceRect, Color.White);
                         }
-                        else if (g.Direction.ToString("G").Equals(MyDirections.Up.ToString("G")))
+                        else if (g.Direction.Equals(PacmanLibrary.Direction.Up))
                         {
                             spriteBatch.Draw(imagePinkGhostLookUp, new Rectangle((int)g.Position.X * frame_width,
                                 (int)g.Position.Y * frame_height, 32, 32), ghostSourceRect, Color.White);
@@ -237,22 +197,22 @@ namespace PacmanGame
                     }
                     else if (g.ghostColor.Equals(PacmanLibrary.Enums.Color.Yellow))
                     {
-                        if (g.Direction.ToString("G").Equals(MyDirections.Right.ToString("G")))
+                        if (g.Direction.Equals(PacmanLibrary.Direction.Right))
                         {
                             spriteBatch.Draw(imageYellowGhostLookRight, new Rectangle((int)g.Position.X * frame_width,
                                 (int)g.Position.Y * frame_height, 32, 32), ghostSourceRect, Color.White);
                         }
-                        else if (g.Direction.ToString("G").Equals(MyDirections.Left.ToString("G")))
+                        else if (g.Direction.Equals(PacmanLibrary.Direction.Left))
                         {
                             spriteBatch.Draw(imageYellowGhostLookLeft, new Rectangle((int)g.Position.X * frame_width,
                                 (int)g.Position.Y * frame_height, 32, 32), ghostSourceRect, Color.White);
                         }
-                        else if (g.Direction.ToString("G").Equals(MyDirections.Down.ToString("G")))
+                        else if (g.Direction.Equals(PacmanLibrary.Direction.Down))
                         {
                             spriteBatch.Draw(imageYellowGhostLookDown, new Rectangle((int)g.Position.X * frame_width,
                                 (int)g.Position.Y * frame_height, 32, 32), ghostSourceRect, Color.White);
                         }
-                        else if (g.Direction.ToString("G").Equals(MyDirections.Up.ToString("G")))
+                        else if (g.Direction.Equals(PacmanLibrary.Direction.Up))
                         {
                             spriteBatch.Draw(imageYellowGhostLookUp, new Rectangle((int)g.Position.X * frame_width,
                                 (int)g.Position.Y * frame_height, 32, 32), ghostSourceRect, Color.White);
@@ -267,8 +227,6 @@ namespace PacmanGame
                                (int)g.Position.Y * frame_height, 32, 32), ghostSourceRect, Color.White);
                     spriteBatch.End();
                 }
-
-
             }
 
             base.Draw(gameTime);
