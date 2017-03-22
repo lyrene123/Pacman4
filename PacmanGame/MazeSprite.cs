@@ -13,26 +13,26 @@ namespace PacmanGame
     {
         GameState gs;
         Game1 game;
-        //to render
+        //variables to manage images
         private SpriteBatch spriteBatch;
         private Texture2D imageWall;
         private Texture2D imageEnergizer;
         private Texture2D imagePellet;
         private Texture2D imageEmpty;
+
+        //Variable to manage animation
         private int frame_height;
         private int frame_width;
-        Rectangle sourceRect;
         float elapsed;
         float delay = 200f;
         int frames = 0;
+        Rectangle sourceRect;
         public TimeSpan TargetElapsedTime { get; private set; }
 
         public MazeSprite(Game1 game1) : base(game1)
         {
             this.game = game1;
             gs = game1.GameState;
-            
-
         }
         public override void Initialize()
         {
@@ -47,23 +47,10 @@ namespace PacmanGame
             imageEnergizer = game.Content.Load<Texture2D>("energizer2");
             imagePellet = game.Content.Load<Texture2D>("pellet2");
             imageEmpty = game.Content.Load<Texture2D>("empty");
-            
-
             gs = game.GameState;
             base.LoadContent();
         }
-        private void Animate(GameTime gameTime)
-        {
-            elapsed += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-            if (elapsed >= delay)
-            {
-                if (frames >= 1) { frames = 0; }
-                else { frames++; }
-                elapsed = 0;
-            }
-            sourceRect = new Rectangle(frame_width * frames, 0, 32, 32);
-
-        }
+       
         public override void Update(GameTime gameTime)
         {
             Animate(gameTime);
@@ -102,6 +89,18 @@ namespace PacmanGame
 
             spriteBatch.End();
             base.Draw(gameTime);
+        }
+        private void Animate(GameTime gameTime)
+        {
+            elapsed += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            if (elapsed >= delay)
+            {
+                if (frames >= 1) { frames = 0; }
+                else { frames++; }
+                elapsed = 0;
+            }
+            sourceRect = new Rectangle(frame_width * frames, 0, 32, 32);
+
         }
     }
 }
