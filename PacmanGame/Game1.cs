@@ -34,7 +34,12 @@ namespace PacmanGame
             graphics.PreferredBackBufferWidth = 736;
             soundEffects = new List<SoundEffect>();
             //graphics.ToggleFullScreen();
-            
+
+            SetupGame();
+        }
+
+        private void SetupGame()
+        {
             Content.RootDirectory = "Content";
             content = File.ReadAllText(@"levels.csv");
             gameState = GameState.Parse(content);
@@ -43,6 +48,7 @@ namespace PacmanGame
             this.gameState.Score.GameOver += GameEnded;
         }
 
+        
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
         /// This is where it can query for any required services and load any non-graphic
@@ -109,8 +115,25 @@ namespace PacmanGame
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+             CheckInput();
              base.Update(gameTime);
         }
+
+
+        private void CheckInput()
+        {
+            KeyboardState newState = Keyboard.GetState();
+            if (newState.IsKeyDown(Keys.P) && this.score.IsWon)
+            {
+                //this.Run();
+                Components.Remove(this.score);
+                SetupGame();
+                Initialize();
+            }
+        }
+
+
+
 
         /// <summary>
         /// This is called when the game should draw itself.

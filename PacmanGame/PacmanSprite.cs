@@ -96,7 +96,7 @@ namespace PacmanGame
             {
                 timeSinceLastUpdatePacman = 0;
 
-                checkInput();
+                CheckInput();
                 this.gs.Maze.CheckMembersLeft();
             }
 
@@ -118,7 +118,7 @@ namespace PacmanGame
             spriteBatch.End();
             base.Draw(gameTime);
         }
-        private void checkInput()
+        private void CheckInput()
         {
             KeyboardState newState = Keyboard.GetState();
             if (newState.IsKeyDown(Keys.Right))
