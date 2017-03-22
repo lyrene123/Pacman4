@@ -109,14 +109,7 @@ namespace PacmanGame
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-           /* if (gameState.Score.Lives == 0)
-            {
-                LoadContent();
-                soundEffectInstance.Dispose();
-
-            }*/
-
-            base.Update(gameTime);
+             base.Update(gameTime);
         }
 
         /// <summary>

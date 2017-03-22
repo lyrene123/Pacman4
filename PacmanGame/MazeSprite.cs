@@ -57,10 +57,6 @@ namespace PacmanGame
         }
         public override void Update(GameTime gameTime)
         {
-            if (gs.Score.Lives == 0)
-            {
-                LoadContent();
-            }
             base.Update(gameTime);
         }
         public override void Draw(GameTime gameTime)
