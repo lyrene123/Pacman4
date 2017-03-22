@@ -19,17 +19,10 @@ namespace PacmanGame
         private Texture2D imagePen;
         private Texture2D imagePenDoor;
         private Texture2D imageEnergizer;
-        private Texture2D imageEnergizer2;
         private Texture2D imagePellet;
         private Texture2D imageEmpty;
         private int frame_height;
         private int frame_width;
-        //Variable to manage animation
-        Rectangle destinationRect;
-        Rectangle sourceRect;
-        float elapsed;
-        float delay = 200f;
-        int frames = 0;
 
 
         private List<Wall> list;
@@ -56,37 +49,14 @@ namespace PacmanGame
             imagePen = game.Content.Load<Texture2D>("pen");
             imagePenDoor = game.Content.Load<Texture2D>("penDoor");
             imageEnergizer = game.Content.Load<Texture2D>("energizer");
-            imageEnergizer2 = game.Content.Load<Texture2D>("energizer2");
             imagePellet = game.Content.Load<Texture2D>("pellet2");
             imageEmpty = game.Content.Load<Texture2D>("empty");
 
             gs = game.GameState;
             base.LoadContent();
         }
-        private void Animate(GameTime gameTime)
-        {
-            elapsed += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-            if (elapsed >= delay)
-            {
-                if (frames >= 1)
-                {
-                    frames = 0;
-
-                }
-                else
-                {
-                    frames++;
-
-                }
-                elapsed = 0;
-            }
-
-            sourceRect = new Rectangle(32 * frames, 0, 32, 32);
-
-        }
         public override void Update(GameTime gameTime)
         {
-            Animate(gameTime);
             base.Update(gameTime);
         }
         public override void Draw(GameTime gameTime)
@@ -114,7 +84,7 @@ namespace PacmanGame
                         }
                         if (gs.Maze[i, j].Member is Energizer)
                         {
-                            spriteBatch.Draw(imageEnergizer2, new Rectangle(i * frame_width, j * frame_height, 32, 32),sourceRect, Color.White);
+                            spriteBatch.Draw(imageEnergizer, new Rectangle(i * frame_width, j * frame_height, 32, 32), Color.White);
                         }
                     }
                 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>D:/LD2017/PacmanGame/Content/wall.png</SourceFile>
-  <SourceTime>2017-03-21T23:16:43.0932288-04:00</SourceTime>
+  <SourceTime>2017-03-21T22:16:17.294934-04:00</SourceTime>
   <DestFile>D:/LD2017/PacmanGame/Content/bin/Windows/wall.xnb</DestFile>
-  <DestTime>2017-03-21T23:19:04.2634709-04:00</DestTime>
+  <DestTime>2017-03-21T22:17:30.4371172-04:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T02:36:08-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
