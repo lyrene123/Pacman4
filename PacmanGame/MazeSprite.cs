@@ -16,8 +16,6 @@ namespace PacmanGame
         //to render
         private SpriteBatch spriteBatch;
         private Texture2D imageWall;
-        private Texture2D imagePen;
-        private Texture2D imagePenDoor;
         private Texture2D imageEnergizer;
         private Texture2D imagePellet;
         private Texture2D imageEmpty;
@@ -27,17 +25,13 @@ namespace PacmanGame
         float elapsed;
         float delay = 200f;
         int frames = 0;
-
-
-        private List<Wall> list;
-
         public TimeSpan TargetElapsedTime { get; private set; }
 
         public MazeSprite(Game1 game1) : base(game1)
         {
             this.game = game1;
             gs = game1.GameState;
-            list = new List<Wall>();
+            
 
         }
         public override void Initialize()
@@ -63,20 +57,11 @@ namespace PacmanGame
             elapsed += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
             if (elapsed >= delay)
             {
-                if (frames >= 1)
-                {
-                    frames = 0;
-
-                }
-                else
-                {
-                    frames++;
-
-                }
+                if (frames >= 1) { frames = 0; }
+                else { frames++; }
                 elapsed = 0;
             }
-
-            sourceRect = new Rectangle(32 * frames, 0, 32, 32);
+            sourceRect = new Rectangle(frame_width * frames, 0, 32, 32);
 
         }
         public override void Update(GameTime gameTime)
