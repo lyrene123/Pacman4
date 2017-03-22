@@ -41,19 +41,12 @@ namespace PacmanGame
         private int threshold = 0;
         double millisecondsPerFramePacman = 200; //Update every x second
         double timeSinceLastUpdatePacman = 0; //Accumulate the elapsed time
-
-
-        enum MyDirections
-        {
-            Right, Left, Up, Down
-        };
-
+        
         public PacmanSprite(Game1 game1) : base(game1)
         {
             this.game = game1;
             gs = game1.GameState;
             this.isDead = false;
-            //GhostPack pack = this.gs.GhostPack;
             foreach(Ghost ghost in gs.GhostPack)
             {
                 ghost.PacmanDiedEvent += PacmanDied;
@@ -68,7 +61,7 @@ namespace PacmanGame
         {
             frame_height = 32;
             frame_width = 32;
-            //destinationRect = new Rectangle((int)gs.Pacman.Position.X * 32, (int)gs.Pacman.Position.Y * 32, 32, 32);
+            
             base.Initialize();
         }
         protected override void LoadContent()
@@ -90,20 +83,11 @@ namespace PacmanGame
             elapsed += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
             if (elapsed >= delay)
             {
-                if (frames >= 1)
-                {
-                    frames = 0;
-
-                }
-                else
-                {
-                    frames++;
-
-                }
+                if (frames >= 1) { frames = 0; }
+                else { frames++; }
                 elapsed = 0;
             }
-
-            sourceRect = new Rectangle(32 * frames, 0, 32, 32);
+            sourceRect = new Rectangle(frame_width * frames, 0, 32, 32);
 
         }
         private void PacmanDiedAnimate(GameTime gameTime)
@@ -111,16 +95,8 @@ namespace PacmanGame
             elapsed += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
             if (elapsed >= delay)
             {
-                if (frames >= 11)
-                {
-                    return;
-
-                }
-                else
-                {
-                    frames++;
-
-                }
+                if (frames >= 1) { frames = 0; }
+                else { frames++; }
                 elapsed = 0;
             }
 
@@ -130,16 +106,9 @@ namespace PacmanGame
         public override void Update(GameTime gameTime)
         {
             if (!isDead)
-            {
-                Animate(gameTime);
-                
-            }
-            else
-            {
-                PacmanDiedAnimate(gameTime);
-                
-            }
-           
+            {Animate(gameTime);}
+            else{PacmanDiedAnimate(gameTime);}   
+
             timeSinceLastUpdatePacman += gameTime.ElapsedGameTime.TotalMilliseconds;
             if (timeSinceLastUpdatePacman >= millisecondsPerFramePacman)
             {
@@ -148,11 +117,7 @@ namespace PacmanGame
                 CheckInput();
                 this.gs.Maze.CheckMembersLeft();
             }
-
             destinationRect = new Rectangle((int)gs.Pacman.Position.X * frame_width, (int)gs.Pacman.Position.Y * frame_height, 32, 32);
-          
-           
-
             base.Update(gameTime);
         }
         public override void Draw(GameTime gameTime)
@@ -190,12 +155,11 @@ namespace PacmanGame
                 if (newState.IsKeyDown(Keys.Right))
                 {
                     currentAnimation = imgPacMoveRight;
-
-                    // If not down last update, key has just been pressed.
+                    // key Right has just been pressed.
                     if (!oldState.IsKeyDown(Keys.Right))
                     {
                         gs.Pacman.Move(Direction.Right);
-                        counter = 0; //reset counter with every new keystroke
+                        counter = 0; 
                     }
                     else
                     {
@@ -209,11 +173,11 @@ namespace PacmanGame
                 {
                     currentAnimation = imgPacMoveLeft;
 
-                    // If not down last update, key has just been pressed.
+                    // key Left has just been pressed.
                     if (!oldState.IsKeyDown(Keys.Left))
                     {
                         gs.Pacman.Move(Direction.Left);
-                        counter = 0; //reset counter with every new keystroke
+                        counter = 0; 
                     }
                     else
                     {
@@ -226,11 +190,11 @@ namespace PacmanGame
                 {
                     currentAnimation = imgPacMoveDown;
 
-                    // If not down last update, key has just been pressed.
+                    // key Down has just been pressed.
                     if (!oldState.IsKeyDown(Keys.Down))
                     {
                         gs.Pacman.Move(Direction.Down);
-                        counter = 0; //reset counter with every new keystroke
+                        counter = 0; 
                     }
                     else
                     {
@@ -243,11 +207,11 @@ namespace PacmanGame
                 {
                     currentAnimation = imgPacMoveUp;
 
-                    // If not down last update, key has just been pressed.
+                    // key Up has just been pressed.
                     if (!oldState.IsKeyDown(Keys.Up))
                     {
                         gs.Pacman.Move(Direction.Up);
-                        counter = 0; //reset counter with every new keystroke
+                        counter = 0; 
                     }
                     else
                     {
@@ -256,8 +220,7 @@ namespace PacmanGame
                             gs.Pacman.Move(Direction.Up);
                     }
                 }
-                // Improve/change the code above to also check forKeys.Left
-                // Once finished checking all keys, update old state.
+                //update old state.
                 oldState = newState;
             }
 
