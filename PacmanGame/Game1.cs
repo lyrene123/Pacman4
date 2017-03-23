@@ -31,6 +31,7 @@ namespace PacmanGame
         float delay = 2000f;
 
         private bool isDead;
+        private bool isGameOver;
 
         public Game1()
         {
@@ -39,6 +40,7 @@ namespace PacmanGame
             graphics.PreferredBackBufferWidth = 736;
             soundEffects = new List<SoundEffect>();
             isDead = false;
+            isGameOver = false;
             SetupGame();
         }
 
@@ -92,7 +94,7 @@ namespace PacmanGame
             backgroundMusic = Content.Load<SoundEffect>("siren");
             backgroundSong = backgroundMusic.CreateInstance();
             backgroundSong.IsLooped = true;
-            backgroundSong.Play();
+            //backgroundSong.Play();
 
             //Sound Effects
             soundEffects.Add(Content.Load<SoundEffect>("pacman_chomp"));
@@ -129,10 +131,17 @@ namespace PacmanGame
                 elapsed += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
                 if (elapsed >= delay)
                 {
-                    backgroundSong.Play();
+                    if(!isGameOver)
+                    {
+                        backgroundSong.Play();
+                    }
                     elapsed = 0;
                     isDead = false;
                 }
+            }else
+            {
+                if (!isGameOver)
+                    backgroundSong.Play();
             }
             CheckInput();
             base.Update(gameTime);
@@ -180,6 +189,10 @@ namespace PacmanGame
             Components.Remove(ghosts);
             if (this.gameState.Score.Lives > 0)
                 this.score.IsWon = true;
+            backgroundSong.Stop();
+            isGameOver = true;
+            
+            
         }
         public void Pacman_Died()
         {
