@@ -8,7 +8,6 @@ D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\imgPacMoveDown.xnb
 D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\imgPacMoveLeft.xnb
 D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\imgPacMoveRight.xnb
 D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\imgPacMoveUp.xnb
-D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\pacmanDied.xnb
 D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\pacmanLive.xnb
 D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\pacman_chomp.xnb
 D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\pellet2.xnb
@@ -119,3 +118,4 @@ C:\Users\1541901\Source\Repos\PACMAN\PacmanGame\obj\x86\Debug\PacmanGame.csprojR
 D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\energizer2.xnb
 C:\Users\1541901\Source\Repos\PACMAN\PacmanGame\bin\Windows\x86\Debug\Content\energizer2.xnb
 D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\imgpacdied.xnb
+D:\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\pacmanDying.xnb

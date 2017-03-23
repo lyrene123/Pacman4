@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using PacmanLibrary;
+using PacmanLibrary.Ghost_classes;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,10 +23,14 @@ namespace PacmanGame
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         private string content;
-        private SoundEffect soundEffect;
-        private SoundEffectInstance soundEffectInstance;
+        private SoundEffect backgroundMusic;
+        private SoundEffectInstance backgroundSong;
         List<SoundEffect> soundEffects;
+        
+        float elapsed;
+        float delay = 2000f;
 
+        private bool isDead;
 
         public Game1()
         {
@@ -33,8 +38,7 @@ namespace PacmanGame
             graphics.PreferredBackBufferHeight = 835;
             graphics.PreferredBackBufferWidth = 736;
             soundEffects = new List<SoundEffect>();
-            //graphics.ToggleFullScreen();
-
+            isDead = false;
             SetupGame();
         }
 
@@ -46,9 +50,12 @@ namespace PacmanGame
 
             this.gameState.Maze.PacmanWonEvent += GameEnded;
             this.gameState.Score.GameOver += GameEnded;
+            foreach(Ghost g in gameState.GhostPack)
+            {
+                g.PacmanDiedEvent += Pacman_Died;
+            }
         }
-
-        
+       
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
         /// This is where it can query for any required services and load any non-graphic
@@ -69,8 +76,7 @@ namespace PacmanGame
             Components.Add(score);
 
             base.Initialize();
-            
-
+          
         }
 
         /// <summary>
@@ -81,15 +87,18 @@ namespace PacmanGame
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            soundEffect = Content.Load<SoundEffect>("siren");
-            soundEffectInstance = soundEffect.CreateInstance();
-            soundEffectInstance.IsLooped = true;
-            //soundEffectInstance.Play();
+
+            //background song
+            backgroundMusic = Content.Load<SoundEffect>("siren");
+            backgroundSong = backgroundMusic.CreateInstance();
+            backgroundSong.IsLooped = true;
+            backgroundSong.Play();
 
             //Sound Effects
             soundEffects.Add(Content.Load<SoundEffect>("pacman_chomp"));
             soundEffects.Add(Content.Load<SoundEffect>("Soundenergizer"));
-            soundEffects.Add(Content.Load<SoundEffect>("pacmanDied"));
+            soundEffects.Add(Content.Load<SoundEffect>("pacmanDying"));
+           
 
             content = File.ReadAllText(@"levels.csv");
             gameState = GameState.Parse(content);
@@ -114,9 +123,19 @@ namespace PacmanGame
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
-             CheckInput();
-             base.Update(gameTime);
+            if (isDead)
+            {
+                backgroundSong.Stop();
+                elapsed += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                if (elapsed >= delay)
+                {
+                    backgroundSong.Play();
+                    elapsed = 0;
+                    isDead = false;
+                }
+            }
+            CheckInput();
+            base.Update(gameTime);
         }
 
 
@@ -131,9 +150,6 @@ namespace PacmanGame
                 Initialize();
             }
         }
-
-
-
 
         /// <summary>
         /// This is called when the game should draw itself.
@@ -157,7 +173,7 @@ namespace PacmanGame
             get { return this.soundEffects[index]; }
 
         }
-
+        
         private void GameEnded()
         {
             Components.Remove(pacman);
@@ -165,6 +181,11 @@ namespace PacmanGame
             if (this.gameState.Score.Lives > 0)
                 this.score.IsWon = true;
         }
-    
+        public void Pacman_Died()
+        {
+            this.isDead = true;
+
+        }
+
     }
 }

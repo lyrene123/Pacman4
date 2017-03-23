@@ -19,8 +19,10 @@ namespace PacmanGame
         private Texture2D imgPacMoveDown;
         private Texture2D imgPacMoveUp;
         private Texture2D currentAnimation;
-        private SoundEffect pacman_chomp;
+        
+       
         private bool isDead;
+        private bool playdead;
 
         //Variable to manage animation
         private int frame_height;
@@ -48,7 +50,8 @@ namespace PacmanGame
             this.game = game1;
             gs = game1.GameState;
             this.isDead = false;
-            foreach(Ghost ghost in gs.GhostPack)
+            playdead = false;
+            foreach (Ghost ghost in gs.GhostPack)
             {
                 ghost.PacmanDiedEvent += PacmanDied;
             }
@@ -67,7 +70,7 @@ namespace PacmanGame
             imgPacMoveUp = game.Content.Load<Texture2D>("imgPacMoveUp");
             imgPacDied = game.Content.Load<Texture2D>("imgpacdied");
             imgPacMoveDown = game.Content.Load<Texture2D>("imgPacMoveDown");
-            pacman_chomp = game.Content.Load<SoundEffect>("pacman_chomp");
+            
 
             currentAnimation = imgPacMoveRight;
             gs = game.GameState;
@@ -84,7 +87,6 @@ namespace PacmanGame
             else
             {
                 PacmanDiedAnimate(gameTime);
-                
             }
            
             timeSinceLastUpdatePacman += gameTime.ElapsedGameTime.TotalMilliseconds;
@@ -101,6 +103,7 @@ namespace PacmanGame
         }
         public override void Draw(GameTime gameTime)
         {
+            
             if (!isDead)
             {
                 spriteBatch.Begin();
@@ -111,6 +114,11 @@ namespace PacmanGame
 
             if (isDead)
             {
+                if (playdead)
+                {
+                    game[2].Play();
+                    playdead = false;
+                }
                 spriteBatch.Begin();
                 spriteBatch.Draw(imgPacDied, destinationRect,
                 sourceRectPacDied, Color.White);
@@ -119,6 +127,7 @@ namespace PacmanGame
                 if (elapsedDraw >= delayDraw)
                 {
                     this.isDead = false;
+                    
                     elapsedDraw = 0;
                 }
                    
@@ -208,6 +217,9 @@ namespace PacmanGame
         public void PacmanDied()
         {
             this.isDead = true;
+            playdead = true;
+            
+                       
         }
         private void Animate(GameTime gameTime)
         {
@@ -247,7 +259,7 @@ namespace PacmanGame
                 }
                 elapsed = 0;
             }
-
+            
             sourceRectPacDied = new Rectangle(32 * frames, 0, 32, 32);
 
         }

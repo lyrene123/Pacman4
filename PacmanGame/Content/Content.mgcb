@@ -127,12 +127,6 @@
 /processorParam:Quality=Best
 /build:pacman_chomp.wav
 
-#begin pacmanDied.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:pacmanDied.wav
-
 #begin pacmanLive.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -366,4 +360,10 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:imgpacdied.png
+
+#begin pacmanDying.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:pacmanDying.wav
 

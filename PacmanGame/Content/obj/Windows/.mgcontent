@@ -14,7 +14,6 @@
     <File>D:/LD2017/PacmanGame/Content/imgPacMoveRight.png</File>
     <File>D:/LD2017/PacmanGame/Content/imgPacMoveUp.png</File>
     <File>D:/LD2017/PacmanGame/Content/pacman_chomp.wav</File>
-    <File>D:/LD2017/PacmanGame/Content/pacmanDied.wav</File>
     <File>D:/LD2017/PacmanGame/Content/pacmanLive.png</File>
     <File>D:/LD2017/PacmanGame/Content/pellet2.png</File>
     <File>D:/LD2017/PacmanGame/Content/pink_GhostLookDown.png</File>
@@ -36,5 +35,6 @@
     <File>D:/LD2017/PacmanGame/Content/score.spritefont</File>
     <File>D:/LD2017/PacmanGame/Content/energizer2.png</File>
     <File>D:/LD2017/PacmanGame/Content/imgpacdied.png</File>
+    <File>D:/LD2017/PacmanGame/Content/pacmanDying.wav</File>
   </SourceFiles>
 </SourceFileCollection>
