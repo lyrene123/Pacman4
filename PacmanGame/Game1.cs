@@ -45,7 +45,7 @@ namespace PacmanGame
 
         /// <summary>
         /// The constructor will set the GraphicsDeviceManager, set the size of
-        /// the window, set the sound effects list and will setup the game
+        /// the window, set the sound effects list and will setup the game.
         /// </summary>
         public Game1()
         {
