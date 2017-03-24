@@ -52,12 +52,13 @@ namespace PacmanGame
         }
 
         /// <summary>
-        /// The setupgame method will load the 
+        /// The setupgame method will load the the game state, and will set up 
+        /// all event handling
         /// </summary>
         private void SetupGame()
         {
             Content.RootDirectory = "Content";
-            content = File.ReadAllText(@"levels.csv");
+            content = File.ReadAllText(@"C:\Users\Lyrene Labor\Downloads\levelsPen.csv");
             gameState = GameState.Parse(content);
 
             this.gameState.Maze.PacmanWonEvent += GameEnded;
@@ -85,6 +86,7 @@ namespace PacmanGame
             ghosts = new GhostsSprite(this);
             score = new ScoreSprite(this);
 
+            //add sprites to components
             Components.Add(wall);
             Components.Add(pacman);
             Components.Add(ghosts);
@@ -112,11 +114,6 @@ namespace PacmanGame
             soundEffects.Add(Content.Load<SoundEffect>("pacman_chomp"));
             soundEffects.Add(Content.Load<SoundEffect>("Soundenergizer"));
             soundEffects.Add(Content.Load<SoundEffect>("pacmanDying"));
-           
-
-            content = File.ReadAllText(@"levels.csv");
-            gameState = GameState.Parse(content);
-
         }
 
         /// <summary>
@@ -137,9 +134,12 @@ namespace PacmanGame
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            //if pacman died then do the following
             if (isDead)
             {
-                backgroundSong.Stop();
+                backgroundSong.Stop(); 
+                //wait for a couple of seconds to play the background song again, giving
+                //time to pacman to re-appear.
                 elapsed += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
                 if (elapsed >= delay)
                 {
@@ -152,18 +152,21 @@ namespace PacmanGame
                 }
             }else
             {
-                if (!isGameOver)
+                if (!isGameOver) //if the game is not yet over, play background song again
                     backgroundSong.Play();
             }
-            CheckInput();
+            CheckInput(); //check of keyboard input
             base.Update(gameTime);
         }
 
-
+        /// <summary>
+        /// The checkinput method will check if the player pressed the key p
+        /// to play again when game is over or player won
+        /// </summary>
         private void CheckInput()
         {
             KeyboardState newState = Keyboard.GetState();
-            if (newState.IsKeyDown(Keys.P) && this.score.IsWon || newState.IsKeyDown(Keys.P) && this.isGameOver)
+            if (newState.IsKeyDown(Keys.P) && this.isGameOver)
             {
                 Components.Remove(this.score);
                 SetupGame();
@@ -180,16 +183,38 @@ namespace PacmanGame
             GraphicsDevice.Clear(Color.Black);
             base.Draw(gameTime);
         }
+
+        /// <summary>
+        /// The property gamestate method will return the gamestate object
+        /// </summary>
         public GameState GameState
         {
             get { return this.gameState; }
 
         }
+
+        /// <summary>
+        /// The indexer method will return the soundeffect object from the list
+        /// based on the input value as index. An exception will be raised if input
+        /// is greater then list's count or less than 0
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public SoundEffect this[int index]
         {
-            get { return this.soundEffects[index]; }
+            get
+            {
+                if (index > this.soundEffects.Count || index < 0)
+                    throw new IndexOutOfRangeException("The sound object you are trying to access cannot be retrieved");
+                   return this.soundEffects[index];
+            }
         }
-        
+
+        /// <summary>
+        /// The GameEnded method is the handler for the pacman won event
+        /// and the game over event. In both cases, all ghosts and pacman
+        /// will be removed from the window
+        /// </summary>
         private void GameEnded()
         {
             Components.Remove(pacman);
@@ -199,6 +224,11 @@ namespace PacmanGame
             backgroundSong.Stop();
             isGameOver = true;        
         }
+
+        /// <summary>
+        /// The pacman_died method is method handler for when pacman collides
+        /// with a ghost and dies but may or may not have more lives left
+        /// </summary>
         public void Pacman_Died()
         {
             this.isDead = true;
