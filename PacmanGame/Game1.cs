@@ -14,7 +14,9 @@ namespace PacmanGame
     /// This is the main type for the pacman game.
     /// The Game1 class will setup the whole pacman game
     /// draw the maze, the ghosts and the pacman on to the 
-    /// game window
+    /// game window. It will also load all classes from the business
+    /// class and the loading of the sprites and will also take care
+    /// of the collisions, pacman won and game over events
     /// </summary>
     public class Game1 : Game
     {

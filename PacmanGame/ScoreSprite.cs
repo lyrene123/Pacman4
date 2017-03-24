@@ -9,6 +9,13 @@ using System.Threading.Tasks;
 
 namespace PacmanGame
 {
+    /// <summary>
+    /// The ScorePrite class takes care of displaying on the screen
+    /// all necessary inforamtion about pacman during the game such as
+    /// the lives and the total number of score and the message displaying
+    /// to the user if the pacman has won or game is over while prompting the user
+    /// if he or she wants to play again.
+    /// </summary>
     public class ScoreSprite: DrawableGameComponent
     {
         private Game1 game;
