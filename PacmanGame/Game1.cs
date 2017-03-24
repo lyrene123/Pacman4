@@ -193,6 +193,11 @@ namespace PacmanGame
 
         }
 
+        public bool IsGameOver
+        {
+            get { return this.isGameOver; }
+        }
+
         /// <summary>
         /// The indexer method will return the soundeffect object from the list
         /// based on the input value as index. An exception will be raised if input
