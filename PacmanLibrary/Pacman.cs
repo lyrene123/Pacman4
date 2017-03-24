@@ -26,6 +26,7 @@ namespace PacmanLibrary
         private GameState gamestate;
         private Maze maze;
         private GhostPack ghostPack;
+        public static Vector2 StartPos;
 
         /// <summary>
         /// The constructor will use the input GameState

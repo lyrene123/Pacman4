@@ -9,16 +9,11 @@ namespace PacmanLibrary.Ghost_classes
 {
     public class Penned : IGhostState
     {
-        private Vector2 position;
-        private Ghost ghost;
-        public Penned(Ghost g)
-        {
-            this.ghost = g;
-        }
+        public Penned() { }
 
         public void Move()
         {
-            this.position = ghost.Position;
+            throw new NotSupportedException();
         }
     }
 }

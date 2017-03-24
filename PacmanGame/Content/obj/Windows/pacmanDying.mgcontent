@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>D:/LD2017/PacmanGame/Content/pacmanDying.wav</SourceFile>
-  <SourceTime>2017-03-23T09:48:18.9078218-04:00</SourceTime>
-  <DestFile>D:/LD2017/PacmanGame/Content/bin/Windows/pacmanDying.xnb</DestFile>
-  <DestTime>2017-03-23T09:48:46.6539672-04:00</DestTime>
+  <SourceFile>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/pacmanDying.wav</SourceFile>
+  <SourceTime>2017-03-23T20:00:28.3809408-04:00</SourceTime>
+  <DestFile>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/bin/Windows/pacmanDying.xnb</DestFile>
+  <DestTime>2017-03-23T20:09:48.6001469-04:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2016-03-30T02:36:08-04:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

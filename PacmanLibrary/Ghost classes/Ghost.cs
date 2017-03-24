@@ -76,7 +76,7 @@ namespace PacmanLibrary.Ghost_classes
             if (start == GhostState.Chasing)
                 this.currentState = new Chase(this, this.maze, this.target, this.pacman);
             if(start == GhostState.Penned)
-                this.currentState = new Penned(this);
+                this.currentState = new Penned();
 
             this.points = 200; //default points set to 200
         }
@@ -153,7 +153,7 @@ namespace PacmanLibrary.Ghost_classes
             {
                 if (this.currentState is Scared)
                     return GhostState.Scared;
-                else if(this.currentState is Penned)
+                else if(this.currentState is Chase)
                     return GhostState.Chasing;
                 else
                     return GhostState.Penned;
@@ -175,9 +175,11 @@ namespace PacmanLibrary.Ghost_classes
         /// </summary>
         public void Move()
         {
-            
-             this.currentState.Move();
-             CheckCollisions(this.pacman.Position);
+            if (!(this.currentState is Penned))
+            {
+                this.currentState.Move();
+                CheckCollisions(this.pacman.Position);
+            }
             
         }
 
@@ -213,7 +215,7 @@ namespace PacmanLibrary.Ghost_classes
                 OnCollisionEvent(this); //raise collision event to increment score of pacman
                 this.pen.AddToPen(this); //add ghost back to pen 
             }
-            if (this.CurrentState == GhostState.Chasing || this.CurrentState == GhostState.Penned)
+            if (this.CurrentState == GhostState.Chasing)
             {
                 OnPacmanDiedEvent(); //raise pacman died event
             }
@@ -255,7 +257,7 @@ namespace PacmanLibrary.Ghost_classes
                     break;
                 case GhostState.Penned:
                     if (this.CurrentState != GhostState.Scared)
-                        this.currentState = new Penned(this);
+                        this.currentState = new Penned();
                     break;
                 default:
                     this.currentState = new Chase(this, this.maze, this.target, this.pacman);

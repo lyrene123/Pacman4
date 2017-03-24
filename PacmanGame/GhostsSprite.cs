@@ -52,8 +52,8 @@ namespace PacmanGame
         Rectangle ghostSourceRect;
        
 
-        double millisecondsPerFrame = 350; //Update every x second
-        double timeSinceLastUpdate = 0; //Accumulate the elapsed time
+        private double millisecondsPerFrame = 330; //Update every x second
+        private double timeSinceLastUpdate = 0; //Accumulate the elapsed time
         public TimeSpan TargetElapsedTime { get; private set; }
 
         public GhostsSprite(Game1 game) : base(game)

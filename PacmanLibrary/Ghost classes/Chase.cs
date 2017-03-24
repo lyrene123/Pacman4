@@ -22,6 +22,7 @@ namespace PacmanLibrary.Ghost_classes
         private Vector2 target;
         private Pacman pacman;
         private int relativeDistance;
+        private int targetDirection;
 
         /// <summary>
         /// Four-parameter constructor to initialize the Chase state. 
@@ -55,7 +56,8 @@ namespace PacmanLibrary.Ghost_classes
 
             //generate a random number between 1 to 3 as a distance relative to pacman
             Random rnd = new Random();
-            this.relativeDistance = rnd.Next(1, 4);     
+            this.relativeDistance = rnd.Next(1, 4);
+            this.targetDirection = rnd.Next(1, 3); 
         }
 
         /// <summary>
@@ -79,8 +81,11 @@ namespace PacmanLibrary.Ghost_classes
                 throw new Exception("Nowhere to go");
 
             //update ghost's target depending on the new position of pacman
-            this.target = new Vector2(this.relativeDistance, 0) + this.pacman.Position;
-            
+            if(this.targetDirection == 1)
+                this.target = new Vector2(this.relativeDistance, 0) + this.pacman.Position;
+            else
+                this.target = new Vector2(0,this.relativeDistance) + this.pacman.Position;
+
             //set lowestDistance and closestTile as the first tile 
             //in the list as a start
             lowestDistance = tiles[0].GetDistance(target);

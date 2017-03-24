@@ -42,7 +42,7 @@ namespace PacmanGame
         // variable to manage loop animation
         private int counter;
         private int threshold = 0;
-        double millisecondsPerFramePacman = 200; //Update every x second
+        double millisecondsPerFramePacman = 215; //Update every x second
         double timeSinceLastUpdatePacman = 0; //Accumulate the elapsed time for pacman movement
         private KeyboardState oldState;
         public PacmanSprite(Game1 game1) : base(game1)
@@ -127,7 +127,7 @@ namespace PacmanGame
                 if (elapsedDraw >= delayDraw)
                 {
                     this.isDead = false;
-                    
+                    this.gs.Pacman.Position = Pacman.StartPos;
                     elapsedDraw = 0;
                 }
                    

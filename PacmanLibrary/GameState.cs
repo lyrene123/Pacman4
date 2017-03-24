@@ -118,6 +118,7 @@ namespace PacmanLibrary
                             Vector2 myPac2 = new Vector2(x, y);
                             tileArray[x, y] = new Structure.Path(x, y, null);
                             pacman.Position = myPac2;
+                            Pacman.StartPos = myPac2;
                             break;
                         case "1":
                             Vector2 blinky_target = new Vector2(pacman.Position.X + 2, pacman.Position.Y);

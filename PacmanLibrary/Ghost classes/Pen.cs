@@ -78,7 +78,7 @@ namespace PacmanLibrary.Ghost_classes
             ghosts.Enqueue(ghost);
             ghost.Position = pen[ghosts.Count - 1].Position;
             ghost.ChangeState(GhostState.Penned);
-            Timer t = new Timer((ghosts.Count * 2000));
+            Timer t = new Timer((ghosts.Count * 3900));
             t.Enabled = true;
             t.Elapsed += Release;
             timers.Add(t);           

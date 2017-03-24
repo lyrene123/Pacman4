@@ -39,15 +39,14 @@ namespace PacmanGame
             graphics.PreferredBackBufferHeight = 835;
             graphics.PreferredBackBufferWidth = 736;
             soundEffects = new List<SoundEffect>();
-            isDead = false;
-            isGameOver = false;
+            
             SetupGame();
         }
 
         private void SetupGame()
         {
             Content.RootDirectory = "Content";
-            content = File.ReadAllText(@"levels.csv");
+            content = File.ReadAllText(@"C:\Users\Lyrene Labor\Downloads\levelsPen.csv");
             gameState = GameState.Parse(content);
 
             this.gameState.Maze.PacmanWonEvent += GameEnded;
@@ -56,6 +55,9 @@ namespace PacmanGame
             {
                 g.PacmanDiedEvent += Pacman_Died;
             }
+
+            isDead = false;
+            isGameOver = false;
         }
        
         /// <summary>
@@ -151,7 +153,7 @@ namespace PacmanGame
         private void CheckInput()
         {
             KeyboardState newState = Keyboard.GetState();
-            if (newState.IsKeyDown(Keys.P) && this.score.IsWon)
+            if (newState.IsKeyDown(Keys.P) && this.score.IsWon || newState.IsKeyDown(Keys.P) && this.isGameOver)
             {
                 //this.Run();
                 Components.Remove(this.score);
