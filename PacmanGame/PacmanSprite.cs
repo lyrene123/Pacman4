@@ -217,9 +217,7 @@ namespace PacmanGame
         public void PacmanDied()
         {
             this.isDead = true;
-            playdead = true;
-            
-                       
+            playdead = true;                       
         }
         private void Animate(GameTime gameTime)
         {

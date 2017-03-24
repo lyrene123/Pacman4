@@ -79,8 +79,7 @@ namespace PacmanGame
             Components.Add(ghosts);
             Components.Add(score);
 
-            base.Initialize();
-          
+            base.Initialize();      
         }
 
         /// <summary>
@@ -155,7 +154,6 @@ namespace PacmanGame
             KeyboardState newState = Keyboard.GetState();
             if (newState.IsKeyDown(Keys.P) && this.score.IsWon || newState.IsKeyDown(Keys.P) && this.isGameOver)
             {
-                //this.Run();
                 Components.Remove(this.score);
                 SetupGame();
                 Initialize();
@@ -169,9 +167,6 @@ namespace PacmanGame
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-
-            // TODO: Add your drawing code here
-
             base.Draw(gameTime);
         }
         public GameState GameState
@@ -182,7 +177,6 @@ namespace PacmanGame
         public SoundEffect this[int index]
         {
             get { return this.soundEffects[index]; }
-
         }
         
         private void GameEnded()
@@ -192,14 +186,11 @@ namespace PacmanGame
             if (this.gameState.Score.Lives > 0)
                 this.score.IsWon = true;
             backgroundSong.Stop();
-            isGameOver = true;
-            
-            
+            isGameOver = true;        
         }
         public void Pacman_Died()
         {
             this.isDead = true;
-
         }
 
     }
