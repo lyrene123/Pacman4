@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PacmanGame
 {
-    class ScoreSprite: DrawableGameComponent
+    public class ScoreSprite: DrawableGameComponent
     {
         private Game1 game;
         private GameState gs;

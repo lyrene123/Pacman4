@@ -11,7 +11,10 @@ using System.IO;
 namespace PacmanGame
 {
     /// <summary>
-    /// This is the main type for your game.
+    /// This is the main type for the pacman game.
+    /// The Game1 class will setup the whole pacman game
+    /// draw the maze, the ghosts and the pacman on to the 
+    /// game window
     /// </summary>
     public class Game1 : Game
     {
@@ -193,6 +196,10 @@ namespace PacmanGame
 
         }
 
+        /// <summary>
+        /// The IsGameOver property method will return a bool value
+        /// if game is over or not
+        /// </summary>
         public bool IsGameOver
         {
             get { return this.isGameOver; }
