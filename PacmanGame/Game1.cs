@@ -58,7 +58,7 @@ namespace PacmanGame
         private void SetupGame()
         {
             Content.RootDirectory = "Content";
-            content = File.ReadAllText(@"C:\Users\Lyrene Labor\Downloads\levelsPen.csv");
+            content = File.ReadAllText(@"levels.csv");
             gameState = GameState.Parse(content);
 
             this.gameState.Maze.PacmanWonEvent += GameEnded;

@@ -179,3 +179,6 @@ C:\Users\Lyrene Labor\LD2017\PacmanGame\bin\Windows\x86\Debug\SharpDX.XInput.xml
 C:\Users\Lyrene Labor\LD2017\PacmanGame\bin\Windows\x86\Debug\SharpDX.RawInput.xml
 C:\Users\Lyrene Labor\LD2017\PacmanGame\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
 C:\Users\Lyrene Labor\LD2017\PacmanGame\obj\x86\Debug\PacmanGame.csprojResolveAssemblyReference.cache
+F:\c# assignments\backup\LD2017\PacmanGame\bin\Windows\x86\Debug\PacmanGame.exe.config
+F:\c# assignments\backup\LD2017\PacmanGame\obj\x86\Debug\PacmanGame.exe
+F:\c# assignments\backup\LD2017\PacmanGame\obj\x86\Debug\PacmanGame.pdb
