@@ -15,14 +15,18 @@ namespace PacmanGame
     /// </summary>
     public class Game1 : Game
     {
+        //variables for sprites
         private MazeSprite wall;
         private PacmanSprite pacman;
         private GhostsSprite ghosts;
         private ScoreSprite score;
+
         private GameState gameState;
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         private string content;
+
+        //variables for sounds
         private SoundEffect backgroundMusic;
         private SoundEffectInstance backgroundSong;
         List<SoundEffect> soundEffects;
@@ -30,23 +34,30 @@ namespace PacmanGame
         float elapsed;
         float delay = 2000f;
 
+        //variables to keep track if game has ended and if pacman has died
         private bool isDead;
         private bool isGameOver;
 
+        /// <summary>
+        /// The constructor will set the GraphicsDeviceManager, set the size of
+        /// the window, set the sound effects list and will setup the game
+        /// </summary>
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferHeight = 835;
             graphics.PreferredBackBufferWidth = 736;
-            soundEffects = new List<SoundEffect>();
-            
+            soundEffects = new List<SoundEffect>();        
             SetupGame();
         }
 
+        /// <summary>
+        /// The setupgame method will load the 
+        /// </summary>
         private void SetupGame()
         {
             Content.RootDirectory = "Content";
-            content = File.ReadAllText(@"C:\Users\Lyrene Labor\Downloads\levelsPen.csv");
+            content = File.ReadAllText(@"levels.csv");
             gameState = GameState.Parse(content);
 
             this.gameState.Maze.PacmanWonEvent += GameEnded;
