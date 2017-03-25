@@ -115,7 +115,7 @@ namespace PacmanGame
         /// <param name="gameTime">A gametime object</param>
         private void CheckWinOrLoss(GameTime gameTime)
         {
-            if (this.game.IsGameOver)
+            if (this.game.IsGameOver && this.isWon == false)
             {
                 spriteBatch.Begin();
                 spriteBatch.DrawString(font, "GAME OVER!", new Vector2(300, 780), Color.Red);

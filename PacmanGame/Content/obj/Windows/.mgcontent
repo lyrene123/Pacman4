@@ -4,37 +4,37 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/LD2017/PacmanGame/Content/empty.png</File>
-    <File>C:/LD2017/PacmanGame/Content/green_GhostLookDown.png</File>
-    <File>C:/LD2017/PacmanGame/Content/green_GhostLookLeft.png</File>
-    <File>C:/LD2017/PacmanGame/Content/green_GhostLookRight.png</File>
-    <File>C:/LD2017/PacmanGame/Content/green_GhostLookUp.png</File>
-    <File>C:/LD2017/PacmanGame/Content/imgPacMoveDown.png</File>
-    <File>C:/LD2017/PacmanGame/Content/imgPacMoveLeft.png</File>
-    <File>C:/LD2017/PacmanGame/Content/imgPacMoveRight.png</File>
-    <File>C:/LD2017/PacmanGame/Content/imgPacMoveUp.png</File>
-    <File>C:/LD2017/PacmanGame/Content/pacman_chomp.wav</File>
-    <File>C:/LD2017/PacmanGame/Content/pacmanLive.png</File>
-    <File>C:/LD2017/PacmanGame/Content/pellet2.png</File>
-    <File>C:/LD2017/PacmanGame/Content/pink_GhostLookDown.png</File>
-    <File>C:/LD2017/PacmanGame/Content/pink_GhostLookLeft.png</File>
-    <File>C:/LD2017/PacmanGame/Content/pink_GhostLookRight.png</File>
-    <File>C:/LD2017/PacmanGame/Content/pink_GhostLookUp.png</File>
-    <File>C:/LD2017/PacmanGame/Content/red_GhostLookDown.png</File>
-    <File>C:/LD2017/PacmanGame/Content/red_GhostLookLeft.png</File>
-    <File>C:/LD2017/PacmanGame/Content/red_GhostLookRight.png</File>
-    <File>C:/LD2017/PacmanGame/Content/red_GhostLookUp.png</File>
-    <File>C:/LD2017/PacmanGame/Content/scare_Ghosts.png</File>
-    <File>C:/LD2017/PacmanGame/Content/siren.wav</File>
-    <File>C:/LD2017/PacmanGame/Content/soundEnergizer.wav</File>
-    <File>C:/LD2017/PacmanGame/Content/wall.png</File>
-    <File>C:/LD2017/PacmanGame/Content/yellow_GhostLookDown.png</File>
-    <File>C:/LD2017/PacmanGame/Content/yellow_GhostLookLeft.png</File>
-    <File>C:/LD2017/PacmanGame/Content/yellow_GhostLookRight.png</File>
-    <File>C:/LD2017/PacmanGame/Content/yellow_GhostLookUp.png</File>
-    <File>C:/LD2017/PacmanGame/Content/score.spritefont</File>
-    <File>C:/LD2017/PacmanGame/Content/energizer2.png</File>
-    <File>C:/LD2017/PacmanGame/Content/imgpacdied.png</File>
-    <File>C:/LD2017/PacmanGame/Content/pacmanDying.wav</File>
+    <File>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/empty.png</File>
+    <File>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/green_GhostLookDown.png</File>
+    <File>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/green_GhostLookLeft.png</File>
+    <File>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/green_GhostLookRight.png</File>
+    <File>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/green_GhostLookUp.png</File>
+    <File>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/imgPacMoveDown.png</File>
+    <File>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/imgPacMoveLeft.png</File>
+    <File>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/imgPacMoveRight.png</File>
+    <File>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/imgPacMoveUp.png</File>
+    <File>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/pacman_chomp.wav</File>
+    <File>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/pacmanLive.png</File>
+    <File>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/pellet2.png</File>
+    <File>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/pink_GhostLookDown.png</File>
+    <File>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/pink_GhostLookLeft.png</File>
+    <File>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/pink_GhostLookRight.png</File>
+    <File>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/pink_GhostLookUp.png</File>
+    <File>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/red_GhostLookDown.png</File>
+    <File>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/red_GhostLookLeft.png</File>
+    <File>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/red_GhostLookRight.png</File>
+    <File>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/red_GhostLookUp.png</File>
+    <File>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/scare_Ghosts.png</File>
+    <File>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/siren.wav</File>
+    <File>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/soundEnergizer.wav</File>
+    <File>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/wall.png</File>
+    <File>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/yellow_GhostLookDown.png</File>
+    <File>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/yellow_GhostLookLeft.png</File>
+    <File>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/yellow_GhostLookRight.png</File>
+    <File>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/yellow_GhostLookUp.png</File>
+    <File>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/score.spritefont</File>
+    <File>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/energizer2.png</File>
+    <File>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/imgpacdied.png</File>
+    <File>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/pacmanDying.wav</File>
   </SourceFiles>
 </SourceFileCollection>

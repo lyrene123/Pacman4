@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/LD2017/PacmanGame/Content/score.spritefont</SourceFile>
-  <SourceTime>2017-03-24T15:38:23.7974041-04:00</SourceTime>
-  <DestFile>C:/LD2017/PacmanGame/Content/bin/Windows/score.xnb</DestFile>
-  <DestTime>2017-03-24T15:38:37.1342675-04:00</DestTime>
+  <SourceFile>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/score.spritefont</SourceFile>
+  <SourceTime>2017-03-24T23:16:53.937891-04:00</SourceTime>
+  <DestFile>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/bin/Windows/score.xnb</DestFile>
+  <DestTime>2017-03-24T23:18:00.7725121-04:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2016-03-30T02:36:08-04:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>

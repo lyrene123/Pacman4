@@ -52,7 +52,7 @@ namespace PacmanGame
         Rectangle ghostSourceRect;
        
 
-        private double millisecondsPerFrame = 330; //Update every x second
+        private double millisecondsPerFrame = 320; //Update every x second
         private double timeSinceLastUpdate = 0; //Accumulate the elapsed time
         public TimeSpan TargetElapsedTime { get; private set; }
 
