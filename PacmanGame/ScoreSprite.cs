@@ -25,6 +25,7 @@ namespace PacmanGame
         private bool isWon; //will keep track if pacman has won
         private SpriteFont font;
         private Texture2D lives;
+        private int level;
 
         /// <summary>
         /// The constructor will take as input a game1 object and will 
@@ -38,6 +39,7 @@ namespace PacmanGame
             this.gs = game.GameState;
             this.scores = this.gs.Score;
             isWon = false;
+            level = 1;
         }
 
         /// <summary>
@@ -73,7 +75,8 @@ namespace PacmanGame
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             spriteBatch.Begin();
-            spriteBatch.DrawString(font, "SCORE: " + this.scores.Score, new Vector2(0, 800), Color.White);
+            spriteBatch.DrawString(font, "SCORE: " + this.scores.Score, new Vector2(0, 750), Color.White);
+            spriteBatch.DrawString(font, "LEVEL: " + this.level, new Vector2(600, 750), Color.White);
             spriteBatch.End();
             DisplayLives(gameTime);
             CheckWinOrLoss(gameTime);
@@ -91,18 +94,18 @@ namespace PacmanGame
             spriteBatch.Begin();
             if (this.scores.Lives == 3) 
             {
-                spriteBatch.Draw(lives, new Rectangle(600, 800, 32, 32), Color.White);
-                spriteBatch.Draw(lives, new Rectangle(650, 800, 32, 32), Color.White);
-                spriteBatch.Draw(lives, new Rectangle(700, 800, 32, 32), Color.White);
+                spriteBatch.Draw(lives, new Rectangle(400, 750, 32, 32), Color.White);
+                spriteBatch.Draw(lives, new Rectangle(450, 750, 32, 32), Color.White);
+                spriteBatch.Draw(lives, new Rectangle(500, 750, 32, 32), Color.White);
             }
             else if (this.scores.Lives == 2)
             {
-                spriteBatch.Draw(lives, new Rectangle(600, 800, 32, 32), Color.White);
-                spriteBatch.Draw(lives, new Rectangle(650, 800, 32, 32), Color.White);
+                spriteBatch.Draw(lives, new Rectangle(450, 750, 32, 32), Color.White);
+                spriteBatch.Draw(lives, new Rectangle(500, 750, 32, 32), Color.White);
             }
             else if (this.scores.Lives == 1)
             {
-                spriteBatch.Draw(lives, new Rectangle(600, 800, 32, 32), Color.White);
+                spriteBatch.Draw(lives, new Rectangle(500, 750, 32, 32), Color.White);
             }
             spriteBatch.End();
             base.Draw(gameTime);
