@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using PacmanLibrary;
@@ -7,6 +6,11 @@ using PacmanLibrary.Ghost_classes;
 
 namespace PacmanGame
 {
+    /// <summary>
+    /// The PacmanSprite class takes care of all possible
+    /// movements of Pacman during the game. It also manages
+    /// Pacman animation while moving around or after death.
+    /// </summary>
     public class PacmanSprite : DrawableGameComponent
     {
         GameState gs;
@@ -19,49 +23,59 @@ namespace PacmanGame
         private Texture2D imgPacMoveDown;
         private Texture2D imgPacMoveUp;
         private Texture2D currentAnimation;
-        
-       
+
         private bool isDead;
         private bool playdead;
 
-        //Variable to manage animation
+        //Variables to manage animation
         private int frame_height;
         private int frame_width;
         Rectangle destinationRect;
         Rectangle sourceRect;
-        Rectangle sourceRectPacDied;
 
-        //Variable to manage time animation
-        float elapsed;
-        float delay = 200f;
-        int frames = 0;
+        //Variable to manage animation and Keyboard Keys
+        float elapsedTimeAnimation; //Accumulate the elapsed time to manage the frames of the sprite sheet.
+        float delayAnimation = 200f;
+        int images = 0;
+        Keys[] keyArray;
+        private Keys keyPressed;
+        private KeyboardState currentKeyboardState;
 
         float elapsedDraw; //Accumulate the elapsed time for drawing animation
         float delayDraw = 2000f;
 
         // variable to manage loop animation
-        private int counter;
-        private int threshold = 0;
+
         double millisecondsPerFramePacman = 215; //Update every x second
         double timeSinceLastUpdatePacman = 0; //Accumulate the elapsed time for pacman movement
-        private KeyboardState oldState;
+        /// <summary>
+        /// The PacmanSprite constructor will take as input a game1 object and will 
+        /// initialize the data members such as the game object, the gamestate, 
+        /// the currentKeyboardState and the isDead and playdead to false.
+        /// It will also add the PacmanDied method to all Ghosts's PacmanDiedEvent.
+        /// </summary>
+        /// <param name="game1">A game1 object</param>
         public PacmanSprite(Game1 game1) : base(game1)
         {
             this.game = game1;
             gs = game1.GameState;
+            currentKeyboardState = new KeyboardState();
             this.isDead = false;
             playdead = false;
+            frame_height = 32;
+            frame_width = 32;
+
             foreach (Ghost ghost in gs.GhostPack)
             {
                 ghost.PacmanDiedEvent += PacmanDied;
             }
         }
-        public override void Initialize()
-        {
-            frame_height = 32;
-            frame_width = 32;
-            base.Initialize();
-        }
+        /// <summary>
+        /// The loadcontent method will load the spriteSheets responsable 
+        /// for each movement of Pacman (Right,Left,Down,Up) and will also
+        /// assign the currentAnimation Texture2D Object to Pacman's spriteSheet's
+        /// Right movement.
+        /// </summary>
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -70,40 +84,54 @@ namespace PacmanGame
             imgPacMoveUp = game.Content.Load<Texture2D>("imgPacMoveUp");
             imgPacDied = game.Content.Load<Texture2D>("imgpacdied");
             imgPacMoveDown = game.Content.Load<Texture2D>("imgPacMoveDown");
-            
 
             currentAnimation = imgPacMoveRight;
-            gs = game.GameState;
+
             base.LoadContent();
         }
-        
+        /// <summary>
+        /// The Update method Allows the game to run logic such as updating the 
+        /// Keyboard key Pressed, checking for Pacman's collisions and updating 
+        /// Pacman animations while the game is running.
+        /// </summary>
+        /// <param name="gameTime">A GameTime Object</param>
         public override void Update(GameTime gameTime)
         {
+            currentKeyboardState = Keyboard.GetState();
+            keyArray = currentKeyboardState.GetPressedKeys();
+            if (keyArray.GetLength(0) != 0)
+            {
+                keyPressed = keyArray[0];
+            }
             if (!isDead)
             {
-                Animate(gameTime);
-                
+                AnimatePacman(gameTime, 1);
             }
             else
             {
-                PacmanDiedAnimate(gameTime);
+                AnimatePacman(gameTime, 11);
+                keyPressed = Keys.F1;
             }
-           
+
             timeSinceLastUpdatePacman += gameTime.ElapsedGameTime.TotalMilliseconds;
             if (timeSinceLastUpdatePacman >= millisecondsPerFramePacman)
             {
                 timeSinceLastUpdatePacman = 0;
-
-                CheckInput();
+                CheckKeyPressed();
                 this.gs.Maze.CheckMembersLeft();
             }
 
             destinationRect = new Rectangle((int)gs.Pacman.Position.X * frame_width, (int)gs.Pacman.Position.Y * frame_height, 32, 32);
             base.Update(gameTime);
         }
+        /// <summary>
+        /// The Draw method will draw the images of Pacman on the screen according to
+        /// its current state such as moving or after a collision to any Ghost. 
+        /// </summary>
+        /// <param name="gameTime">A GameTime Object</param>
         public override void Draw(GameTime gameTime)
         {
-            
+
             if (!isDead)
             {
                 spriteBatch.Begin();
@@ -121,7 +149,7 @@ namespace PacmanGame
                 }
                 spriteBatch.Begin();
                 spriteBatch.Draw(imgPacDied, destinationRect,
-                sourceRectPacDied, Color.White);
+                sourceRect, Color.White);
                 spriteBatch.End();
                 elapsedDraw += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
                 if (elapsedDraw >= delayDraw)
@@ -130,140 +158,87 @@ namespace PacmanGame
                     this.gs.Pacman.Position = Pacman.StartPos;
                     elapsedDraw = 0;
                 }
-                   
             }
-           
             base.Draw(gameTime);
         }
-        private void CheckInput()
+        /// <summary>
+        /// The CheckKeyPressed method will check for the value 
+        /// that correspond to the keyboard key that has  
+        /// been pressed and then assign the appropriate spriteSheet
+        /// image to the currentAnimatio Object and move Pacman accordingly.
+        /// </summary>
+        private void CheckKeyPressed()
         {
-            KeyboardState newState = Keyboard.GetState();
-            if (!isDead)
+            if (keyArray.Equals(null))
             {
-                if (newState.IsKeyDown(Keys.Right))
+                return;
+            }
+            else
+            {
+                if (!isDead)
                 {
-                    currentAnimation = imgPacMoveRight;
-
-                    //key Right has just been pressed.
-                    if (!oldState.IsKeyDown(Keys.Right))
+                    if (keyPressed.Equals(Keys.Right))
                     {
                         gs.Pacman.Move(Direction.Right);
-                        counter = 0; 
+                        currentAnimation = imgPacMoveRight;
                     }
-                    else
-                    {
-                        counter++;
-                        if (counter > threshold)
-                            gs.Pacman.Move(Direction.Right);
-                    }
-                }
-
-                else if (newState.IsKeyDown(Keys.Left))
-                {
-                    currentAnimation = imgPacMoveLeft;
-
-                    //key Left has just been pressed.
-                    if (!oldState.IsKeyDown(Keys.Left))
+                    else if (keyPressed.Equals(Keys.Left))
                     {
                         gs.Pacman.Move(Direction.Left);
-                        counter = 0; 
+                        currentAnimation = imgPacMoveLeft;
                     }
-                    else
-                    {
-                        counter++;
-                        if (counter > threshold)
-                            gs.Pacman.Move(Direction.Left);
-                    }
-                }
-                else if (newState.IsKeyDown(Keys.Down))
-                {
-                    currentAnimation = imgPacMoveDown;
-
-                    // key Down has just been pressed.
-                    if (!oldState.IsKeyDown(Keys.Down))
+                    else if (keyPressed.Equals(Keys.Down))
                     {
                         gs.Pacman.Move(Direction.Down);
-                        counter = 0; 
+                        currentAnimation = imgPacMoveDown;
                     }
-                    else
-                    {
-                        counter++;
-                        if (counter > threshold)
-                            gs.Pacman.Move(Direction.Down);
-                    }
-                }
-                else if (newState.IsKeyDown(Keys.Up))
-                {
-                    currentAnimation = imgPacMoveUp;
-
-                    // key Up has just been pressed.
-                    if (!oldState.IsKeyDown(Keys.Up))
+                    else if (keyPressed.Equals(Keys.Up))
                     {
                         gs.Pacman.Move(Direction.Up);
-                        counter = 0; 
-                    }
-                    else
-                    {
-                        counter++;
-                        if (counter > threshold)
-                            gs.Pacman.Move(Direction.Up);
+                        currentAnimation = imgPacMoveUp;
                     }
                 }
-                // update old state.
-                oldState = newState;
             }
-
         }
+        /// <summary>
+        /// The PacmanDied method will be called automatically after 
+        /// any Ghost's PacmanDiedEvent is raised. It will assign the 
+        /// isDead and playdead variables to true.
+        /// </summary>
         public void PacmanDied()
         {
             this.isDead = true;
-            playdead = true;                       
+            playdead = true;
         }
-        private void Animate(GameTime gameTime)
+        /// <summary>
+        /// The AnimatePacman method will take care of Pacman animation,
+        /// changing the appropriate frame from the source Rectangle 
+        /// to give the ilusion of movements on the screen.
+        /// </summary>
+        /// <param name="gameTime">A GameTime Object</param>
+        /// <param name="frames">An integer</param>
+        private void AnimatePacman(GameTime gameTime, int frames)
         {
-            elapsed += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-            if (elapsed >= delay)
+            elapsedTimeAnimation += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            if (elapsedTimeAnimation >= delayAnimation)
             {
-                if (frames >= 1)
+                if (images >= frames)
                 {
-                    frames = 0;
+                    images = 0;
 
                 }
                 else
                 {
-                    frames++;
+                    images++;
 
                 }
-                elapsed = 0;
+                elapsedTimeAnimation = 0;
             }
 
-            sourceRect = new Rectangle(32 * frames, 0, 32, 32);
+            sourceRect = new Rectangle(32 * images, 0, 32, 32);
 
         }
-        private void PacmanDiedAnimate(GameTime gameTime)
-        {
-            elapsed += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-            if (elapsed >= delay)
-            {
-                if (frames >= 11)
-                {
-                    return;
-
-                }
-                else
-                {
-                    frames++;
-
-                }
-                elapsed = 0;
-            }
-            
-            sourceRectPacDied = new Rectangle(32 * frames, 0, 32, 32);
-
-        }
-
     }
-             
 }
 
 
