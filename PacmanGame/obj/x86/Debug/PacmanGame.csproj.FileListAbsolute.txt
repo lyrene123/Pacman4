@@ -305,3 +305,6 @@ D:\LD2017_V2\PacmanGame\obj\x86\Debug\PacmanGame.csprojResolveAssemblyReference.
 D:\LD2017_V2\PacmanGame\bin\Windows\x86\Debug\Content\Game_Over.xnb
 D:\LD2017_V2\PacmanGame\bin\Windows\x86\Debug\Content\intro.xnb
 D:\LD2017_V2\PacmanGame\bin\Windows\x86\Debug\Content\msenergizer.xnb
+C:\Users\Lyrene Labor\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\Game_Over.xnb
+C:\Users\Lyrene Labor\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\intro.xnb
+C:\Users\Lyrene Labor\LD2017\PacmanGame\bin\Windows\x86\Debug\Content\msenergizer.xnb

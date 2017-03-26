@@ -147,7 +147,7 @@ namespace PacmanGame
             gameOverSong = gameOverMusic.CreateInstance();
             gameOverSong.IsLooped = true;
 
-            //Game Over song
+            //Energizer song
             energizerMusic = Content.Load<SoundEffect>("msenergizer");
             energizerSong = energizerMusic.CreateInstance();
             energizerSong.IsLooped = true;
@@ -325,6 +325,8 @@ namespace PacmanGame
                        
             backgroundSong.Stop();
             backgroundSong.Dispose();
+            energizerSong.Stop();
+            energizerSong.Dispose();
             isGameOver = true;
         }
 

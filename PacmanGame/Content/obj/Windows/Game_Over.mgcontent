@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>D:/LD2017_V2/PacmanGame/Content/Game_Over.wav</SourceFile>
-  <SourceTime>2017-03-25T21:51:55.5873889-04:00</SourceTime>
-  <DestFile>D:/LD2017_V2/PacmanGame/Content/bin/Windows/Game_Over.xnb</DestFile>
-  <DestTime>2017-03-25T22:32:41.221085-04:00</DestTime>
+  <SourceFile>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/Game_Over.wav</SourceFile>
+  <SourceTime>2017-03-26T19:41:34.3173347-04:00</SourceTime>
+  <DestFile>C:/Users/Lyrene Labor/LD2017/PacmanGame/Content/bin/Windows/Game_Over.xnb</DestFile>
+  <DestTime>2017-03-26T19:44:02.7354433-04:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2016-03-30T02:36:08-04:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>
