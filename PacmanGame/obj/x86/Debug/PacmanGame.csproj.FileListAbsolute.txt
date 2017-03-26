@@ -304,3 +304,4 @@ D:\LD2017_V2\PacmanGame\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
 D:\LD2017_V2\PacmanGame\obj\x86\Debug\PacmanGame.csprojResolveAssemblyReference.cache
 D:\LD2017_V2\PacmanGame\bin\Windows\x86\Debug\Content\Game_Over.xnb
 D:\LD2017_V2\PacmanGame\bin\Windows\x86\Debug\Content\intro.xnb
+D:\LD2017_V2\PacmanGame\bin\Windows\x86\Debug\Content\msenergizer.xnb

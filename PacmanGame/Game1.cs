@@ -39,6 +39,10 @@ namespace PacmanGame
 
         private SoundEffect gameOverMusic;
         private SoundEffectInstance gameOverSong;
+
+        private SoundEffect energizerMusic;
+        private SoundEffectInstance energizerSong;
+
         List<SoundEffect> soundEffects;
 
         //variables to manage Game Intro
@@ -138,9 +142,15 @@ namespace PacmanGame
             IntroMusic = Content.Load<SoundEffect>("intro");
             IntroSong = IntroMusic.CreateInstance();
 
+            //Game Over song
             gameOverMusic = Content.Load<SoundEffect>("Game_Over");
             gameOverSong = gameOverMusic.CreateInstance();
             gameOverSong.IsLooped = true;
+
+            //Game Over song
+            energizerMusic = Content.Load<SoundEffect>("msenergizer");
+            energizerSong = energizerMusic.CreateInstance();
+            energizerSong.IsLooped = true;
 
             //Sound Effects
             soundEffects.Add(Content.Load<SoundEffect>("pacman_chomp"));
@@ -214,7 +224,18 @@ namespace PacmanGame
                     }
                     
                 }
-                CheckInput(); //check of keyboard input
+                foreach (Ghost g in gameState.GhostPack)
+                {
+                    if(g.CurrentState == GhostState.Scared)
+                    {
+                        energizerSong.Play();
+                    }
+                    else
+                    {
+                        energizerSong.Stop();
+                    }
+                }
+                    CheckInput(); //check of keyboard input
 
             }
 

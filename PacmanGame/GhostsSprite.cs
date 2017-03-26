@@ -53,7 +53,7 @@ namespace PacmanGame
 
 
         float elapsedTimeIntro;
-        float delayTimeIntro = 5000f;
+        float delayTimeIntro = 2800f;
         private bool intro;
 
         private double millisecondsPerFrame = 620; //Update every x second

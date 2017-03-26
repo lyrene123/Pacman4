@@ -48,7 +48,7 @@ namespace PacmanGame
 
         //variables to manage Game Intro
         float elapsedTimeIntro;
-        float delayTimeIntro = 4000f;
+        float delayTimeIntro = 2800f;
         private bool intro;
 
         // variable to manage loop animation
