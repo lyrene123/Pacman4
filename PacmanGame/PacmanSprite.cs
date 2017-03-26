@@ -37,12 +37,19 @@ namespace PacmanGame
         float elapsedTimeAnimation; //Accumulate the elapsed time to manage the frames of the sprite sheet.
         float delayAnimation = 200f;
         int images = 0;
+
+        //Variables to manage Keyboard Input
         Keys[] keyArray;
         private Keys keyPressed;
         private KeyboardState currentKeyboardState;
 
         float elapsedDraw; //Accumulate the elapsed time for drawing animation
         float delayDraw = 2000f;
+
+        //variables to manage Game Intro
+        float elapsedTimeIntro;
+        float delayTimeIntro = 4000f;
+        private bool intro;
 
         // variable to manage loop animation
 
@@ -62,6 +69,7 @@ namespace PacmanGame
             currentKeyboardState = new KeyboardState();
             this.isDead = false;
             playdead = false;
+            intro = true;
             frame_height = 32;
             frame_width = 32;
 
@@ -97,12 +105,6 @@ namespace PacmanGame
         /// <param name="gameTime">A GameTime Object</param>
         public override void Update(GameTime gameTime)
         {
-            currentKeyboardState = Keyboard.GetState();
-            keyArray = currentKeyboardState.GetPressedKeys();
-            if (keyArray.GetLength(0) != 0)
-            {
-                keyPressed = keyArray[0];
-            }
             if (!isDead)
             {
                 AnimatePacman(gameTime, 1);
@@ -112,15 +114,34 @@ namespace PacmanGame
                 AnimatePacman(gameTime, 11);
                 keyPressed = Keys.F1;
             }
-
-            timeSinceLastUpdatePacman += gameTime.ElapsedGameTime.TotalMilliseconds;
-            if (timeSinceLastUpdatePacman >= millisecondsPerFramePacman)
+            if (intro)
             {
-                timeSinceLastUpdatePacman = 0;
-                CheckKeyPressed();
-                this.gs.Maze.CheckMembersLeft();
-            }
+                elapsedTimeIntro += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                if (elapsedTimeIntro >= delayTimeIntro)
+                {
+                    elapsedTimeIntro = 0;
+                    intro = false;
+                }
 
+            }
+            else
+            {
+                currentKeyboardState = Keyboard.GetState();
+                keyArray = currentKeyboardState.GetPressedKeys();
+                if (keyArray.GetLength(0) != 0)
+                {
+                    keyPressed = keyArray[0];
+                }
+                timeSinceLastUpdatePacman += gameTime.ElapsedGameTime.TotalMilliseconds;
+                if (timeSinceLastUpdatePacman >= millisecondsPerFramePacman)
+                {
+                    timeSinceLastUpdatePacman = 0;
+                    CheckKeyPressed();
+                    this.gs.Maze.CheckMembersLeft();
+                }
+
+
+            }
             destinationRect = new Rectangle((int)gs.Pacman.Position.X * frame_width, (int)gs.Pacman.Position.Y * frame_height, 32, 32);
             base.Update(gameTime);
         }

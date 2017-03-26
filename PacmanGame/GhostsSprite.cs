@@ -50,7 +50,11 @@ namespace PacmanGame
         float delay = 200f;
         int frames = 0;
         Rectangle ghostSourceRect;
-       
+
+
+        float elapsedTimeIntro;
+        float delayTimeIntro = 5000f;
+        private bool intro;
 
         private double millisecondsPerFrame = 320; //Update every x second
         private double timeSinceLastUpdate = 0; //Accumulate the elapsed time
@@ -60,6 +64,7 @@ namespace PacmanGame
         {
             this.game = game;
             gs = game.GameState;
+            intro = true;
 
         }
         public override void Initialize()
@@ -102,25 +107,42 @@ namespace PacmanGame
             elapsed += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
             if (elapsed >= delay)
             {
-                if (frames >= 1){ frames = 0;}
-                else{  frames++;}
+                if (frames >= 1) { frames = 0; }
+                else { frames++; }
                 elapsed = 0;
-            }   
+            }
             ghostSourceRect = new Rectangle(frame_width * frames, 0, 32, 32);
-                
-         }         
+
+        }
         public override void Update(GameTime gameTime)
         {
             //this.TargetElapsedTime = TimeSpan.FromSeconds(1.0f / 1.0f);
-             Animate(gameTime);
+            Animate(gameTime);
 
-            timeSinceLastUpdate += gameTime.ElapsedGameTime.TotalMilliseconds;
-            if (timeSinceLastUpdate >= millisecondsPerFrame)
+            if (intro)
             {
-                timeSinceLastUpdate = 0;
+                elapsedTimeIntro += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                if (elapsedTimeIntro >= delayTimeIntro)
+                {
+                    elapsedTimeIntro = 0;
+                    intro = false;
+                }
 
-                foreach (Ghost g in gs.GhostPack){g.Move(); }
             }
+            else
+            {
+                timeSinceLastUpdate += gameTime.ElapsedGameTime.TotalMilliseconds;
+                if (timeSinceLastUpdate >= millisecondsPerFrame)
+                {
+                    timeSinceLastUpdate = 0;
+
+                    foreach (Ghost g in gs.GhostPack)
+                    {
+                        g.Move();
+                    }
+                }
+            }
+
             base.Update(gameTime);
         }
         public override void Draw(GameTime gameTime)

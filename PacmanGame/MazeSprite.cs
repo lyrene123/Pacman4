@@ -25,8 +25,10 @@ namespace PacmanGame
         private int frame_width;
         float elapsed;
         float delay = 200f;
-        int frames = 0;
+        int frames;
         Rectangle sourceRect;
+
+
         public TimeSpan TargetElapsedTime { get; private set; }
 
         public MazeSprite(Game1 game1) : base(game1)
@@ -50,7 +52,7 @@ namespace PacmanGame
             gs = game.GameState;
             base.LoadContent();
         }
-       
+
         public override void Update(GameTime gameTime)
         {
             Animate(gameTime);
@@ -65,8 +67,8 @@ namespace PacmanGame
                 for (var j = 0; j < gs.Maze.Size; j++)
                 {
                     if (gs.Maze[i, j] is Wall)
-                    {                                           
-                       spriteBatch.Draw(imageWall, new Rectangle(i * frame_width, j * frame_height, 32, 32), Color.White);                       
+                    {
+                        spriteBatch.Draw(imageWall, new Rectangle(i * frame_width, j * frame_height, 32, 32), Color.White);
                     }
 
                     if (gs.Maze[i, j] is PacmanLibrary.Structure.Path)
@@ -81,7 +83,7 @@ namespace PacmanGame
                         }
                         if (gs.Maze[i, j].Member is Energizer)
                         {
-                            spriteBatch.Draw(imageEnergizer, new Rectangle(i * frame_width, j * frame_height, 32, 32),sourceRect, Color.White);
+                            spriteBatch.Draw(imageEnergizer, new Rectangle(i * frame_width, j * frame_height, 32, 32), sourceRect, Color.White);
                         }
                     }
                 }
@@ -95,11 +97,14 @@ namespace PacmanGame
             elapsed += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
             if (elapsed >= delay)
             {
-                if (frames >= 1) { frames = 0; }
+                if (frames >= 1)
+                {
+                    frames = 0;
+                }
                 else { frames++; }
                 elapsed = 0;
             }
-            sourceRect = new Rectangle(frame_width * frames, 0, 32, 32);
+            sourceRect = new Rectangle(32 * frames, 0, 32, 32);
 
         }
     }

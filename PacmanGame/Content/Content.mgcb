@@ -367,3 +367,15 @@
 /processorParam:Quality=Best
 /build:pacmanDying.wav
 
+#begin Game_Over.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Game_Over.wav
+
+#begin intro.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:intro.wav
+

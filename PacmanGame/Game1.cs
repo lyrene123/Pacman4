@@ -34,14 +34,30 @@ namespace PacmanGame
         //variables for sounds
         private SoundEffect backgroundMusic;
         private SoundEffectInstance backgroundSong;
+        private SoundEffect IntroMusic;
+        private SoundEffectInstance IntroSong;
+
+        private SoundEffect gameOverMusic;
+        private SoundEffectInstance gameOverSong;
         List<SoundEffect> soundEffects;
-        
+
+        //variables to manage Game Intro
+        float elapsedTimeIntro;
+        float delayTimeIntro = 4000f;
+        private bool intro;
+
+        //variables to manage Game Over
+        float elapsedTimeGameOver;
+        float delayTimeGameOver = 4000f;
+
+
         float elapsed;
         float delay = 2000f;
 
         //variables to keep track if game has ended and if pacman has died
         private bool isDead;
         private bool isGameOver;
+
 
         /// <summary>
         /// The constructor will set the GraphicsDeviceManager, set the size of
@@ -52,7 +68,7 @@ namespace PacmanGame
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferHeight = 835;
             graphics.PreferredBackBufferWidth = 736;
-            soundEffects = new List<SoundEffect>();        
+            soundEffects = new List<SoundEffect>();
             SetupGame();
         }
 
@@ -62,21 +78,23 @@ namespace PacmanGame
         /// </summary>
         private void SetupGame()
         {
+
             Content.RootDirectory = "Content";
             content = File.ReadAllText(@"levels.csv");
             gameState = GameState.Parse(content);
 
             this.gameState.Maze.PacmanWonEvent += GameEnded;
             this.gameState.Score.GameOver += GameEnded;
-            foreach(Ghost g in gameState.GhostPack)
+            foreach (Ghost g in gameState.GhostPack)
             {
                 g.PacmanDiedEvent += Pacman_Died;
             }
 
             isDead = false;
             isGameOver = false;
+            intro = true;
         }
-       
+
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
         /// This is where it can query for any required services and load any non-graphic
@@ -85,6 +103,7 @@ namespace PacmanGame
         /// </summary>
         protected override void Initialize()
         {
+
             // Create a new SpriteBatch, which can be used to draw textures.
             wall = new MazeSprite(this);
             pacman = new PacmanSprite(this);
@@ -97,7 +116,7 @@ namespace PacmanGame
             Components.Add(ghosts);
             Components.Add(score);
 
-            base.Initialize();      
+            base.Initialize();
         }
 
         /// <summary>
@@ -114,6 +133,14 @@ namespace PacmanGame
             backgroundSong = backgroundMusic.CreateInstance();
             backgroundSong.IsLooped = true;
             //backgroundSong.Play();
+
+            //background song
+            IntroMusic = Content.Load<SoundEffect>("intro");
+            IntroSong = IntroMusic.CreateInstance();
+
+            gameOverMusic = Content.Load<SoundEffect>("Game_Over");
+            gameOverSong = gameOverMusic.CreateInstance();
+            gameOverSong.IsLooped = true;
 
             //Sound Effects
             soundEffects.Add(Content.Load<SoundEffect>("pacman_chomp"));
@@ -139,28 +166,58 @@ namespace PacmanGame
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            //if pacman died then do the following
-            if (isDead)
+
+            if (intro)
             {
-                backgroundSong.Stop(); 
-                //wait for a couple of seconds to play the background song again, giving
-                //time to pacman to re-appear.
-                elapsed += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-                if (elapsed >= delay)
+                IntroSong.Play();
+                elapsedTimeIntro += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                if (elapsedTimeIntro >= delayTimeIntro)
                 {
-                    if(!isGameOver)
-                    {
-                        backgroundSong.Play();
-                    }
-                    elapsed = 0;
-                    isDead = false;
+                    elapsedTimeIntro = 0;
+                    intro = false;
                 }
-            }else
-            {
-                if (!isGameOver) //if the game is not yet over, play background song again
-                    backgroundSong.Play();
+
             }
-            CheckInput(); //check of keyboard input
+            else
+            {
+                //if pacman died then do the following
+                if (isDead)
+                {
+                    backgroundSong.Stop();
+                    //wait for a couple of seconds to play the background song again, giving
+                    //time to pacman to re-appear.
+                    elapsed += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                    if (elapsed >= delay)
+                    {
+                        if (!isGameOver)
+                        {
+                            backgroundSong.Play();
+                        }
+                        elapsed = 0;
+                        isDead = false;
+                    }
+                }
+                else
+                {
+                    if (!isGameOver) //if the game is not yet over, play background song again
+                        backgroundSong.Play();
+                    else if (isGameOver)
+                    {
+                        elapsedTimeGameOver += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                        if (elapsedTimeGameOver >= delayTimeGameOver)
+                        {
+                            elapsedTimeGameOver = 0;
+                            gameOverSong.Stop();
+                            gameOverSong.Dispose();
+                            
+                        }
+                    }
+                    
+                }
+                CheckInput(); //check of keyboard input
+
+            }
+
             base.Update(gameTime);
         }
 
@@ -174,6 +231,7 @@ namespace PacmanGame
             if (newState.IsKeyDown(Keys.P) && this.isGameOver)
             {
                 Components.Remove(this.score);
+                gameOverSong.Stop();
                 SetupGame();
                 Initialize();
             }
@@ -220,7 +278,7 @@ namespace PacmanGame
             {
                 if (index > this.soundEffects.Count || index < 0)
                     throw new IndexOutOfRangeException("The sound object you are trying to access cannot be retrieved");
-                   return this.soundEffects[index];
+                return this.soundEffects[index];
             }
         }
 
@@ -231,12 +289,14 @@ namespace PacmanGame
         /// </summary>
         private void GameEnded()
         {
+            gameOverSong.Play();
             Components.Remove(pacman);
             Components.Remove(ghosts);
             if (this.gameState.Score.Lives > 0)
                 this.score.IsWon = true;
             backgroundSong.Stop();
-            isGameOver = true;        
+            backgroundSong.Dispose();
+            isGameOver = true;
         }
 
         /// <summary>
