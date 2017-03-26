@@ -228,10 +228,12 @@ namespace PacmanGame
                 {
                     if(g.CurrentState == GhostState.Scared)
                     {
+                        backgroundSong.Pause();
                         energizerSong.Play();
                     }
                     else
                     {
+                        backgroundSong.Play();
                         energizerSong.Stop();
                     }
                 }
