@@ -289,11 +289,17 @@ namespace PacmanGame
         /// </summary>
         private void GameEnded()
         {
-            gameOverSong.Play();
+            
             Components.Remove(pacman);
             Components.Remove(ghosts);
             if (this.gameState.Score.Lives > 0)
+            {
                 this.score.IsWon = true;
+            }else
+            {
+                gameOverSong.Play();
+            }
+                       
             backgroundSong.Stop();
             backgroundSong.Dispose();
             isGameOver = true;
