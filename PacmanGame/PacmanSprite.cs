@@ -53,7 +53,7 @@ namespace PacmanGame
 
         // variable to manage loop animation
 
-        double millisecondsPerFramePacman = 215; //Update every x second
+        double millisecondsPerFramePacman = 180; //Update every x second
         double timeSinceLastUpdatePacman = 0; //Accumulate the elapsed time for pacman movement
         /// <summary>
         /// The PacmanSprite constructor will take as input a game1 object and will 
@@ -177,6 +177,7 @@ namespace PacmanGame
                 {
                     this.isDead = false;
                     this.gs.Pacman.Position = Pacman.StartPos;
+
                     elapsedDraw = 0;
                 }
             }

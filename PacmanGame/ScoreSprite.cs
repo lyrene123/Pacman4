@@ -16,7 +16,7 @@ namespace PacmanGame
     /// to the user if the pacman has won or game is over while prompting the user
     /// if he or she wants to play again.
     /// </summary>
-    public class ScoreSprite: DrawableGameComponent
+    public class ScoreSprite : DrawableGameComponent
     {
         private Game1 game;
         private GameState gs;
@@ -25,7 +25,13 @@ namespace PacmanGame
         private bool isWon; //will keep track if pacman has won
         private SpriteFont font;
         private Texture2D lives;
-        private int level;
+        private int level1Score;
+        private int level2Score;
+        private int level3Score;
+        //private int level4Score;
+        //private int level5Score;
+        private int currentScore;
+        private int currentLives;
 
         /// <summary>
         /// The constructor will take as input a game1 object and will 
@@ -37,9 +43,9 @@ namespace PacmanGame
         {
             this.game = game;
             this.gs = game.GameState;
-            this.scores = this.gs.Score;
+            this.scores = gs.Score;
             isWon = false;
-            level = 1;
+
         }
 
         /// <summary>
@@ -48,8 +54,19 @@ namespace PacmanGame
         /// </summary>
         public bool IsWon
         {
-             get { return this.isWon; }
+            get { return this.isWon; }
             set { this.isWon = value; }
+        }
+        public int CurrentScore
+        {
+            get { return this.currentScore; }
+            set { this.currentScore = value; }
+        }
+        public override void Initialize()
+        {
+            //Game1 newgame = new Game1();
+            scores = game.GameState.Score;
+            base.Initialize();
         }
 
         /// <summary>
@@ -62,7 +79,36 @@ namespace PacmanGame
             font = game.Content.Load<SpriteFont>("score");
             lives = game.Content.Load<Texture2D>("pacmanLive");
             base.LoadContent();
-        
+
+        }
+        public override void Update(GameTime gameTime)
+        {
+            if (game.Level == 1)
+            {
+                if (scores.Score != 0)
+                {
+                    level1Score = scores.Score;
+                }
+                currentScore = level1Score;
+            }
+            else if (game.Level == 2)
+            {
+                if (scores.Score != 0)
+                {
+                    level2Score = scores.Score;
+                }
+                currentScore = level1Score + level2Score;
+            }
+            else if (game.Level == 3)
+            {
+                if (scores.Score != 0)
+                {
+                    level3Score = scores.Score;
+                }
+                currentScore = level1Score + level2Score + level3Score;
+            }
+
+            base.Update(gameTime);
         }
 
         /// <summary>
@@ -75,8 +121,8 @@ namespace PacmanGame
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             spriteBatch.Begin();
-            spriteBatch.DrawString(font, "SCORE: " + this.scores.Score, new Vector2(0, 750), Color.White);
-            spriteBatch.DrawString(font, "LEVEL: " + this.level, new Vector2(600, 750), Color.White);
+            spriteBatch.DrawString(font, "SCORE: " + currentScore, new Vector2(0, 750), Color.White);
+            spriteBatch.DrawString(font, "LEVEL: " + game.Level, new Vector2(600, 750), Color.White);
             spriteBatch.End();
             DisplayLives(gameTime);
             CheckWinOrLoss(gameTime);
@@ -92,18 +138,18 @@ namespace PacmanGame
         private void DisplayLives(GameTime gameTime)
         {
             spriteBatch.Begin();
-            if (this.scores.Lives == 3) 
+            if (scores.Lives == 3)
             {
                 spriteBatch.Draw(lives, new Rectangle(400, 750, 32, 32), Color.White);
                 spriteBatch.Draw(lives, new Rectangle(450, 750, 32, 32), Color.White);
                 spriteBatch.Draw(lives, new Rectangle(500, 750, 32, 32), Color.White);
             }
-            else if (this.scores.Lives == 2)
+            else if (scores.Lives == 2)
             {
                 spriteBatch.Draw(lives, new Rectangle(450, 750, 32, 32), Color.White);
                 spriteBatch.Draw(lives, new Rectangle(500, 750, 32, 32), Color.White);
             }
-            else if (this.scores.Lives == 1)
+            else if (scores.Lives == 1)
             {
                 spriteBatch.Draw(lives, new Rectangle(500, 750, 32, 32), Color.White);
             }
@@ -126,7 +172,7 @@ namespace PacmanGame
                 spriteBatch.End();
             }
 
-            if (this.isWon == true)
+            if (this.game.IsGameOver && this.isWon == true)
             {
                 spriteBatch.Begin();
                 spriteBatch.DrawString(font, "PACMAN WON!", new Vector2(300, 780), Color.Red);

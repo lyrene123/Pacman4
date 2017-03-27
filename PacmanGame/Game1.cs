@@ -26,6 +26,7 @@ namespace PacmanGame
         private GhostsSprite ghosts;
         private ScoreSprite score;
 
+        //Variables to manage the Game State and graphics
         private GameState gameState;
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
@@ -54,13 +55,16 @@ namespace PacmanGame
         float elapsedTimeGameOver;
         float delayTimeGameOver = 4000f;
 
-
+        //variables to manage Pacman Dying Animation
         float elapsed;
         float delay = 2000f;
 
         //variables to keep track if game has ended and if pacman has died
         private bool isDead;
         private bool isGameOver;
+
+        //Variables to manage Levels and keep track of currentScore
+        private int level;
 
 
         /// <summary>
@@ -73,30 +77,17 @@ namespace PacmanGame
             graphics.PreferredBackBufferHeight = 836;
             graphics.PreferredBackBufferWidth = 736;
             soundEffects = new List<SoundEffect>();
+            level = 1;
             SetupGame();
         }
-
         /// <summary>
-        /// The setupgame method will load the the game state, and will set up 
-        /// all event handling
+        /// The property Level method will set and return the
+        /// level of Pacman Game.
         /// </summary>
-        private void SetupGame()
+        public int Level
         {
-
-            Content.RootDirectory = "Content";
-            content = File.ReadAllText(@"levels.csv");
-            gameState = GameState.Parse(content);
-
-            this.gameState.Maze.PacmanWonEvent += GameEnded;
-            this.gameState.Score.GameOver += GameEnded;
-            foreach (Ghost g in gameState.GhostPack)
-            {
-                g.PacmanDiedEvent += Pacman_Died;
-            }
-
-            isDead = false;
-            isGameOver = false;
-            intro = true;
+            get { return this.level; }
+            set { this.level = value; }
         }
 
         /// <summary>
@@ -107,7 +98,6 @@ namespace PacmanGame
         /// </summary>
         protected override void Initialize()
         {
-
             // Create a new SpriteBatch, which can be used to draw textures.
             wall = new MazeSprite(this);
             pacman = new PacmanSprite(this);
@@ -122,7 +112,25 @@ namespace PacmanGame
 
             base.Initialize();
         }
+        /// <summary>
+        /// Allows the game to perform the initialization it needs for every level to run.
+        /// This is where it can query for any required services and load any non-graphic
+        /// related content.  Calling base.Initialize will enumerate through any components
+        /// and initialize them as well.
+        /// </summary>
+        protected void InitializeNextLevel()
+        {
+            // Create a new SpriteBatch, which can be used to draw textures.
+            wall = new MazeSprite(this);
+            pacman = new PacmanSprite(this);
+            ghosts = new GhostsSprite(this);
 
+            Components.Add(wall);
+            Components.Add(pacman);
+            Components.Add(ghosts);
+            base.Initialize();
+
+        }
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
@@ -147,7 +155,7 @@ namespace PacmanGame
             gameOverSong = gameOverMusic.CreateInstance();
             gameOverSong.IsLooped = true;
 
-            //Energizer song
+            //Game Over song
             energizerMusic = Content.Load<SoundEffect>("msenergizer");
             energizerSong = energizerMusic.CreateInstance();
             energizerSong.IsLooped = true;
@@ -156,15 +164,7 @@ namespace PacmanGame
             soundEffects.Add(Content.Load<SoundEffect>("pacman_chomp"));
             soundEffects.Add(Content.Load<SoundEffect>("Soundenergizer"));
             soundEffects.Add(Content.Load<SoundEffect>("pacmanDying"));
-        }
-
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// game-specific content.
-        /// </summary>
-        protected override void UnloadContent()
-        {
-            // TODO: Unload any non ContentManager content here
+            soundEffects.Add(Content.Load<SoundEffect>("msghost"));
         }
 
         /// <summary>
@@ -176,7 +176,16 @@ namespace PacmanGame
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
+            //Condition to change the Ghosts speed accordinly to the level
+            if (level == 2)
+            {
+                ghosts.GhostSpeed = 420;
+            }
+            if (level == 3)
+            {
+                ghosts.GhostSpeed = 320;
+            }
+            //Condition to manage the intro sound for the beginning of all levels.
             if (intro)
             {
                 IntroSong.Play();
@@ -185,15 +194,16 @@ namespace PacmanGame
                 {
                     elapsedTimeIntro = 0;
                     intro = false;
-                }
 
+                }
             }
             else
             {
-                //if pacman died then do the following
+                //Condition to manage the logic when pacman dies
                 if (isDead)
                 {
-                    backgroundSong.Stop();
+                    backgroundSong.Pause();
+
                     //wait for a couple of seconds to play the background song again, giving
                     //time to pacman to re-appear.
                     elapsed += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
@@ -201,7 +211,7 @@ namespace PacmanGame
                     {
                         if (!isGameOver)
                         {
-                            backgroundSong.Play();
+                            backgroundSong.Play(); //if pacman dies but still not Game Over
                         }
                         elapsed = 0;
                         isDead = false;
@@ -219,45 +229,32 @@ namespace PacmanGame
                             elapsedTimeGameOver = 0;
                             gameOverSong.Stop();
                             gameOverSong.Dispose();
-                            
+
                         }
                     }
-                    
+
                 }
+                //Checking when the ghosts are scared to play the energizer sound
                 foreach (Ghost g in gameState.GhostPack)
                 {
-                    if(g.CurrentState == GhostState.Scared)
+                    if (g.CurrentState == GhostState.Scared)
                     {
-                        backgroundSong.Pause();
+                        backgroundSong.Stop();
                         energizerSong.Play();
+
                     }
                     else
                     {
-                        backgroundSong.Play();
                         energizerSong.Stop();
                     }
+
                 }
-                    CheckInput(); //check of keyboard input
+
+                CheckInput(); //check of keyboard input
 
             }
 
             base.Update(gameTime);
-        }
-
-        /// <summary>
-        /// The checkinput method will check if the player pressed the key p
-        /// to play again when game is over or player won
-        /// </summary>
-        private void CheckInput()
-        {
-            KeyboardState newState = Keyboard.GetState();
-            if (newState.IsKeyDown(Keys.P) && this.isGameOver)
-            {
-                Components.Remove(this.score);
-                gameOverSong.Stop();
-                SetupGame();
-                Initialize();
-            }
         }
 
         /// <summary>
@@ -308,26 +305,49 @@ namespace PacmanGame
         /// <summary>
         /// The GameEnded method is the handler for the pacman won event
         /// and the game over event. In both cases, all ghosts and pacman
-        /// will be removed from the window
+        /// will be removed from the window and setup the newLevel if pacman
+        /// still have lives and is not in the final level.
         /// </summary>
         private void GameEnded()
         {
-            
+
             Components.Remove(pacman);
             Components.Remove(ghosts);
             if (this.gameState.Score.Lives > 0)
             {
-                this.score.IsWon = true;
-            }else
+                if (level < 3)
+                {
+                    level++;
+                    energizerSong.Stop();
+                    backgroundSong.Stop();
+                    SetupGame();
+                    InitializeNextLevel();
+                    ghosts.NewLevel = true;
+                    ghosts.GhostSpeed -= 100;
+                    isGameOver = false;
+                }
+                else
+                {
+                    score.IsWon = true;
+                    energizerSong.Stop();
+                    energizerSong.Dispose();
+                    isGameOver = true;
+                }
+
+            }
+            else
             {
                 gameOverSong.Play();
+                isGameOver = true;
+                score.IsWon = false;
+                energizerSong.Stop();
+                energizerSong.Dispose();
+                backgroundSong.Stop();
+                backgroundSong.Dispose();
             }
-                       
+
             backgroundSong.Stop();
-            backgroundSong.Dispose();
-            energizerSong.Stop();
-            energizerSong.Dispose();
-            isGameOver = true;
+
         }
 
         /// <summary>
@@ -338,6 +358,55 @@ namespace PacmanGame
         {
             this.isDead = true;
         }
+        /// <summary>
+        /// The GameEnded method is the handler for ghost Collision Event.
+        /// It plays the Eating Ghost sound every time a ghost is eaten by
+        /// Pacman.
+        /// </summary>
+        /// <param name="member"></param>
+        public void PlayEatingGhost(ICollidable member)
+        {
+            soundEffects[3].Play();
+        }
+        /// <summary>
+        /// The setupgame method will load the the game state, and will set up 
+        /// all event handling
+        /// </summary>
+        private void SetupGame()
+        {
 
+            Content.RootDirectory = "Content";
+            content = File.ReadAllText(@"levels.csv");
+            gameState = GameState.Parse(content);
+
+            this.gameState.Maze.PacmanWonEvent += GameEnded;
+            this.gameState.Score.GameOver += GameEnded;
+            foreach (Ghost g in gameState.GhostPack)
+            {
+                g.PacmanDiedEvent += Pacman_Died;
+                g.CollisionEvent += PlayEatingGhost;
+
+            }
+            isDead = false;
+            isGameOver = false;
+            intro = true;
+        }
+
+        /// <summary>
+        /// The checkinput method will check if the player pressed the key p
+        /// to play again when game is over or player won
+        /// </summary>
+        private void CheckInput()
+        {
+            KeyboardState newState = Keyboard.GetState();
+            if (newState.IsKeyDown(Keys.P) && this.isGameOver)
+            {
+                level = 1;
+                Components.Remove(this.score);
+                gameOverSong.Stop();
+                SetupGame();
+                Initialize();
+            }
+        }
     }
 }

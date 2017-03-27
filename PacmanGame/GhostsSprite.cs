@@ -11,6 +11,11 @@ using System.Threading.Tasks;
 
 namespace PacmanGame
 {
+    /// <summary>
+    /// The GhostsSprite class takes care of all possible
+    /// movements of all Ghosts during the game. It also manages
+    /// all Ghosts animation while moving around or after get scared.
+    /// </summary>
     public class GhostsSprite : DrawableGameComponent
     {
         GameState gs;
@@ -43,7 +48,7 @@ namespace PacmanGame
         private Texture2D imageYellowGhostLookLeft;
         private Texture2D imgScareGhosts;
 
-        //Variable to manage animation
+        //Variables to manage animation
         private int frame_height;
         private int frame_width;
         float elapsed;
@@ -51,22 +56,55 @@ namespace PacmanGame
         int frames = 0;
         Rectangle ghostSourceRect;
 
-
+        //Variables to manage the intro sound elapsed time
         float elapsedTimeIntro;
         float delayTimeIntro = 2800f;
         private bool intro;
 
-        private double millisecondsPerFrame = 350; //Update every x second
-        private double timeSinceLastUpdate = 0; //Accumulate the elapsed time
-        public TimeSpan TargetElapsedTime { get; private set; }
+        //private int level;
+        private bool newLevel;
+        private double ghostSpeed; //Update every x second
+        private double timeSinceLastUpdate; //Accumulate the elapsed time
 
+        /// <summary>
+        /// The GhostsSprite constructor will take as input a game1 object and will 
+        /// initialize the data members such as the game object, the gamestate, 
+        /// the newLevel and the intro to false.
+        /// </summary>
+        /// <param name="game">A game1 object</param>
         public GhostsSprite(Game1 game) : base(game)
         {
             this.game = game;
             gs = game.GameState;
+            ghostSpeed = 520;
+            timeSinceLastUpdate = 0;
+            newLevel = false;
             intro = true;
 
         }
+        /// <summary>
+        /// The property GhostSpeed method will set and return the
+        /// ghostSpeed of Pacman Game.
+        /// </summary>
+        public double GhostSpeed
+        {
+            get { return this.ghostSpeed; }
+            set { this.ghostSpeed = value; }
+        }
+        /// <summary>
+        /// The property NewLevel method will set and return the
+        /// newLevel to indicate if is a new Level.
+        /// </summary>
+        public bool NewLevel
+        {
+            get { return this.newLevel; }
+            set { this.newLevel = value; }
+        }
+        /// <summary>
+        /// Allows the game to perform the initialization it needs to run.
+        /// This is where it can query for any required services and load any non-graphic
+        /// related content.  
+        /// </summary>
         public override void Initialize()
         {
             frame_height = 32;
@@ -74,6 +112,11 @@ namespace PacmanGame
             gs = game.GameState;
             base.Initialize();
         }
+        /// <summary>
+        /// The loadcontent method will load the spriteSheets responsable 
+        /// for each movement of the ghosts (Right,Left,Down,Up) and will also
+        /// load the Scared Ghosts image.
+        /// </summary>
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -102,18 +145,12 @@ namespace PacmanGame
             gs = game.GameState;
             base.LoadContent();
         }
-        private void Animate(GameTime gameTime)
-        {
-            elapsed += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-            if (elapsed >= delay)
-            {
-                if (frames >= 1) { frames = 0; }
-                else { frames++; }
-                elapsed = 0;
-            }
-            ghostSourceRect = new Rectangle(frame_width * frames, 0, 32, 32);
 
-        }
+        /// <summary>
+        /// The Update method Allows the game to run logic such as updating the 
+        /// ghosts movements and updating ghosts animations while the game is running.
+        /// </summary>
+        /// <param name="gameTime">A GameTime Object</param>
         public override void Update(GameTime gameTime)
         {
             //this.TargetElapsedTime = TimeSpan.FromSeconds(1.0f / 1.0f);
@@ -132,7 +169,7 @@ namespace PacmanGame
             else
             {
                 timeSinceLastUpdate += gameTime.ElapsedGameTime.TotalMilliseconds;
-                if (timeSinceLastUpdate >= millisecondsPerFrame)
+                if (timeSinceLastUpdate >= ghostSpeed)
                 {
                     timeSinceLastUpdate = 0;
 
@@ -145,6 +182,11 @@ namespace PacmanGame
 
             base.Update(gameTime);
         }
+        /// <summary>
+        /// The Draw method will draw the images of all ghosts on the screen according to
+        /// its current state such as moving or after an energizer is eaten from Pacman. 
+        /// </summary>
+        /// <param name="gameTime">A GameTime Object</param>
         public override void Draw(GameTime gameTime)
         {
             foreach (Ghost g in gs.GhostPack)
@@ -256,6 +298,24 @@ namespace PacmanGame
             }
 
             base.Draw(gameTime);
+        }
+        /// <summary>
+        /// The Animate method will take care of all Ghosts animation,
+        /// changing the appropriate frame from the source Rectangle 
+        /// to give the ilusion of movements on the screen.
+        /// </summary>
+        /// <param name="gameTime">A GameTime Object</param>
+        private void Animate(GameTime gameTime)
+        {
+            elapsed += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            if (elapsed >= delay)
+            {
+                if (frames >= 1) { frames = 0; }
+                else { frames++; }
+                elapsed = 0;
+            }
+            ghostSourceRect = new Rectangle(frame_width * frames, 0, 32, 32);
+
         }
     }
 }
