@@ -27,6 +27,7 @@ namespace PacmanLibrary
         private Maze maze;
         private GhostPack ghostPack;
         public static Vector2 StartPos;
+        private bool canMove;
 
         /// <summary>
         /// The constructor will use the input GameState
@@ -42,6 +43,7 @@ namespace PacmanLibrary
             this.gamestate = gs;
             this.maze = this.gamestate.Maze;
             this.ghostPack = this.gamestate.GhostPack;
+            canMove = true;
         }
 
         /// <summary>
@@ -64,6 +66,15 @@ namespace PacmanLibrary
 
             }
         }
+        /// <summary>
+        /// The property CanMove will set and return the
+        /// bool canMove.
+        /// </summary>
+        public bool CanMove
+        {
+            get { return this.canMove; }
+            private set { this.canMove = value; }
+        }
 
 
         /// <summary>
@@ -81,6 +92,11 @@ namespace PacmanLibrary
                 if (!(this.maze[(int)this.position.X, (int)this.position.Y + 1] is Wall))
                 {
                     this.position.Y++;
+                    canMove = true;
+                }
+                else
+                {
+                    canMove = false;
                 }
             }
             else if (dir == Direction.Up)
@@ -88,6 +104,11 @@ namespace PacmanLibrary
                 if (!(this.maze[(int)this.position.X, (int)this.position.Y - 1] is Wall))
                 {
                     this.position.Y--;
+                    canMove = true;
+                }
+                else
+                {
+                    canMove = false;
                 }
             }
             else if (dir == Direction.Left)
@@ -95,15 +116,26 @@ namespace PacmanLibrary
                 if (!(this.maze[(int)this.position.X-1, (int)this.position.Y] is Wall))
                 {
                     this.position.X--;
+                    canMove = true;
+                }
+                else
+                {
+                    canMove = false;
                 }
             }
-            else
+            else if(dir == Direction.Right)
             {
                 if (!(this.maze[(int)this.position.X+1, (int)this.position.Y] is Wall))
                 {
                     this.position.X++;
+                    canMove = true;
+                }
+                else
+                {
+                    canMove = false;
                 }
             }
+           
 
             //this.gamestate.Maze.CheckMembersLeft();
             CheckCollisions();

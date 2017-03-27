@@ -74,7 +74,7 @@ namespace PacmanGame
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferHeight = 836;
+            graphics.PreferredBackBufferHeight = 800;
             graphics.PreferredBackBufferWidth = 736;
             soundEffects = new List<SoundEffect>();
             level = 1;

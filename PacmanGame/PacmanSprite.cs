@@ -202,22 +202,37 @@ namespace PacmanGame
                     if (keyPressed.Equals(Keys.Right))
                     {
                         gs.Pacman.Move(Direction.Right);
-                        currentAnimation = imgPacMoveRight;
+                        if (gs.Pacman.CanMove)
+                        {
+                            currentAnimation = imgPacMoveRight;
+
+                        }
+                        
                     }
                     else if (keyPressed.Equals(Keys.Left))
                     {
                         gs.Pacman.Move(Direction.Left);
-                        currentAnimation = imgPacMoveLeft;
+                        if (gs.Pacman.CanMove)
+                        {
+                            currentAnimation = imgPacMoveLeft;
+                        }
+                            
                     }
                     else if (keyPressed.Equals(Keys.Down))
                     {
                         gs.Pacman.Move(Direction.Down);
-                        currentAnimation = imgPacMoveDown;
+                        if (gs.Pacman.CanMove)
+                        {
+                            currentAnimation = imgPacMoveDown;
+                        }
                     }
                     else if (keyPressed.Equals(Keys.Up))
                     {
                         gs.Pacman.Move(Direction.Up);
-                        currentAnimation = imgPacMoveUp;
+                        if (gs.Pacman.CanMove)
+                        {
+                            currentAnimation = imgPacMoveUp;
+                        }
                     }
                 }
             }
