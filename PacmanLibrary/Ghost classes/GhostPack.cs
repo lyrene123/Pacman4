@@ -72,7 +72,7 @@ namespace PacmanLibrary.Ghost_classes
                 //if the ghosts are already in scared mode, don't do anything
                 if (monster.CurrentState == GhostState.Scared)
                     return;
-
+                    
                 monster.ChangeState(GhostState.Scared);
             }
 

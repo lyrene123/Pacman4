@@ -105,15 +105,18 @@ namespace PacmanGame
         /// <param name="gameTime">A GameTime Object</param>
         public override void Update(GameTime gameTime)
         {
+            //if pacman is alive animate with pacman sprite sheet
             if (!isDead)
             {
                 AnimatePacman(gameTime, 1);
             }
             else
             {
+                //if pacman has just died animate with pacman dead sprite sheet
                 AnimatePacman(gameTime, 11);
-                keyPressed = Keys.F1;
+                keyPressed = Keys.F1; //if pacman died disable the keypressed to avoid conflicts. 
             }
+            //condition to delay pacman game loop while the intro play sound is running
             if (intro)
             {
                 elapsedTimeIntro += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
@@ -122,10 +125,10 @@ namespace PacmanGame
                     elapsedTimeIntro = 0;
                     intro = false;
                 }
-
             }
             else
             {
+                //updating keyboard key pressed 
                 currentKeyboardState = Keyboard.GetState();
                 keyArray = currentKeyboardState.GetPressedKeys();
                 if (keyArray.GetLength(0) != 0)
@@ -139,8 +142,6 @@ namespace PacmanGame
                     CheckKeyPressed();
                     this.gs.Maze.CheckMembersLeft();
                 }
-
-
             }
             destinationRect = new Rectangle((int)gs.Pacman.Position.X * frame_width, (int)gs.Pacman.Position.Y * frame_height, 32, 32);
             base.Update(gameTime);
@@ -152,7 +153,7 @@ namespace PacmanGame
         /// <param name="gameTime">A GameTime Object</param>
         public override void Draw(GameTime gameTime)
         {
-
+            //if pacman is alive draw Pacman with the appropriate image  
             if (!isDead)
             {
                 spriteBatch.Begin();
@@ -160,9 +161,10 @@ namespace PacmanGame
                     sourceRect, Color.White);
                 spriteBatch.End();
             }
-
+            //if pacman died draw the dying image 
             if (isDead)
             {
+                //if pacman just died play the pacman dying sound
                 if (playdead)
                 {
                     game[2].Play();
@@ -172,6 +174,7 @@ namespace PacmanGame
                 spriteBatch.Draw(imgPacDied, destinationRect,
                 sourceRect, Color.White);
                 spriteBatch.End();
+                //after a specific elapsed time teletransport pacman to start position
                 elapsedDraw += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
                 if (elapsedDraw >= delayDraw)
                 {
@@ -191,36 +194,38 @@ namespace PacmanGame
         /// </summary>
         private void CheckKeyPressed()
         {
+            //If no key has being press return
             if (keyArray.Equals(null))
             {
                 return;
             }
             else
             {
+                //if Pacman is not dead then check keyboard to move
                 if (!isDead)
                 {
                     if (keyPressed.Equals(Keys.Right))
                     {
                         gs.Pacman.Move(Direction.Right);
+                        //only change image if pacman can move
                         if (gs.Pacman.CanMove)
                         {
                             currentAnimation = imgPacMoveRight;
-
                         }
-                        
                     }
                     else if (keyPressed.Equals(Keys.Left))
                     {
                         gs.Pacman.Move(Direction.Left);
+                        //only change image if pacman can move
                         if (gs.Pacman.CanMove)
                         {
                             currentAnimation = imgPacMoveLeft;
                         }
-                            
                     }
                     else if (keyPressed.Equals(Keys.Down))
                     {
                         gs.Pacman.Move(Direction.Down);
+                        //only change image if pacman can move
                         if (gs.Pacman.CanMove)
                         {
                             currentAnimation = imgPacMoveDown;
@@ -229,6 +234,7 @@ namespace PacmanGame
                     else if (keyPressed.Equals(Keys.Up))
                     {
                         gs.Pacman.Move(Direction.Up);
+                        //only change image if pacman can move
                         if (gs.Pacman.CanMove)
                         {
                             currentAnimation = imgPacMoveUp;
@@ -262,18 +268,14 @@ namespace PacmanGame
                 if (images >= frames)
                 {
                     images = 0;
-
                 }
                 else
                 {
                     images++;
-
                 }
                 elapsedTimeAnimation = 0;
             }
-
             sourceRect = new Rectangle(32 * images, 0, 32, 32);
-
         }
     }
 }
