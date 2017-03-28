@@ -195,7 +195,11 @@ namespace PacmanLibrary.Structure
             int posY = (int)(position.Y + 1);
             int posX = (int)position.X; //does not change
 
-            if(posY < this.maze.GetLength(0))
+            if (position.Y == Size - 1)
+            {
+                downTile = this.maze[posX,0];
+            }
+            else if (posY < this.maze.GetLength(0))
             {
                 if (this.maze[posX, posY] is Path)
                 {
@@ -220,7 +224,11 @@ namespace PacmanLibrary.Structure
             int posY = (int)(position.Y - 1);
             int posX = (int)position.X; //does not change
 
-            if (posY >= 0)
+            if (position.Y == 0)
+            {
+                upTile = this.maze[posX, Size - 1];
+            }
+            else if (posY >= 0)
             {
                 if (this.maze[posX, posY] is Path)
                 {
@@ -245,7 +253,12 @@ namespace PacmanLibrary.Structure
             int posY = (int)position.Y; //never changes
             int posX = (int)(position.X - 1);
 
-            if (posX >= 0)
+            if (position.X == 0)
+            {
+                leftTile = this.maze[Size - 1, posY];
+            }
+
+            else if (posX >= 0)
             {
                 if (this.maze[posX, posY] is Path)
                 {
@@ -270,7 +283,13 @@ namespace PacmanLibrary.Structure
             int posY = (int)position.Y; //never changes
             int posX = (int)(position.X + 1);
 
-            if (posX < this.maze.GetLength(1))
+            if (position.X == Size - 1)
+            {
+                rightTile = this.maze[0, posY];
+                
+            }
+
+            else if (posX < this.maze.GetLength(1))
             {
                 if (this.maze[posX, posY] is Path)
                 {

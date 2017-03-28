@@ -89,10 +89,14 @@ namespace PacmanLibrary
         {
             if (dir == Direction.Down)
             {
+                if ((int)this.position.Y == this.maze.Size - 1)
+                {
+                    this.position.Y = 0;
+                }
                 if (!(this.maze[(int)this.position.X, (int)this.position.Y + 1] is Wall))
                 {
-                    this.position.Y++;
-                    canMove = true;
+                        this.position.Y++;
+                        canMove = true;
                 }
                 else
                 {
@@ -101,10 +105,15 @@ namespace PacmanLibrary
             }
             else if (dir == Direction.Up)
             {
+                if ((int)this.position.Y == 0)
+                {
+                    this.position.Y = this.maze.Size - 1;
+                }
                 if (!(this.maze[(int)this.position.X, (int)this.position.Y - 1] is Wall))
                 {
-                    this.position.Y--;
-                    canMove = true;
+                   
+                        this.position.Y--;
+                        canMove = true;
                 }
                 else
                 {
@@ -113,10 +122,14 @@ namespace PacmanLibrary
             }
             else if (dir == Direction.Left)
             {
+                if ((int)this.position.X == 0)
+                {
+                    this.position.X = this.maze.Size - 1;
+                }
                 if (!(this.maze[(int)this.position.X-1, (int)this.position.Y] is Wall))
                 {
-                    this.position.X--;
-                    canMove = true;
+                        this.position.X--;
+                        canMove = true;
                 }
                 else
                 {
@@ -125,19 +138,20 @@ namespace PacmanLibrary
             }
             else if(dir == Direction.Right)
             {
+                if ((int)this.position.X == this.maze.Size - 1)
+                {
+                    this.position.X = 0;
+                }
                 if (!(this.maze[(int)this.position.X+1, (int)this.position.Y] is Wall))
                 {
-                    this.position.X++;
-                    canMove = true;
+                        this.position.X++;
+                        canMove = true;
                 }
                 else
                 {
                     canMove = false;
                 }
             }
-           
-
-            //this.gamestate.Maze.CheckMembersLeft();
             CheckCollisions();
         }
 
