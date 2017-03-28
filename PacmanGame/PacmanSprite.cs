@@ -41,7 +41,11 @@ namespace PacmanGame
         //Variables to manage Keyboard Input
         Keys[] keyArray;
         private Keys keyPressed;
+        //private Keys previousKeyPressed;
         private KeyboardState currentKeyboardState;
+
+        private Direction previousDirection;
+        private Direction currentDirection;
 
         float elapsedDraw; //Accumulate the elapsed time for drawing animation
         float delayDraw = 2000f;
@@ -72,6 +76,9 @@ namespace PacmanGame
             intro = true;
             frame_height = 32;
             frame_width = 32;
+            currentDirection = Direction.None;
+            previousDirection = Direction.None;
+
 
             foreach (Ghost ghost in gs.GhostPack)
             {
@@ -131,10 +138,13 @@ namespace PacmanGame
                 //updating keyboard key pressed 
                 currentKeyboardState = Keyboard.GetState();
                 keyArray = currentKeyboardState.GetPressedKeys();
-                if (keyArray.GetLength(0) != 0)
-                {
-                    keyPressed = keyArray[0];
-                }
+                
+                    if (keyArray.GetLength(0) != 0)
+                    {
+                        keyPressed = keyArray[0];
+                    }
+               
+                     
                 timeSinceLastUpdatePacman += gameTime.ElapsedGameTime.TotalMilliseconds;
                 if (timeSinceLastUpdatePacman >= millisecondsPerFramePacman)
                 {
@@ -201,45 +211,55 @@ namespace PacmanGame
             }
             else
             {
-                //if Pacman is not dead then check keyboard to move
+                //if Pacman is not dead then assign currentDirection 
                 if (!isDead)
                 {
                     if (keyPressed.Equals(Keys.Right))
                     {
-                        gs.Pacman.Move(Direction.Right);
-                        //only change image if pacman can move
-                        if (gs.Pacman.CanMove)
-                        {
-                            currentAnimation = imgPacMoveRight;
-                        }
+                        currentDirection = Direction.Right;
                     }
                     else if (keyPressed.Equals(Keys.Left))
                     {
-                        gs.Pacman.Move(Direction.Left);
-                        //only change image if pacman can move
-                        if (gs.Pacman.CanMove)
-                        {
-                            currentAnimation = imgPacMoveLeft;
-                        }
+                        currentDirection = Direction.Left;
                     }
                     else if (keyPressed.Equals(Keys.Down))
                     {
-                        gs.Pacman.Move(Direction.Down);
-                        //only change image if pacman can move
-                        if (gs.Pacman.CanMove)
-                        {
-                            currentAnimation = imgPacMoveDown;
-                        }
+                        currentDirection = Direction.Down;
                     }
                     else if (keyPressed.Equals(Keys.Up))
                     {
-                        gs.Pacman.Move(Direction.Up);
-                        //only change image if pacman can move
-                        if (gs.Pacman.CanMove)
+                        currentDirection = Direction.Up;
+                      
+                    }else
+                    {
+                        currentDirection = Direction.None;
+                    }
+
+                    // if pacman can move 
+                    if (gs.Pacman.Move(currentDirection))
+                    {
+                        if(currentDirection == Direction.Down)
+                        {
+                            currentAnimation = imgPacMoveDown;
+                        }
+                        else if(currentDirection == Direction.Up)
                         {
                             currentAnimation = imgPacMoveUp;
                         }
+                        else if (currentDirection == Direction.Right)
+                        {
+                            currentAnimation = imgPacMoveRight;
+                        }
+                        else if (currentDirection == Direction.Left)
+                        {
+                            currentAnimation = imgPacMoveLeft;
+                        }
+                        previousDirection = currentDirection;
+                    }else
+                    {
+                        gs.Pacman.Move(previousDirection);
                     }
+
                 }
             }
         }

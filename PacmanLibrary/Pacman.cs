@@ -85,7 +85,7 @@ namespace PacmanLibrary
         /// to the previous tile it has been.
         /// </summary>
         /// <param name="dir">A Direction enum</param>
-        public void Move(Direction dir)
+        public bool Move(Direction dir)
         {
             if (dir == Direction.Down)
             {
@@ -153,6 +153,7 @@ namespace PacmanLibrary
                 }
             }
             CheckCollisions();
+            return canMove;
         }
 
         /// <summary>

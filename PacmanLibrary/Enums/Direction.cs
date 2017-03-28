@@ -15,6 +15,6 @@ namespace PacmanLibrary
     /// </summary>
     public enum Direction
     {
-        Up, Down, Left, Right
+        Up, Down, Left, Right, None
     }
 }
