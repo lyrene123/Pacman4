@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/1433278/Source/Repos/Pacman4/PacmanGame/Content/msenergizer.wav</SourceFile>
-  <SourceTime>2017-03-29T11:19:51.0977864-04:00</SourceTime>
-  <DestFile>C:/Users/1433278/Source/Repos/Pacman4/PacmanGame/Content/bin/Windows/msenergizer.xnb</DestFile>
-  <DestTime>2017-03-29T11:37:54.5613509-04:00</DestTime>
+  <SourceFile>D:/LD2017V4/PacmanGame/Content/msenergizer.wav</SourceFile>
+  <SourceTime>2017-03-29T12:50:20.0979971-04:00</SourceTime>
+  <DestFile>D:/LD2017V4/PacmanGame/Content/bin/Windows/msenergizer.xnb</DestFile>
+  <DestTime>2017-03-29T12:50:59.4556745-04:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2016-03-30T02:36:08-04:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

@@ -27,6 +27,7 @@ namespace PacmanGame
         private Texture2D lives;
         private Texture2D winGame;
         private Texture2D gameOver;
+        private Texture2D winScreen;
         private Texture2D gameOvertxt;
         private int level1Score;
         private int level2Score;
@@ -84,6 +85,7 @@ namespace PacmanGame
             winGame = game.Content.Load<Texture2D>("wingame");
             gameOvertxt = game.Content.Load<Texture2D>("gameOvertxt");
             gameOver = game.Content.Load<Texture2D>("gameOver");
+            winScreen = game.Content.Load<Texture2D>("winScreen");
             base.LoadContent();
 
         }
@@ -187,7 +189,7 @@ namespace PacmanGame
                 spriteBatch.Begin();
                 spriteBatch.Draw(winGame, new Rectangle(280, 120, 200, 200),
                    Color.White);
-                spriteBatch.Draw(gameOvertxt, new Rectangle(240, 350, 290, 290),
+                spriteBatch.Draw(winScreen, new Rectangle(240, 350, 290, 290),
                    Color.White);
                 spriteBatch.DrawString(font, "Press 'p' to play again", new Vector2(230, 600), Color.Red);
                 spriteBatch.End();

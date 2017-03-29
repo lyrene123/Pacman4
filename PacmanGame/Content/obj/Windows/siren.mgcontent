@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/1433278/Source/Repos/Pacman4/PacmanGame/Content/siren.wav</SourceFile>
-  <SourceTime>2017-03-29T11:19:51.1658992-04:00</SourceTime>
-  <DestFile>C:/Users/1433278/Source/Repos/Pacman4/PacmanGame/Content/bin/Windows/siren.xnb</DestFile>
-  <DestTime>2017-03-29T11:37:52.6952844-04:00</DestTime>
+  <SourceFile>D:/LD2017V4/PacmanGame/Content/siren.wav</SourceFile>
+  <SourceTime>2017-03-29T12:50:20.1449068-04:00</SourceTime>
+  <DestFile>D:/LD2017V4/PacmanGame/Content/bin/Windows/siren.xnb</DestFile>
+  <DestTime>2017-03-29T12:50:55.0754845-04:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2016-03-30T02:36:08-04:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>
