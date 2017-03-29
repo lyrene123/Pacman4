@@ -25,13 +25,16 @@ namespace PacmanGame
         private bool isWon; //will keep track if pacman has won
         private SpriteFont font;
         private Texture2D lives;
+        private Texture2D winGame;
+        private Texture2D gameOver;
+        private Texture2D gameOvertxt;
         private int level1Score;
         private int level2Score;
         private int level3Score;
         //private int level4Score;
         //private int level5Score;
         private int currentScore;
-        private int currentLives;
+
 
         /// <summary>
         /// The constructor will take as input a game1 object and will 
@@ -78,6 +81,9 @@ namespace PacmanGame
             spriteBatch = new SpriteBatch(GraphicsDevice);
             font = game.Content.Load<SpriteFont>("score");
             lives = game.Content.Load<Texture2D>("pacmanLive");
+            winGame = game.Content.Load<Texture2D>("wingame");
+            gameOvertxt = game.Content.Load<Texture2D>("gameOvertxt");
+            gameOver = game.Content.Load<Texture2D>("gameOver2");
             base.LoadContent();
 
         }
@@ -121,10 +127,11 @@ namespace PacmanGame
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             spriteBatch.Begin();
-            spriteBatch.DrawString(font, "SCORE: " + currentScore, new Vector2(0, 750), Color.White);
+            spriteBatch.DrawString(font, "SCORE: " + currentScore, new Vector2(50, 750), Color.White);
             spriteBatch.DrawString(font, "LEVEL: " + game.Level, new Vector2(600, 750), Color.White);
             spriteBatch.End();
             DisplayLives(gameTime);
+
             CheckWinOrLoss(gameTime);
             base.Draw(gameTime);
         }
@@ -167,17 +174,24 @@ namespace PacmanGame
             if (this.game.IsGameOver && this.isWon == false)
             {
                 spriteBatch.Begin();
-                spriteBatch.DrawString(font, "GAME OVER!", new Vector2(300, 780), Color.Red);
-                spriteBatch.DrawString(font, "Press 'p' to play again", new Vector2(230, 800), Color.Red);
+                spriteBatch.Draw(gameOver, new Rectangle(280, 120, 200, 200),
+                   Color.White);
+                spriteBatch.Draw(gameOvertxt, new Rectangle(240, 350, 290, 290),
+                   Color.White);
+                spriteBatch.DrawString(font, "Press 'p' to play again", new Vector2(230, 600), Color.Red);
                 spriteBatch.End();
             }
 
             if (this.game.IsGameOver && this.isWon == true)
             {
                 spriteBatch.Begin();
-                spriteBatch.DrawString(font, "PACMAN WON!", new Vector2(300, 780), Color.Red);
-                spriteBatch.DrawString(font, "Press 'p' to play again", new Vector2(230, 800), Color.Red);
+                spriteBatch.Draw(winGame, new Rectangle(280, 120, 200, 200),
+                   Color.White);
+                spriteBatch.Draw(gameOvertxt, new Rectangle(240, 350, 290, 290),
+                   Color.White);
+                spriteBatch.DrawString(font, "Press 'p' to play again", new Vector2(230, 600), Color.Red);
                 spriteBatch.End();
+
             }
             base.Draw(gameTime);
         }

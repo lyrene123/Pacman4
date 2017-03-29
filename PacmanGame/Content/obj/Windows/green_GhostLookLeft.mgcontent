@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>D:/LD2017_V3/PacmanGame/Content/green_GhostLookLeft.png</SourceFile>
-  <SourceTime>2017-03-27T15:32:23.2780301-04:00</SourceTime>
-  <DestFile>D:/LD2017_V3/PacmanGame/Content/bin/Windows/green_GhostLookLeft.xnb</DestFile>
-  <DestTime>2017-03-27T15:36:24.6102389-04:00</DestTime>
+  <SourceFile>D:/LD2017_V4/PacmanGame/Content/green_GhostLookLeft.png</SourceFile>
+  <SourceTime>2017-03-29T10:57:30.2884088-04:00</SourceTime>
+  <DestFile>D:/LD2017_V4/PacmanGame/Content/bin/Windows/green_GhostLookLeft.xnb</DestFile>
+  <DestTime>2017-03-29T11:01:11.5005555-04:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T02:36:08-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

@@ -106,36 +106,38 @@ namespace PacmanGame
         /// <param name="gameTime">A GameTime Object</param>
         public override void Draw(GameTime gameTime)
         {
-
-            spriteBatch.Begin();
-            for (var i = 0; i < gs.Maze.Size; i++)
+            if (gs.Score.Lives >= 1)
             {
-                for (var j = 0; j < gs.Maze.Size; j++)
+                spriteBatch.Begin();
+                for (var i = 0; i < gs.Maze.Size; i++)
                 {
-                    if (gs.Maze[i, j] is Wall)
+                    for (var j = 0; j < gs.Maze.Size; j++)
                     {
-                        spriteBatch.Draw(currentimageWall, new Rectangle(i * frame_width, j * frame_height, 32, 32), Color.White);
-                    }
+                        if (gs.Maze[i, j] is Wall)
+                        {
+                            spriteBatch.Draw(currentimageWall, new Rectangle(i * frame_width, j * frame_height, 32, 32), Color.White);
+                        }
 
-                    if (gs.Maze[i, j] is PacmanLibrary.Structure.Path)
-                    {
-                        if (gs.Maze[i, j].IsEmpty())
+                        if (gs.Maze[i, j] is PacmanLibrary.Structure.Path)
                         {
-                            spriteBatch.Draw(imageEmpty, new Rectangle(i * frame_width, j * frame_height, 32, 32), Color.White);
-                        }
-                        if (gs.Maze[i, j].Member is Pellet)
-                        {
-                            spriteBatch.Draw(imagePellet, new Rectangle(i * frame_width, j * frame_height, 32, 32), Color.White);
-                        }
-                        if (gs.Maze[i, j].Member is Energizer)
-                        {
-                            spriteBatch.Draw(imageEnergizer, new Rectangle(i * frame_width, j * frame_height, 32, 32), sourceRect, Color.White);
+                            if (gs.Maze[i, j].IsEmpty())
+                            {
+                                spriteBatch.Draw(imageEmpty, new Rectangle(i * frame_width, j * frame_height, 32, 32), Color.White);
+                            }
+                            if (gs.Maze[i, j].Member is Pellet)
+                            {
+                                spriteBatch.Draw(imagePellet, new Rectangle(i * frame_width, j * frame_height, 32, 32), Color.White);
+                            }
+                            if (gs.Maze[i, j].Member is Energizer)
+                            {
+                                spriteBatch.Draw(imageEnergizer, new Rectangle(i * frame_width, j * frame_height, 32, 32), sourceRect, Color.White);
+                            }
                         }
                     }
                 }
-            }
 
-            spriteBatch.End();
+                spriteBatch.End();
+            }
             base.Draw(gameTime);
         }
 
