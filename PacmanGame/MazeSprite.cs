@@ -106,7 +106,7 @@ namespace PacmanGame
         /// <param name="gameTime">A GameTime Object</param>
         public override void Draw(GameTime gameTime)
         {
-            if (gs.Score.Lives >= 1)
+            if (gs.Score.Lives >= 1 && game.WonGame == false)
             {
                 spriteBatch.Begin();
                 for (var i = 0; i < gs.Maze.Size; i++)

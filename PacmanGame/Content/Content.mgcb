@@ -415,18 +415,6 @@
 /processorParam:Quality=Best
 /build:msghost.wav
 
-#begin gameOver2.jpg
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gameOver2.jpg
-
 #begin gameOvertxt.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -450,4 +438,16 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:wingame.png
+
+#begin gameOver.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gameOver.png
 

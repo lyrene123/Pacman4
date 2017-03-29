@@ -61,6 +61,7 @@ namespace PacmanGame
 
         //variables to keep track if game has ended and if pacman has died
         private bool isDead;
+        private bool gameWon;
         private bool isGameOver;
 
         //Variables to manage Levels and keep track of currentScore
@@ -77,6 +78,7 @@ namespace PacmanGame
             graphics.PreferredBackBufferHeight = 800;
             graphics.PreferredBackBufferWidth = 736;
             soundEffects = new List<SoundEffect>();
+            gameWon = false;
             level = 3;
             SetupGame();
         }
@@ -88,6 +90,15 @@ namespace PacmanGame
         {
             get { return this.level; }
             set { this.level = value; }
+        }
+        /// <summary>
+        /// The property WonGame method will set and return the
+        /// gameWon of Pacman Game.
+        /// </summary>
+        public bool WonGame
+        {
+            get { return this.gameWon; }
+            private set { this.gameWon = value; }
         }
 
         /// <summary>
@@ -329,6 +340,7 @@ namespace PacmanGame
                 else
                 {
                     score.IsWon = true;
+                    gameWon = true;
                     energizerSong.Stop();
                     energizerSong.Dispose();
                     isGameOver = true;

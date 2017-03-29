@@ -83,7 +83,7 @@ namespace PacmanGame
             lives = game.Content.Load<Texture2D>("pacmanLive");
             winGame = game.Content.Load<Texture2D>("wingame");
             gameOvertxt = game.Content.Load<Texture2D>("gameOvertxt");
-            gameOver = game.Content.Load<Texture2D>("gameOver2");
+            gameOver = game.Content.Load<Texture2D>("gameOver");
             base.LoadContent();
 
         }
