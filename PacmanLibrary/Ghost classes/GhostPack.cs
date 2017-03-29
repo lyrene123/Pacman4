@@ -71,14 +71,18 @@ namespace PacmanLibrary.Ghost_classes
             {
                 //if the ghosts are already in scared mode, don't do anything
                 if (monster.CurrentState == GhostState.Scared)
-                    return;
+                {
+                    Ghost.scared.Interval = 8000;
+                }
+                    
                     
                 monster.ChangeState(GhostState.Scared);
             }
 
             Ghost.scared = new Timer(8000);
             Ghost.scared.Enabled = true;
-            Ghost.scared.Elapsed += OnScareGhostDisable;        
+            Ghost.scared.Elapsed += OnScareGhostDisable;   
+            
         }
 
         /// <summary>
