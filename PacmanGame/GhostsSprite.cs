@@ -153,7 +153,6 @@ namespace PacmanGame
         /// <param name="gameTime">A GameTime Object</param>
         public override void Update(GameTime gameTime)
         {
-            //this.TargetElapsedTime = TimeSpan.FromSeconds(1.0f / 1.0f);
             Animate(gameTime);
 
             if (intro)

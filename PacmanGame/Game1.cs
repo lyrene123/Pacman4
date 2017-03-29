@@ -155,8 +155,7 @@ namespace PacmanGame
             backgroundMusic = Content.Load<SoundEffect>("siren");
             backgroundSong = backgroundMusic.CreateInstance();
             backgroundSong.IsLooped = true;
-            //backgroundSong.Play();
-
+            
             //background song
             IntroMusic = Content.Load<SoundEffect>("intro");
             IntroSong = IntroMusic.CreateInstance();

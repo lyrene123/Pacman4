@@ -32,8 +32,6 @@ namespace PacmanGame
         private int level1Score;
         private int level2Score;
         private int level3Score;
-        //private int level4Score;
-        //private int level5Score;
         private int currentScore;
 
 
@@ -61,14 +59,12 @@ namespace PacmanGame
             get { return this.isWon; }
             set { this.isWon = value; }
         }
-        public int CurrentScore
-        {
-            get { return this.currentScore; }
-            set { this.currentScore = value; }
-        }
+        /// <summary>
+        /// Initilizes the field ScoreAndLives and 
+        /// calls the initialize method of the base class
+        /// </summary>
         public override void Initialize()
         {
-            //Game1 newgame = new Game1();
             scores = game.GameState.Score;
             base.Initialize();
         }
@@ -89,6 +85,10 @@ namespace PacmanGame
             base.LoadContent();
 
         }
+        /// <summary>
+        /// The update method update the current Score of pacman
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
             if (game.Level == 1)

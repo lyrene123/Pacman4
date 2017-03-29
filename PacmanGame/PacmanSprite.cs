@@ -41,7 +41,6 @@ namespace PacmanGame
         //Variables to manage Keyboard Input
         Keys[] keyArray;
         private Keys keyPressed;
-        //private Keys previousKeyPressed;
         private KeyboardState currentKeyboardState;
 
         private Direction previousDirection;
