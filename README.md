@@ -1,4 +1,11 @@
 # Pacman4
-C#  Project 
-Semester 4, Winter 2017
-Team: Daniel Cavalcanti and Lyrene Labor
+Pacman Game Application written in C# during 2nd year CompSci.
+
+## Frameworks/design used
+* .NET framework
+* Monogame framework
+* MVC pattern, seperation of concerns between business classes and presentation
+
+## Developed by:
+Lyrene Labor <br>
+Daniel Cavalcanti
